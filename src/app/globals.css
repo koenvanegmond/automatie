@@ -2,41 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+html { scroll-behavior: smooth; }
+body { @apply bg-cream text-body; }
+
 @layer components {
-    .btn{
-        @apply px-4 py-2 rounded-lg font-medium inline-flex items-center justify-center tracking-tight;
-    }
-
-    .btn-primary {
-        @apply bg-black text-white;
-    }
-
-    .btn-text{
-        @apply bg-transparent text-black
-    }
-
-    .logo-ticker-image{
-        @apply h-8 w-auto;
-    }
-
-    .tag{
-        @apply text-sm inline-flex border border-[#222]/10 px-3 py-1 rounded-lg tracking-tight
-    }
-
-    .section-title{
-        @apply text-center text-3xl md:text-[54px] md:leading-[60px] font-bold tracking-tighter bg-gradient-to-b from-black to-[#001E80] text-transparent bg-clip-text;
-    }
-
-    .section-description{
-       @apply text-center md:text-[22px] text-[18px] md:leading-[30px] leading-[26px] tracking-tight text-[#010D3E];
-    }
-
-    .section-heading{
-        @apply max-w-[540px] mx-auto;
-    }
-
-    .card{
-       @apply p-10 border border-solid border-[#222222]/10 rounded-3xl shadow-[0_7px_14px_#EAEAEA] max-w-sm w-full;
-    }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-medium tracking-tight transition-all duration-200; }
+  .btn-primary { @apply bg-brand text-white hover:bg-brand-dark hover:-translate-y-0.5 shadow-[0_6px_20px_-6px_rgba(37,133,90,.6)]; }
+  .btn-ghost { @apply bg-white text-ink border border-ink/10 hover:border-ink/30; }
+  .eyebrow { @apply text-[11px] font-medium uppercase tracking-[0.25em] text-brand; }
+  .h2 { @apply font-display text-4xl md:text-6xl font-semibold tracking-[-0.03em] text-ink leading-[1.02]; }
+  .card { @apply bg-white rounded-2xl border border-ink/[0.06] shadow-card; }
+  .dot-grid { background-image: radial-gradient(rgba(28,25,23,.12) 1px, transparent 1px); background-size: 22px 22px; }
 }
 
+@keyframes dash { to { stroke-dashoffset: -24; } }
+.flow-dash { stroke-dasharray: 6 6; animation: dash 1s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .flow-dash { animation: none; } html { scroll-behavior: auto; } }

@@ -1,55 +1,26 @@
-'use client';
-
-import ArrowRight from '@/assets/arrow-right.svg';
-import starImage from '@/assets/star.png';
-import springImage from '@/assets/spring.png';
-import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+"use client";
+import { motion } from "framer-motion";
+import { useT } from "@/lib/i18n";
+import { waLink } from "@/lib/config";
+import { ArrowIcon } from "@/components/Icons";
 
 export const CallToAction = () => {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-  const translateY = useTransform(scrollYProgress, [0, 1], [150, -150]);
+  const t = useT();
   return (
-    <section
-      ref={sectionRef}
-      className="bg-gradient-to-b from-white to-[#D2DCFF] py-24 overflow-x-clip"
-    >
-      <div className="container">
-        <div className="section-heading relative pt-10">
-          <h2 className="section-title">Sign up for free today</h2>
-          <p className="section-description mt-5">
-            Celebrate the joy of accomplishment witg an app designed to track
-            your progress and motivate your efforts.
-          </p>
-
-          <motion.img
-            src={starImage.src}
-            alt="star imge"
-            width={360}
-            className="absolute -left-[350px] -top-[137px]"
-            style={{ translateY }}
-          />
-          <motion.img
-            src={springImage.src}
-            width={360}
-            alt="spring image"
-            className="absolute -right-[331px] -top-[19px]"
-            style={{ translateY }}
-          />
+    <section className="relative overflow-hidden py-28 md:py-40">
+      <div className="pointer-events-none absolute inset-0 dot-grid [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/15 blur-[110px]" />
+      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
+        className="container relative text-center">
+        <h2 className="h2 mx-auto max-w-3xl md:text-7xl">{t.cta.title}</h2>
+        <p className="mt-5 text-xl">{t.cta.sub}</p>
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
+          <a href={waLink(t.hero.waText)} target="_blank" rel="noopener" className="btn btn-primary px-7 py-3.5 text-base">{t.cta.cta1}</a>
+          <a href={waLink(t.cta.waDemo)} target="_blank" rel="noopener" className="btn btn-ghost group px-7 py-3.5 text-base">
+            {t.cta.cta2}<ArrowIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </a>
         </div>
-        <div className="flex gap-2 mt-10 justify-center">
-          <button className="btn btn-primary">Get for free</button>
-          <button className="btn btn-text gap-1 group transition-all duration-300 ease-in-out">
-            <span>Learn more</span>
-            <ArrowRight className="h-5 w-5 transform transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
-          </button>
-        </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

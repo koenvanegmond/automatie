@@ -1,5 +1,16 @@
-# Pathway 
-### Pathway  is a Modern UI/UX Landing Page Build with Next JS and Tailwind CSS.
-<br/>
+# Appmaat website
 
-![Capture d’écran 2024-12-30 164012](https://github.com/user-attachments/assets/23d20b8c-7017-4481-89bb-df398797f035)
+WhatsApp-automatisering op maat. Next.js 14 + Tailwind + Framer Motion, gehost op Vercel.
+
+- Teksten (NL/EN): `src/lib/content.ts`
+- Nummer, pilotpartner, domein: `src/lib/config.ts`
+- Secties: `src/sections/`, 3D-visuals: `src/components/Iso.tsx`, scroll-lijn: `src/components/FlowLine.tsx`
+
+```bash
+npm install
+npm run dev
+```
+
+## Credits
+- Gebaseerd op "Light Landing Page Task Flow" van Aymane Mehdi (MIT-licentie).
+- Lettertype Raveo © 2024 Jakub Foglar, SIL Open Font License 1.1 (`src/fonts/OFL-LICENSE.txt`).
