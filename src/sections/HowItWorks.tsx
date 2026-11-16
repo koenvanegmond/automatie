@@ -25,7 +25,7 @@ export const HowItWorks = () => {
               <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className="md:px-10">
                 <span className="inline-block rounded-md bg-ink px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white">{s.tag}</span>
-                <h3 className="mt-4 font-display text-3xl md:text-[44px] font-semibold leading-[1.05] tracking-[-0.03em] text-ink">{s.title}</h3>
+                <h3 className="mt-4 font-display text-3xl md:text-[46px] font-medium leading-[1.04] tracking-[-0.04em] text-ink">{s.title}</h3>
                 <p className="mt-4 max-w-md text-lg">{s.text}</p>
                 <ul className="mt-5 space-y-2">
                   {s.bullets.map((b) => (

@@ -21,12 +21,12 @@ export const Pricing = () => {
                 transition={{ delay: i * 0.1, duration: 0.6 }}
                 className={`rounded-3xl p-8 ${hi ? "bg-ink text-white shadow-[0_30px_60px_-20px_rgba(28,25,23,.45)] md:py-12" : "card"}`}>
                 <div className="flex items-center justify-between">
-                  <h3 className={`font-display text-xl font-semibold ${hi ? "text-white" : "text-ink"}`}>{p.name}</h3>
+                  <h3 className={`font-display text-xl font-medium ${hi ? "text-white" : "text-ink"}`}>{p.name}</h3>
                   {hi && <span className="rounded-full bg-brand px-3 py-1 text-xs font-semibold">{t.popular}</span>}
                 </div>
                 <p className={`mt-6 flex items-baseline gap-1.5 ${hi ? "text-white" : "text-ink"}`}>
                   {p.from && <span className="text-sm opacity-70">{t.from}</span>}
-                  <span className="font-display text-5xl font-bold tracking-tight">€{p.price}</span>
+                  <span className="font-display text-5xl font-medium tracking-[-0.04em]">€{p.price}</span>
                   <span className="text-sm opacity-70">{t.once}</span>
                 </p>
                 <p className={`mt-2 ${hi ? "text-white/70" : ""}`}>{p.text}</p>

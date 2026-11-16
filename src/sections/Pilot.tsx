@@ -14,9 +14,9 @@ export const Pilot = () => {
           <div className="relative grid items-center gap-10 md:grid-cols-[1.4fr_1fr]">
             <div>
               <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#7CC7A0]">{t.eyebrow}</p>
-              <h2 className="mt-4 font-display text-4xl md:text-5xl font-semibold leading-[1.05] tracking-[-0.03em] text-white">{t.title}</h2>
+              <h2 className="mt-4 font-display text-4xl md:text-[56px] font-medium leading-[1.03] tracking-[-0.04em] text-white">{t.title}</h2>
               <p className="mt-4 max-w-lg text-lg text-white/70">{t.text}</p>
-              <a href={waLink(t.waText)} target="_blank" rel="noopener" className="btn btn-primary mt-8 px-6 py-3 text-base">{t.cta}</a>
+              <a href={waLink(t.waText)} target="_blank" rel="noopener" className="btn btn-primary btn-glow mt-8 px-6 py-3 text-base">{t.cta}</a>
             </div>
             <div className="flex flex-col items-start gap-3 md:items-end">
               <div className="flex gap-2" aria-hidden>

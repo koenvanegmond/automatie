@@ -15,7 +15,7 @@ export const CallToAction = () => {
         <h2 className="h2 mx-auto max-w-3xl md:text-7xl">{t.cta.title}</h2>
         <p className="mt-5 text-xl">{t.cta.sub}</p>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <a href={waLink(t.hero.waText)} target="_blank" rel="noopener" className="btn btn-primary px-7 py-3.5 text-base">{t.cta.cta1}</a>
+          <a href={waLink(t.hero.waText)} target="_blank" rel="noopener" className="btn btn-primary btn-glow px-7 py-3.5 text-base">{t.cta.cta1}</a>
           <a href={waLink(t.cta.waDemo)} target="_blank" rel="noopener" className="btn btn-ghost group px-7 py-3.5 text-base">
             {t.cta.cta2}<ArrowIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>

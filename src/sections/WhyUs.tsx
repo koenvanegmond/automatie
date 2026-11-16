@@ -22,7 +22,7 @@ export const WhyUs = () => {
                 transition={{ delay: i * 0.08, duration: 0.6 }} whileHover={{ y: -4 }}
                 className="rounded-3xl bg-sand p-7">
                 <span className="grid h-12 w-12 place-items-center rounded-2xl bg-white text-brand shadow-card"><Icon className="h-6 w-6" /></span>
-                <h3 className="mt-6 font-display text-2xl font-semibold tracking-tight text-ink">{it.title}</h3>
+                <h3 className="mt-6 font-display text-2xl font-medium tracking-[-0.03em] text-ink">{it.title}</h3>
                 <p className="mt-2">{it.text}</p>
               </motion.div>
             );
