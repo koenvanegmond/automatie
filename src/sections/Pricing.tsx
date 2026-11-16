@@ -17,14 +17,14 @@ export const Pricing = () => {
             const hi = i === 1;
             return (
               <motion.div key={p.name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.6 }}
-                className={`flex flex-col rounded-[28px] p-8 ${hi ? "bg-ink text-white" : "bg-sand"}`}>
+                className={`flex flex-col rounded-none p-8 ${hi ? "bg-ink text-white" : "bg-sand"}`}>
                 <div className="flex items-center justify-between">
-                  <h2 className={`font-display text-[24px] font-semibold tracking-[-0.015em] ${hi ? "text-white" : "text-ink"}`}>{p.name}</h2>
-                  {hi && <span className="rounded-full bg-brand px-3 py-1 text-[12px]">{t.popular}</span>}
+                  <h2 className={`font-display text-[24px] font-black tracking-[-0.015em] ${hi ? "text-white" : "text-ink"}`}>{p.name}</h2>
+                  {hi && <span className="rounded-none bg-brand px-3 py-1 text-[12px]">{t.popular}</span>}
                 </div>
                 <p className={`mt-6 flex items-baseline gap-1.5 ${hi ? "text-white" : "text-ink"}`}>
                   {p.from && <span className="text-[14px] opacity-60">{t.from}</span>}
-                  <span className="font-display text-[48px] font-medium tracking-[-0.04em]">€{p.price}</span>
+                  <span className="font-display text-[48px] font-black tracking-[-0.04em]">€{p.price}</span>
                   <span className="text-[14px] opacity-60">{t.once}</span>
                 </p>
                 <p className={`mt-1 ${hi ? "text-white/70" : "text-body"}`}>{p.text}</p>
@@ -33,7 +33,7 @@ export const Pricing = () => {
                     <li key={b} className={`flex items-start gap-2 text-[15px] ${hi ? "text-white/85" : "text-ink"}`}><CheckIcon className="mt-1 h-4 w-4 shrink-0 text-brand" />{b}</li>
                   ))}
                 </ul>
-                <Button href={waLink(t.waText)} external variant={hi ? "primary" : "secondary"} className="mt-auto w-full">{ui.meet}</Button>
+                <Button href={waLink(t.waText)} external variant={hi ? "primary" : "dark"} className="mt-auto w-full">{ui.meet}</Button>
               </motion.div>
             );
           })}

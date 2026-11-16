@@ -6,7 +6,7 @@ import { Button } from "@/components/Buttons";
 import { Loader } from "@/components/Loader";
 import { normalizePhone } from "@/components/intro/Widgets";
 
-const field = "h-12 w-full rounded-xl border border-ink/15 bg-white px-4 text-[17px] text-ink outline-none transition-colors placeholder:text-body/50 focus:border-brand";
+const field = "h-14 w-full bg-white px-4 text-[18px] font-semibold text-ink outline-none transition-shadow placeholder:text-body/50 focus:shadow-[inset_0_-3px_0_#25855A]";
 
 export const MeetPage = () => {
   const t = useT();
@@ -38,13 +38,13 @@ export const MeetPage = () => {
           <p className="lead mx-auto mt-4 max-w-xl">{m.sub}</p>
         </div>
         <div className="mx-auto mt-14 grid max-w-4xl gap-5 md:grid-cols-2">
-          <div className="flex flex-col rounded-[28px] bg-ink p-8 text-white md:p-10">
-            <h2 className="font-display text-[28px] font-medium tracking-[-0.025em]">{m.appTitle}</h2>
+          <div className="flex flex-col rounded-none bg-ink p-8 text-white md:p-10">
+            <h2 className="font-display text-[28px] font-black tracking-[-0.025em]">{m.appTitle}</h2>
             <p className="mt-2 text-white/65">{m.appText}</p>
             <Button href={waLink(t.hero.waText)} external size="lg" className="mt-auto w-full md:mt-12">{t.ui.nav.cta}</Button>
           </div>
-          <form onSubmit={submit} noValidate className="rounded-[28px] bg-sand p-8 md:p-10">
-            <h2 className="font-display text-[28px] font-medium tracking-[-0.025em] text-ink">{m.formTitle}</h2>
+          <form onSubmit={submit} noValidate className="rounded-none bg-sand p-8 md:p-10">
+            <h2 className="font-display text-[28px] font-black tracking-[-0.025em] text-ink">{m.formTitle}</h2>
             {state === "ok" ? <p className="mt-6 text-brand-dark">{m.ok}</p> : state === "off" ? (
               <div className="mt-6"><p className="text-body">{m.off}</p><Button href={waLink(t.hero.waText)} external className="mt-4">{t.ui.nav.cta}</Button></div>
             ) : (

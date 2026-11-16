@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 html { scroll-behavior: smooth; }
-body { @apply bg-white text-body text-[17px] leading-[1.47] tracking-[-0.022em]; }
+body { @apply bg-white text-body text-[18px] font-medium leading-[1.45] tracking-[-0.015em]; }
 
 @layer components {
-  .eyebrow { @apply font-display text-[19px] md:text-[21px] font-semibold tracking-[-0.01em] text-brand; }
-  .h2 { @apply font-display text-[40px] md:text-[56px] lg:text-[64px] font-medium tracking-[-0.035em] text-ink leading-[1.05]; }
-  .lead { @apply text-[19px] md:text-[21px] leading-[1.4] tracking-[-0.01em] text-body; }
+  .eyebrow { @apply font-display text-[19px] md:text-[22px] font-extrabold tracking-[-0.02em] text-brand; }
+  .h2 { @apply font-display text-[44px] md:text-[64px] lg:text-[80px] font-black tracking-[-0.045em] text-ink leading-[0.98]; }
+  .lead { @apply text-[20px] md:text-[24px] font-semibold leading-[1.3] tracking-[-0.02em] text-body; }
   .card { @apply bg-white rounded-lg border border-ink/[0.06] shadow-card; }
   .dot-grid { background-image: radial-gradient(rgba(14,17,16,.12) 1px, transparent 1px); background-size: 22px 22px; }
 }
@@ -36,3 +36,8 @@ html:not(.intro-seen):has(#intro) body { overflow: hidden; }
 @keyframes tb-spin { to { transform: rotate(360deg); } }
 @keyframes tb-wobble1 { 0%, 100% { transform: translateY(0%) scale(1); opacity: 1; } 50% { transform: translateY(-66%) scale(0.65); opacity: 0.8; } }
 @keyframes tb-wobble2 { 0%, 100% { transform: translateY(0%) scale(1); opacity: 1; } 50% { transform: translateY(66%) scale(0.65); opacity: 0.8; } }
+
+/* Muur van WhatsApp-automatiseringen in de hero */
+@keyframes wall-up { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+.wall-col { animation: wall-up var(--dur, 40s) linear infinite; }
+@media (prefers-reduced-motion: reduce) { .wall-col { animation: none; } }

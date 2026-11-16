@@ -188,7 +188,7 @@ const nl = {
   },
   home: {
     sub: "Briefings, afspraken en opvolging gaan vanzelf. Vaak binnen 2 dagen live.",
-    problem: { title: "Jij bent geen kopieer\u2011en\u2011plakmachine.", unit: "minuten per dag", note: "Rekenvoorbeeld: 14 briefings per dag. Met Appmaatje: 0." },
+    problem: { title: "Jij bent geen kopieer-en-plak\u00ADmachine.", unit: "minuten per dag", note: "Rekenvoorbeeld: 14 briefings per dag. Met Appmaatje: 0." },
     sectors: { title: "Gemaakt voor jouw branche." },
     how: {
       title: "Binnen 2 dagen live.",

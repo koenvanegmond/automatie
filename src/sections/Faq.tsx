@@ -12,13 +12,13 @@ export const Faq = () => {
         <div>
           <h2 className="h2 mt-4">{t.title}</h2>
         </div>
-        <div className="divide-y divide-ink/10 border-y border-ink/10">
+        <div className="space-y-2">
           {t.items.map((it, i) => (
-            <div key={it.q}>
+            <div key={it.q} className="bg-sand px-6">
               <button onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i}
                 className="flex w-full items-center justify-between gap-6 py-6 text-left">
-                <span className="text-[19px] font-medium tracking-[-0.015em] text-ink">{it.q}</span>
-                <motion.span animate={{ rotate: open === i ? 45 : 0 }} className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-sand text-xl text-ink">+</motion.span>
+                <span className="font-display text-[22px] font-extrabold tracking-[-0.025em] text-ink md:text-[26px]">{it.q}</span>
+                <motion.span animate={{ rotate: open === i ? 45 : 0 }} className="grid h-9 w-9 shrink-0 place-items-center rounded-none bg-sand text-xl text-ink">+</motion.span>
               </button>
               <AnimatePresence initial={false}>
                 {open === i && (

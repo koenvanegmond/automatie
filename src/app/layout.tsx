@@ -12,6 +12,8 @@ const zt = localFont({
     { path: "../fonts/ZTNature-Medium.woff2", weight: "500" },
     { path: "../fonts/ZTNature-SemiBold.woff2", weight: "600" },
     { path: "../fonts/ZTNature-Bold.woff2", weight: "700" },
+    { path: "../fonts/ZTNature-ExtraBold.woff2", weight: "800" },
+    { path: "../fonts/ZTNature-Black.woff2", weight: "900" },
   ],
   variable: "--font-zt",
   display: "swap",

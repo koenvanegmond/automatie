@@ -27,14 +27,14 @@ export const SectorPage = ({ k }: { k: SectorKey }) => {
           <p className="lead mx-auto mt-5 max-w-2xl">{s.sub}</p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Button href={waLink(wa)} external size="lg">{t.ui.nav.cta}</Button>
-            <Button href="/kennismaken" variant="secondary" size="lg">{t.ui.meet}</Button>
+            <Button href="/kennismaken" variant="soft" size="lg">{t.ui.meet}</Button>
           </div>
         </motion.div>
       </section>
 
       <section className="pb-24 md:pb-32">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease }} className="container">
-          <div className={`rounded-[28px] p-6 md:p-14 ${k === "uitzend" ? "bg-ink" : "bg-sand"}`}>
+          <div className={`rounded-none p-6 md:p-14 ${k === "uitzend" ? "bg-ink" : "bg-sand"}`}>
             {k === "uitzend" ? <div className="mx-auto max-w-3xl"><RosterScene /></div> : <Phone chat={item.chat} name={t.sectors.phoneName} status={t.sectors.online} />}
             {k === "vastgoed" && SITE.pilotPartner && <p className="mt-6 text-center text-[14px] text-body/70">{t.sectors.pilot} {SITE.pilotPartner}</p>}
           </div>
@@ -47,9 +47,9 @@ export const SectorPage = ({ k }: { k: SectorKey }) => {
           <div className="mt-14 grid gap-5 md:grid-cols-3">
             {item.result.map((r, i) => (
               <motion.div key={r} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.7, ease }}
-                className="rounded-[28px] bg-white p-8">
-                <span className="grid h-10 w-10 place-items-center rounded-full bg-brand-light text-brand"><CheckIcon className="h-5 w-5" /></span>
-                <p className="mt-6 font-display text-[24px] font-semibold leading-[1.2] tracking-[-0.015em] text-ink">{r}</p>
+                className="rounded-none bg-white p-8">
+                <span className="grid h-10 w-10 place-items-center rounded-none bg-brand-light text-brand"><CheckIcon className="h-5 w-5" /></span>
+                <p className="mt-6 font-display text-[24px] font-black leading-[1.2] tracking-[-0.015em] text-ink">{r}</p>
               </motion.div>
             ))}
           </div>
@@ -61,10 +61,10 @@ export const SectorPage = ({ k }: { k: SectorKey }) => {
           <h2 className="h2">{t.home.how.title}</h2>
           <div className="mx-auto mt-12 grid max-w-4xl gap-8 md:grid-cols-3">
             {t.home.how.steps.map((st) => (
-              <div key={st.t}><p className="font-display text-[24px] font-semibold tracking-[-0.015em] text-ink">{st.t}</p><p className="mt-1 text-body">{st.d}</p></div>
+              <div key={st.t}><p className="font-display text-[24px] font-black tracking-[-0.015em] text-ink">{st.t}</p><p className="mt-1 text-body">{st.d}</p></div>
             ))}
           </div>
-          <div className="mt-14 inline-flex flex-wrap items-center justify-center gap-x-8 gap-y-3 rounded-full bg-sand px-8 py-4">
+          <div className="mt-14 inline-flex flex-wrap items-center justify-center gap-x-8 gap-y-3 rounded-none bg-sand px-8 py-4">
             <span className="text-[17px] text-ink">{t.home.price.title} {lang === "nl" ? "Eenmalig." : "One-off."}</span>
             <TextLink href="/prijzen">{t.ui.seePricing}</TextLink>
           </div>
