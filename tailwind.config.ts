@@ -17,10 +17,10 @@ const config: Config = {
         body: "#4B504E",
       },
       fontFamily: {
-        sans: ["var(--font-zt)", "system-ui", "sans-serif"],
+        sans: ["-apple-system", "BlinkMacSystemFont", "\"SF Pro Text\"", "\"Segoe UI\"", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
         display: ["var(--font-zt)", "system-ui", "sans-serif"],
       },
-      container: { center: true, padding: { DEFAULT: "20px", lg: "80px" } },
+      container: { center: true, padding: { DEFAULT: "20px", md: "32px", lg: "40px" }, screens: { lg: "1240px" } },
       boxShadow: {
         card: "0 1px 0 rgba(14,17,16,.04)",
       },

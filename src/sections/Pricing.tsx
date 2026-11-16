@@ -2,48 +2,43 @@
 import { motion } from "framer-motion";
 import { useT } from "@/lib/i18n";
 import { waLink } from "@/lib/config";
-import { FillButton } from "@/components/Buttons";
+import { Button } from "@/components/Buttons";
 import { CheckIcon } from "@/components/Icons";
 
 export const Pricing = () => {
   const t = useT().pricing;
+  const ui = useT().ui;
   return (
-    <section id="prijzen" className="py-24 md:py-32">
+    <section className="pb-24 pt-32 md:pb-32 md:pt-44">
       <div className="container">
-        <div className="text-center">
-          <p className="eyebrow">{t.eyebrow}</p>
-          <h2 className="h2 mt-4">{t.title}</h2>
-        </div>
-        <div className="mx-auto mt-14 grid max-w-5xl gap-5 md:grid-cols-3 md:items-center">
+        <h1 className="h2 text-center md:text-[72px]">{t.title}</h1>
+        <div className="mx-auto mt-14 grid max-w-5xl gap-5 md:mt-16 md:grid-cols-3">
           {t.plans.map((p, i) => {
             const hi = i === 1;
             return (
-              <motion.div key={p.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
-                className={`rounded-none p-8 ${hi ? "bg-ink text-white shadow-[0_30px_60px_-20px_rgba(14,17,16,.45)] md:py-12" : "card"}`}>
+              <motion.div key={p.name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.6 }}
+                className={`flex flex-col rounded-[28px] p-8 ${hi ? "bg-ink text-white" : "bg-sand"}`}>
                 <div className="flex items-center justify-between">
-                  <h3 className={`font-display text-xl font-medium ${hi ? "text-white" : "text-ink"}`}>{p.name}</h3>
-                  {hi && <span className="bg-brand px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider">{t.popular}</span>}
+                  <h2 className={`font-display text-[24px] font-semibold tracking-[-0.015em] ${hi ? "text-white" : "text-ink"}`}>{p.name}</h2>
+                  {hi && <span className="rounded-full bg-brand px-3 py-1 text-[12px]">{t.popular}</span>}
                 </div>
                 <p className={`mt-6 flex items-baseline gap-1.5 ${hi ? "text-white" : "text-ink"}`}>
-                  {p.from && <span className="text-sm opacity-70">{t.from}</span>}
-                  <span className="font-display text-5xl font-medium tracking-[-0.04em]">€{p.price}</span>
-                  <span className="text-sm opacity-70">{t.once}</span>
+                  {p.from && <span className="text-[14px] opacity-60">{t.from}</span>}
+                  <span className="font-display text-[48px] font-medium tracking-[-0.04em]">€{p.price}</span>
+                  <span className="text-[14px] opacity-60">{t.once}</span>
                 </p>
-                <p className={`mt-2 ${hi ? "text-white/70" : ""}`}>{p.text}</p>
-                <FillButton href={waLink(t.waText)} external tone={hi ? "brand" : "ink"} className="mt-7 w-full whitespace-nowrap !px-4 !text-[15px]">{t.cta}</FillButton>
-                <ul className="mt-7 space-y-3">
+                <p className={`mt-1 ${hi ? "text-white/70" : "text-body"}`}>{p.text}</p>
+                <ul className="mb-8 mt-6 space-y-2.5">
                   {p.bullets.slice(0, 2).map((b) => (
-                    <li key={b} className={`flex items-start gap-2 text-sm ${hi ? "text-white/85" : "text-ink"}`}>
-                      <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-brand" />{b}
-                    </li>
+                    <li key={b} className={`flex items-start gap-2 text-[15px] ${hi ? "text-white/85" : "text-ink"}`}><CheckIcon className="mt-1 h-4 w-4 shrink-0 text-brand" />{b}</li>
                   ))}
                 </ul>
+                <Button href={waLink(t.waText)} external variant={hi ? "primary" : "secondary"} className="mt-auto w-full">{ui.meet}</Button>
               </motion.div>
             );
           })}
         </div>
-        <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-body/80">{t.note}</p>
+        <p className="mx-auto mt-8 max-w-2xl text-center text-[14px] text-body/70">{t.note}</p>
       </div>
     </section>
   );

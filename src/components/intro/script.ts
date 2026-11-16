@@ -26,7 +26,7 @@ type Script = {
 
 const nl: Script = {
   ui: {
-    skip: "Intro overslaan",
+    skip: "Naar de website",
     name: "Appmaatje",
     online: "online",
     typing: "typt…",
@@ -107,7 +107,7 @@ const nl: Script = {
 
 const en: Script = {
   ui: {
-    skip: "Skip intro",
+    skip: "Go to website",
     name: "Appmaatje",
     online: "online",
     typing: "typing…",

@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 html { scroll-behavior: smooth; }
-body { @apply bg-cream text-body; }
+body { @apply bg-white text-body text-[17px] leading-[1.47] tracking-[-0.022em]; }
 
 @layer components {
-  .eyebrow { @apply text-[11px] font-medium uppercase tracking-[0.25em] text-brand; }
-  .h2 { @apply font-display text-4xl md:text-[64px] font-medium tracking-[-0.045em] text-ink leading-[1.02]; }
+  .eyebrow { @apply font-display text-[19px] md:text-[21px] font-semibold tracking-[-0.01em] text-brand; }
+  .h2 { @apply font-display text-[40px] md:text-[56px] lg:text-[64px] font-medium tracking-[-0.035em] text-ink leading-[1.05]; }
+  .lead { @apply text-[19px] md:text-[21px] leading-[1.4] tracking-[-0.01em] text-body; }
   .card { @apply bg-white rounded-lg border border-ink/[0.06] shadow-card; }
   .dot-grid { background-image: radial-gradient(rgba(14,17,16,.12) 1px, transparent 1px); background-size: 22px 22px; }
 }
@@ -21,42 +22,6 @@ body { @apply bg-cream text-body; }
 html:not(.intro-seen):has(#intro) body { overflow: hidden; }
 
 
-/* Gestapeld formulier (Uiverse.io, MBerkayHamurcu), in Appmaatje-groen */
-.stacked-form {
-  --c3: #DCEFE5; --c2: #C1E3CF; --c1: #9FD3B4; --cb: #25855A; --ca: #1D6B48;
-  --rot: rotate3d(0, 1, 0, 180deg);
-  transform: var(--rot);
-  padding: 44px 0 0 44px;
-}
-.stacked-form .wrapper { position: relative; transform: skewY(-14deg); margin: 0; padding: 0; }
-.stacked-form .wrapper li, .stacked-form button {
-  position: relative; list-style: none; width: 240px; height: 44px; z-index: var(--i); transition: 0.3s; color: white;
-}
-.stacked-form .wrapper li::before, .stacked-form button::before {
-  position: absolute; content: ""; background: var(--cb); top: 0; left: -40px; width: 40px; height: 44px;
-  transform-origin: right; transform: skewY(45deg); transition: 0.3s;
-}
-.stacked-form .wrapper li::after, .stacked-form button::after {
-  position: absolute; content: ""; background: var(--cb); width: 240px; height: 40px; top: -40px; left: 0;
-  transform-origin: bottom; transform: skewX(45deg); transition: 0.3s;
-}
-.stacked-form li:nth-child(1)::before, .stacked-form li:nth-child(1)::after { background: var(--c3); }
-.stacked-form li:nth-child(2)::before, .stacked-form li:nth-child(2)::after { background: var(--c2); }
-.stacked-form li:nth-child(3)::before, .stacked-form li:nth-child(3)::after { background: var(--c1); }
-.stacked-form .input {
-  width: 100%; height: 44px; border: 0; outline: none; padding: 0 0 0 12px; color: #0E1110;
-  font: inherit; font-size: 15px; transform: var(--rot);
-}
-.stacked-form .input::placeholder { color: #0E1110; opacity: .65; }
-.stacked-form li:nth-child(1) .input { background: var(--c3); }
-.stacked-form li:nth-child(2) .input { background: var(--c2); }
-.stacked-form li:nth-child(3) .input { background: var(--c1); }
-.stacked-form button { background: var(--cb); border: 0; cursor: pointer; font: inherit; font-weight: 500; font-size: 15px; }
-.stacked-form button > span { display: flex; align-items: center; justify-content: center; height: 100%; transform: var(--rot); }
-.stacked-form .wrapper li:hover, .stacked-form .wrapper li:has(input:focus), .stacked-form button:hover, .stacked-form button:focus-visible { transform: translateX(-20px); }
-.stacked-form button:hover, .stacked-form button:hover::before, .stacked-form button:hover::after,
-.stacked-form button:focus-visible, .stacked-form button:focus-visible::before, .stacked-form button:focus-visible::after { background: var(--ca); }
-.stacked-form button:active { transform: translateX(0); }
 
 /* Lader (Uiverse.io, dovatgabriel) */
 .three-body { --uib-size: 35px; --uib-speed: 0.8s; --uib-color: #25855A; position: relative; display: inline-block; height: var(--uib-size); width: var(--uib-size); animation: tb-spin calc(var(--uib-speed) * 2.5) infinite linear; vertical-align: middle; }

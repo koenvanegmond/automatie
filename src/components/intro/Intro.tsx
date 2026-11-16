@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useLang } from "@/lib/i18n";
 import { waLink } from "@/lib/config";
 import { Logo } from "@/components/Logo";
-import { ChatIcon } from "@/components/Icons";
 import { scripts, type NodeId, type Option } from "./script";
 import { MeetingWidget, WhatsAppWidget } from "./Widgets";
 
@@ -107,6 +106,12 @@ export const Intro = () => {
   }, [play]);
 
   useEffect(() => {
+    const onOpen = () => start();
+    window.addEventListener("appmaatje:open-chat", onOpen);
+    return () => window.removeEventListener("appmaatje:open-chat", onOpen);
+  }, [start]);
+
+  useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") exit(); };
     window.addEventListener("keydown", onKey);
@@ -136,16 +141,7 @@ export const Intro = () => {
     play(result === "ok" ? (kind === "meeting" ? "meetingDone" : "waDone") : "notConnected");
   };
 
-  if (!open) {
-    return (
-      <motion.button initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
-        onClick={start}
-        className="fixed bottom-5 right-5 z-40 flex items-center gap-2 bg-ink py-2.5 pl-2.5 pr-4 text-sm font-medium text-white shadow-[0_10px_30px_-8px_rgba(14,17,16,.5)] hover:-translate-y-0.5 transition-transform">
-        <span className="grid h-8 w-8 place-items-center bg-brand"><ChatIcon className="h-4 w-4" /></span>
-        {s.ui.reopen}
-      </motion.button>
-    );
-  }
+  if (!open) return null;
 
   return (
     <motion.div id="intro" role="dialog" aria-modal="true" aria-label="Appmaatje chat"
@@ -162,7 +158,7 @@ export const Intro = () => {
       </motion.div>
 
       {/* bovenbalk */}
-      <motion.div animate={{ opacity: leaving ? 0 : 1 }} className="relative z-10 flex h-14 shrink-0 items-center justify-between px-4 md:h-16 md:px-8">
+      <motion.div animate={{ opacity: leaving ? 0 : 1 }} className="relative z-10 flex h-16 shrink-0 items-center justify-between px-4 md:h-20 md:px-8">
         <Logo light className="!text-lg md:!text-[22px]" />
         <div className="hidden items-center gap-3 md:flex" aria-label={`${s.ui.step} ${step}/${TOTAL_STEPS}`}>
           <div className="flex gap-1.5">
@@ -174,9 +170,10 @@ export const Intro = () => {
           </div>
           <span className="text-xs tabular-nums text-white/40">{s.ui.step} {Math.max(1, step)}/{TOTAL_STEPS}</span>
         </div>
-        <button onClick={exit} className="group flex items-center gap-2 rounded-full px-3 py-1.5 text-sm text-white/60 transition-colors hover:bg-white/10 hover:text-white">
+        <button onClick={exit} className="group flex h-11 items-center gap-2.5 rounded-full border border-white/20 bg-white/10 pl-5 pr-4 text-[15px] font-medium text-white backdrop-blur transition-all hover:border-white/40 hover:bg-white/20 active:scale-[0.96]">
           {s.ui.skip}
-          <kbd className="hidden rounded border border-white/15 px-1.5 text-[10px] text-white/40 md:inline">Esc</kbd>
+          <svg viewBox="0 0 16 16" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+          <kbd className="ml-1 hidden rounded-md border border-white/20 px-1.5 py-0.5 text-[10px] font-normal text-white/50 md:inline">Esc</kbd>
         </button>
       </motion.div>
 

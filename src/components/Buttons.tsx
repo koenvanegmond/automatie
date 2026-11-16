@@ -1,46 +1,61 @@
 "use client";
-import type { ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 
-/* Knoppen gebaseerd op Uiverse.io-snippets (cssbuttons-io, karthik092726122003), rechthoekig in Appmaatje-kleuren */
+/**
+ * Eén knoppenfamilie in Apple-stijl: pillen.
+ * Effect: bij hover stroomt er licht in vanaf het punt waar je muis binnenkomt, bij klikken veert hij iets in.
+ */
+type Variant = "primary" | "secondary" | "secondaryDark";
+type Size = "sm" | "md" | "lg";
 
-type LinkProps = { href: string; children: ReactNode; className?: string; external?: boolean };
-const ext = (e?: boolean) => (e ? { target: "_blank", rel: "noopener" } : {});
-
-/** Hoofdknop: rechthoekig, met een vlak dat vanuit het midden vol loopt bij hover */
-export const FillButton = ({ href, children, className = "", external, tone = "ink" }: LinkProps & { tone?: "ink" | "brand" }) => (
-  <a href={href} {...ext(external)}
-    className={`group relative inline-flex h-14 items-center justify-center overflow-hidden px-9 text-[17px] font-medium text-white transition-transform active:scale-[0.98] ${tone === "ink" ? "bg-ink" : "bg-brand"} ${className}`}>
-    <span aria-hidden className={`absolute left-1/2 top-1/2 h-0 w-0 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-500 ease-out group-hover:h-[22em] group-hover:w-[22em] ${tone === "ink" ? "bg-brand" : "bg-[#1D6B48]"}`} />
-    <span className="relative">{children}</span>
-  </a>
-);
-
-/** Tweede knop: blok met pijl dat bij hover uitrekt tot de hele knop */
-export const ArrowButton = ({ href, children, className = "", external, dark = false }: LinkProps & { dark?: boolean }) => (
-  <a href={href} {...ext(external)} className={`group relative inline-block h-14 w-[17rem] ${className}`}>
-    <span aria-hidden className={`absolute left-0 top-0 block h-14 w-14 transition-all duration-[450ms] ease-[cubic-bezier(.65,0,.076,1)] group-hover:w-full ${dark ? "bg-white" : "bg-ink"}`}>
-      <span className={`absolute left-[1.1rem] top-1/2 h-[2px] w-[1.25rem] -translate-y-1/2 bg-transparent transition-all duration-[450ms] ease-[cubic-bezier(.65,0,.076,1)] group-hover:translate-x-4 ${dark ? "group-hover:bg-ink" : "group-hover:bg-white"}`}>
-        <span className={`absolute -top-[0.29rem] right-[0.0625rem] h-[0.65rem] w-[0.65rem] rotate-45 border-r-2 border-t-2 ${dark ? "border-ink" : "border-white"}`} />
-      </span>
-    </span>
-    <span className={`absolute inset-0 ml-14 flex items-center justify-center text-[14px] font-semibold uppercase tracking-[0.1em] transition-colors duration-[450ms] ${dark ? "text-white group-hover:text-ink" : "text-ink group-hover:text-white"}`}>
-      {children}
-    </span>
-  </a>
-);
-
-/** Terug-knop: ring wisselt naar groen en de pijl schuift door */
-export const BackButton = ({ href, label, className = "" }: { href: string; label: string; className?: string }) => {
-  const arrow = (
-    <svg viewBox="0 0 46 40" className="mx-[18px] ml-[22px] mt-[24px] block h-[30px] w-[30px] shrink-0 fill-ink" aria-hidden>
-      <path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z" transform="rotate(180 23 20)" />
-    </svg>
-  );
-  return (
-    <a href={href} aria-label={label} className={`group relative block h-[76px] w-[76px] overflow-hidden ${className}`}>
-      <span aria-hidden className="absolute inset-[7px] rounded-full border-[3px] border-ink transition-all delay-[80ms] duration-500 group-hover:scale-[0.7] group-hover:opacity-0" />
-      <span aria-hidden className="absolute inset-[7px] scale-[1.3] rounded-full border-4 border-brand opacity-0 transition-all duration-500 group-hover:scale-100 group-hover:opacity-100 group-hover:delay-[80ms]" />
-      <span className="absolute left-0 top-0 flex transition-transform duration-[400ms] group-hover:-translate-x-[69px]">{arrow}{arrow}</span>
-    </a>
-  );
+const sizes: Record<Size, string> = {
+  sm: "h-9 px-4 text-[14px]",
+  md: "h-12 px-6 text-[17px]",
+  lg: "h-14 px-8 text-[17px]",
 };
+const variants: Record<Variant, { base: string; fill: string }> = {
+  primary: { base: "bg-brand text-white", fill: "bg-white/[0.16]" },
+  secondary: { base: "border border-ink/15 text-ink hover:border-ink/30", fill: "bg-ink/[0.06]" },
+  secondaryDark: { base: "border border-white/25 text-white hover:border-white/45", fill: "bg-white/[0.12]" },
+};
+
+const origin = (e: MouseEvent<HTMLElement>) => {
+  const r = e.currentTarget.getBoundingClientRect();
+  e.currentTarget.style.setProperty("--x", `${e.clientX - r.left}px`);
+  e.currentTarget.style.setProperty("--y", `${e.clientY - r.top}px`);
+};
+
+export const Button = ({ href, onClick, children, variant = "primary", size = "md", external, className = "", type }: {
+  href?: string; onClick?: () => void; children: ReactNode; variant?: Variant; size?: Size; external?: boolean; className?: string; type?: "submit" | "button";
+}) => {
+  const v = variants[variant];
+  const cls = `group relative inline-flex select-none items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full tracking-[-0.01em] transition-[transform,border-color] duration-200 ease-out active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 focus-visible:ring-offset-2 ${sizes[size]} ${v.base} ${className}`;
+  const inner = (
+    <>
+      <span aria-hidden className={`pointer-events-none absolute left-[var(--x,50%)] top-[var(--y,50%)] h-0 w-0 -translate-x-1/2 -translate-y-1/2 rounded-full transition-[width,height] duration-500 ease-out group-hover:h-[260%] group-hover:w-[260%] group-hover:[aspect-ratio:1] ${v.fill}`} />
+      <span className="relative inline-flex items-center gap-2">{children}</span>
+    </>
+  );
+  if (href) {
+    return <a href={href} onMouseEnter={origin} className={cls} {...(external ? { target: "_blank", rel: "noopener" } : {})}>{inner}</a>;
+  }
+  return <button type={type ?? "button"} onClick={onClick} onMouseEnter={origin} className={cls}>{inner}</button>;
+};
+
+const Chevron = () => (
+  <svg viewBox="0 0 8 14" className="h-[0.7em] w-[0.4em] transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+    <path d="M1 1l6 6-6 6" />
+  </svg>
+);
+
+/** Tekstlink met pijltje, zoals "Meer bekijken ›" bij Apple */
+export const TextLink = ({ href, onClick, children, className = "", external, light = false }: {
+  href?: string; onClick?: () => void; children: ReactNode; className?: string; external?: boolean; light?: boolean;
+}) => {
+  const cls = `group inline-flex items-center gap-1.5 text-[17px] tracking-[-0.01em] hover:underline underline-offset-4 ${light ? "text-[#7CC7A0]" : "text-brand"} ${className}`;
+  if (href) return <a href={href} className={cls} {...(external ? { target: "_blank", rel: "noopener" } : {})}>{children}<Chevron /></a>;
+  return <button type="button" onClick={onClick} className={cls}>{children}<Chevron /></button>;
+};
+
+/** Opent de intro-chat vanaf elke plek */
+export const openChat = () => window.dispatchEvent(new Event("appmaatje:open-chat"));

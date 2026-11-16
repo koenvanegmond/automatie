@@ -1,36 +1,40 @@
 "use client";
 import { Logo } from "@/components/Logo";
 import { useLang, useT } from "@/lib/i18n";
-import { BackButton } from "@/components/Buttons";
+import { sectorKeys } from "@/lib/content";
 
 export const Footer = () => {
   const t = useT();
-  const { lang } = useLang();
+  const { lang, setLang } = useLang();
+  const col = "text-[13px] text-body/80 hover:text-ink transition-colors";
   return (
-    <footer className="border-t border-ink/10 pt-12">
-      <div className="container flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-        <div className="flex items-center gap-6">
-          <BackButton href="#top" label={lang === "nl" ? "Terug naar boven" : "Back to top"} className="rotate-90" />
+    <footer className="bg-sand pt-14 text-[13px]">
+      <div className="container">
+        <div className="grid gap-10 border-b border-black/[0.08] pb-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-          <Logo />
-          <p className="mt-3 text-sm">{t.footer.tagline}</p>
+            <Logo />
+            <p className="mt-3 text-body/80">{t.footer.tagline}</p>
+          </div>
+          <div className="space-y-2.5">
+            <p className="font-medium text-ink">{t.ui.nav.solutions}</p>
+            {sectorKeys.map((k) => <a key={k} href={`/oplossingen/${t.solutions[k].slug}`} className={`block ${col}`}>{t.solutions[k].name}</a>)}
+          </div>
+          <div className="space-y-2.5">
+            <p className="font-medium text-ink">Appmaatje</p>
+            <a href="/#werkwijze" className={`block ${col}`}>{t.ui.nav.how}</a>
+            <a href="/prijzen" className={`block ${col}`}>{t.ui.nav.pricing}</a>
+            <a href="/kennismaken" className={`block ${col}`}>{t.ui.nav.meet}</a>
+          </div>
+          <div className="space-y-2.5">
+            <p className="font-medium text-ink">{lang === "nl" ? "Taal" : "Language"}</p>
+            <button onClick={() => setLang("nl")} className={`block ${col} ${lang === "nl" ? "!text-ink" : ""}`}>Nederlands</button>
+            <button onClick={() => setLang("en")} className={`block ${col} ${lang === "en" ? "!text-ink" : ""}`}>English</button>
           </div>
         </div>
-        <nav className="flex flex-wrap gap-x-8 gap-y-2 text-sm">
-          <a href="#hoe-het-werkt" className="hover:text-ink">{t.nav.how}</a>
-          <a href="#voorbeelden" className="hover:text-ink">{t.nav.examples}</a>
-          <a href="#prijzen" className="hover:text-ink">{t.nav.pricing}</a>
-          <a href="#faq" className="hover:text-ink">{t.nav.faq}</a>
-        </nav>
-      </div>
-      <div className="container mt-10 flex flex-col gap-2 text-xs text-body/70 md:flex-row md:justify-between">
-        <p>© {new Date().getFullYear()} Appmaatje. {t.footer.rights}</p>
-        <p>{t.footer.disclaimer}</p>
-      </div>
-      <div aria-hidden className="pointer-events-none mt-10 select-none overflow-hidden">
-        <p className="bg-gradient-to-b from-brand/25 to-transparent bg-clip-text text-center font-display text-[24vw] font-medium leading-[0.8] tracking-[-0.06em] text-transparent">
-          appmaatje
-        </p>
+        <div className="flex flex-col gap-2 py-6 text-body/60 md:flex-row md:justify-between">
+          <p>© {new Date().getFullYear()} Appmaatje. {t.footer.rights}</p>
+          <p>{t.footer.disclaimer}</p>
+        </div>
       </div>
     </footer>
   );
