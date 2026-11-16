@@ -1,33 +1,30 @@
 "use client";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Logo } from "@/components/Logo";
 import { useLang, useT } from "@/lib/i18n";
 import { sectorKeys } from "@/lib/content";
 import { waLink } from "@/lib/config";
-import { Button } from "@/components/Buttons";
+import { Button, IconButton } from "@/components/Buttons";
+import { ChatSticker, CoinSticker } from "@/components/Stickers";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-/** Menu-blok linksboven, logo in het midden, App ons rechts. Het menu opent schermvullend. */
+/** Rond logo links, pillen rechts, + opent het volledige menu (ref. screenshot) */
 export const Header = () => {
   const t = useT();
   const { lang, setLang } = useLang();
+  const path = usePathname();
   const [open, setOpen] = useState(false);
-  const [onDark, setOnDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const on = () => {
-      setScrolled(window.scrollY > 8);
-      const hero = document.querySelector<HTMLElement>("[data-theme='dark']");
-      setOnDark(!!hero && window.scrollY < hero.offsetHeight - 72);
-    };
+    const on = () => setScrolled(window.scrollY > 8);
     on();
     window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
   }, []);
-
   useEffect(() => {
     document.documentElement.style.overflow = open ? "hidden" : "";
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
@@ -35,66 +32,59 @@ export const Header = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  const dark = onDark || open;
-  const main = [
-    { href: "/", label: lang === "nl" ? "Home" : "Home" },
-    { href: "/#werkwijze", label: t.ui.nav.how },
-    { href: "/prijzen", label: t.ui.nav.pricing },
-    { href: "/kennismaken", label: t.ui.nav.meet },
+  const nav = [
+    { href: `/oplossingen/${t.solutions.uitzend.slug}`, label: t.ui.nav.solutions, active: path.startsWith("/oplossingen") },
+    { href: "/#werkwijze", label: t.ui.nav.how, active: false },
+    { href: "/prijzen", label: t.ui.nav.pricing, active: path === "/prijzen" },
+    { href: "/kennismaken", label: t.ui.nav.meet, active: path === "/kennismaken" },
   ];
 
   return (
     <>
-      <header className={`fixed inset-x-0 top-0 z-[60] transition-colors duration-300 ${open ? "bg-transparent" : dark ? (scrolled ? "bg-ink/80 backdrop-blur-xl" : "bg-transparent") : "bg-white/85 backdrop-blur-xl"}`}>
-        <div className="container grid h-[72px] grid-cols-[1fr_auto_1fr] items-center">
-          <button onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-label={open ? t.ui.nav.close : t.ui.nav.menu}
-            className={`group flex h-11 w-fit items-center gap-3 pl-3 pr-4 font-display text-[16px] font-extrabold tracking-[-0.01em] transition-colors active:scale-[0.97] ${dark ? "bg-white text-ink" : "bg-ink text-white"}`}>
-            <span className="relative block h-3 w-[18px]">
-              <span className={`absolute left-0 right-0 h-[2.5px] bg-current transition-all duration-300 ${open ? "top-[5px] rotate-45" : "top-0 group-hover:right-1"}`} />
-              <span className={`absolute left-0 right-0 h-[2.5px] bg-current transition-all duration-300 ${open ? "top-[5px] -rotate-45" : "top-[9.5px]"}`} />
-            </span>
-            {open ? t.ui.nav.close : t.ui.nav.menu}
-          </button>
-          <a href="/" aria-label="Appmaatje home" className="justify-self-center"><Logo light={dark} /></a>
-          <div className="justify-self-end">
-            <Button href={waLink(t.hero.waText)} external size="sm">{t.ui.nav.cta}</Button>
-          </div>
+      <header className={`fixed inset-x-0 top-0 z-[70] transition-colors duration-300 ${scrolled && !open ? "bg-white/90 backdrop-blur-xl" : "bg-transparent"}`}>
+        <div className="flex h-[84px] items-center justify-between px-6 pt-2 md:h-[96px] md:px-10 md:pt-3">
+          <a href="/" aria-label="Appmaatje home"><Logo mark /></a>
+          <nav className="flex items-center gap-1.5">
+            {nav.map((l) => (
+              <span key={l.href} className="hidden lg:inline-flex">
+                <Button href={l.href} size="sm" variant={l.active ? "highlight" : "outline"}>{l.label}</Button>
+              </span>
+            ))}
+            <IconButton onClick={() => setOpen((o) => !o)} label={open ? t.ui.nav.close : t.ui.nav.menu} active={open}>
+              <svg viewBox="0 0 20 20" className={`h-5 w-5 transition-transform duration-300 ${open ? "rotate-45" : ""}`} fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round"><path d="M10 2v16M2 10h16" /></svg>
+            </IconButton>
+            <Button href={waLink(t.hero.waText)} external size="sm" variant="primary">{t.ui.nav.cta}</Button>
+          </nav>
         </div>
       </header>
 
       <AnimatePresence>
         {open && (
-          <motion.div initial={{ clipPath: "inset(0 0 100% 0)" }} animate={{ clipPath: "inset(0 0 0% 0)" }} exit={{ clipPath: "inset(0 0 100% 0)" }}
-            transition={{ duration: 0.6, ease }} className="fixed inset-0 z-[55] overflow-y-auto bg-ink text-white">
-            <div className="container grid min-h-full gap-12 pb-12 pt-28 md:grid-cols-[1.4fr_1fr] md:pt-36">
+          <motion.div initial={{ clipPath: "circle(0% at calc(100% - 120px) 48px)" }} animate={{ clipPath: "circle(150% at calc(100% - 120px) 48px)" }}
+            exit={{ clipPath: "circle(0% at calc(100% - 120px) 48px)" }} transition={{ duration: 0.65, ease }}
+            className="fixed inset-0 z-[65] overflow-y-auto bg-white">
+            <ChatSticker className="pointer-events-none absolute right-[8%] top-[22%] hidden w-40 rotate-6 md:block" />
+            <CoinSticker className="pointer-events-none absolute bottom-[12%] right-[30%] hidden w-36 -rotate-6 md:block" />
+            <div className="grid min-h-full gap-12 px-6 pb-16 pt-32 md:grid-cols-[1.3fr_1fr] md:px-14 md:pt-36">
               <nav>
-                {main.map((l, i) => (
+                {[{ href: "/", label: "Home" }, ...nav.slice(1)].map((l, i) => (
                   <motion.a key={l.href} href={l.href} onClick={() => setOpen(false)}
-                    initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.15 + i * 0.06, duration: 0.6, ease }}
-                    className="group relative -mx-3 flex items-center justify-between overflow-hidden px-3 py-1 font-display text-[52px] font-black leading-[1.05] tracking-[-0.05em] md:text-[96px]">
-                    <span aria-hidden className="absolute inset-0 origin-left scale-x-0 bg-brand transition-transform duration-300 ease-out group-hover:scale-x-100" />
-                    <span className="relative">{l.label}</span>
-                    <span className="relative translate-x-4 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">→</span>
+                    initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.15 + i * 0.06, duration: 0.6, ease }}
+                    className="group block w-fit font-display text-[64px] uppercase leading-[0.95] text-ink md:text-[120px]">
+                    <span className="bg-[linear-gradient(#9FE0B8,#9FE0B8)] bg-[length:0%_45%] bg-[position:0_85%] bg-no-repeat transition-[background-size] duration-300 group-hover:bg-[length:100%_45%]">{l.label}</span>
                   </motion.a>
                 ))}
               </nav>
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="flex flex-col md:pt-4">
-                <p className="font-display text-[15px] font-extrabold text-white/40">{t.ui.nav.solutions}</p>
-                <div className="mt-4 grid gap-2">
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }} className="relative flex flex-col md:pt-6">
+                <p className="eyebrow w-fit">{t.ui.nav.solutions}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
                   {sectorKeys.map((k) => (
-                    <a key={k} href={`/oplossingen/${t.solutions[k].slug}`} onClick={() => setOpen(false)}
-                      className="group bg-white/[0.06] p-5 transition-colors hover:bg-white hover:text-ink">
-                      <span className="block font-display text-[24px] font-extrabold tracking-[-0.02em]">{t.solutions[k].name}</span>
-                      <span className="block text-[15px] text-white/55 group-hover:text-ink/60">{t.solutions[k].tile}</span>
-                    </a>
+                    <span key={k} onClick={() => setOpen(false)}><Button href={`/oplossingen/${t.solutions[k].slug}`} size="md">{t.solutions[k].name}</Button></span>
                   ))}
                 </div>
-                <div className="mt-auto flex gap-2 pt-10">
+                <div className="mt-auto flex gap-2 pt-12">
                   {(["nl", "en"] as const).map((l) => (
-                    <button key={l} onClick={() => setLang(l)}
-                      className={`h-12 flex-1 font-display text-[16px] font-extrabold transition-colors ${lang === l ? "bg-white text-ink" : "bg-white/[0.06] text-white/60 hover:text-white"}`}>
-                      {l === "nl" ? "Nederlands" : "English"}
-                    </button>
+                    <Button key={l} onClick={() => setLang(l)} size="md" variant={lang === l ? "primary" : "outline"}>{l === "nl" ? "Nederlands" : "English"}</Button>
                   ))}
                 </div>
               </motion.div>

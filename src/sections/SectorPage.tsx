@@ -20,36 +20,36 @@ export const SectorPage = ({ k }: { k: SectorKey }) => {
 
   return (
     <>
-      <section className="pb-16 pt-32 text-center md:pb-24 md:pt-44">
+      <section className="pb-16 pt-36 text-center md:pb-24 md:pt-44">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease }} className="container">
           <p className="eyebrow">{s.name}</p>
-          <h1 className="h2 mx-auto mt-3 max-w-4xl md:text-[72px]">{s.title}</h1>
+          <h1 className="h2 mx-auto mt-5 max-w-5xl">{s.title}</h1>
           <p className="lead mx-auto mt-5 max-w-2xl">{s.sub}</p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <Button href={waLink(wa)} external size="lg">{t.ui.nav.cta}</Button>
-            <Button href="/kennismaken" variant="soft" size="lg">{t.ui.meet}</Button>
+            <Button href={waLink(wa)} external size="lg" variant="primary" arrow>{t.ui.nav.cta}</Button>
+            <Button href="/kennismaken" variant="outline" size="lg">{t.ui.meet}</Button>
           </div>
         </motion.div>
       </section>
 
       <section className="pb-24 md:pb-32">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease }} className="container">
-          <div className={`rounded-none p-6 md:p-14 ${k === "uitzend" ? "bg-ink" : "bg-sand"}`}>
+          <div className={`rounded-[28px] border-2 border-ink p-6 md:p-14 ${k === "uitzend" ? "bg-ink" : "bg-lilac"}`}>
             {k === "uitzend" ? <div className="mx-auto max-w-3xl"><RosterScene /></div> : <Phone chat={item.chat} name={t.sectors.phoneName} status={t.sectors.online} />}
             {k === "vastgoed" && SITE.pilotPartner && <p className="mt-6 text-center text-[14px] text-body/70">{t.sectors.pilot} {SITE.pilotPartner}</p>}
           </div>
         </motion.div>
       </section>
 
-      <section className="bg-sand py-24 md:py-32">
+      <section className="border-y-2 border-ink bg-[#F7F7F2] py-24 md:py-32">
         <div className="container">
           <h2 className="h2 text-center">{t.solutions.does}</h2>
           <div className="mt-14 grid gap-5 md:grid-cols-3">
             {item.result.map((r, i) => (
               <motion.div key={r} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.7, ease }}
-                className="rounded-none bg-white p-8">
-                <span className="grid h-10 w-10 place-items-center rounded-none bg-brand-light text-brand"><CheckIcon className="h-5 w-5" /></span>
-                <p className="mt-6 font-display text-[24px] font-black leading-[1.2] tracking-[-0.015em] text-ink">{r}</p>
+                className="rounded-[28px] border-2 border-ink bg-white p-8 transition-[transform,box-shadow] duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_#0E1110]">
+                <span className="grid h-12 w-12 place-items-center rounded-full border-2 border-ink bg-mint text-ink"><CheckIcon className="h-5 w-5" /></span>
+                <p className="mt-6 font-display text-[36px] uppercase leading-[0.95] text-ink">{r}</p>
               </motion.div>
             ))}
           </div>
@@ -61,11 +61,11 @@ export const SectorPage = ({ k }: { k: SectorKey }) => {
           <h2 className="h2">{t.home.how.title}</h2>
           <div className="mx-auto mt-12 grid max-w-4xl gap-8 md:grid-cols-3">
             {t.home.how.steps.map((st) => (
-              <div key={st.t}><p className="font-display text-[24px] font-black tracking-[-0.015em] text-ink">{st.t}</p><p className="mt-1 text-body">{st.d}</p></div>
+              <div key={st.t}><p className="font-display text-[36px] uppercase leading-[0.95] text-ink">{st.t}</p><p className="mt-1 text-body">{st.d}</p></div>
             ))}
           </div>
-          <div className="mt-14 inline-flex flex-wrap items-center justify-center gap-x-8 gap-y-3 rounded-none bg-sand px-8 py-4">
-            <span className="text-[17px] text-ink">{t.home.price.title} {lang === "nl" ? "Eenmalig." : "One-off."}</span>
+          <div className="mt-14 inline-flex flex-wrap items-center justify-center gap-x-8 gap-y-3 rounded-full border-2 border-ink bg-sun px-8 py-4">
+            <span className="font-ui text-[15px] font-bold uppercase text-ink">{t.home.price.title} {lang === "nl" ? "Eenmalig." : "One-off."}</span>
             <TextLink href="/prijzen">{t.ui.seePricing}</TextLink>
           </div>
         </div>

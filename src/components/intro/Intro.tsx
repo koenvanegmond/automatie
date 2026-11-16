@@ -147,7 +147,7 @@ export const Intro = () => {
     <motion.div id="intro" role="dialog" aria-modal="true" aria-label="Appmaatje chat"
       className="fixed inset-0 z-[100] flex flex-col overflow-hidden"
       initial={false}
-      animate={leaving ? { backgroundColor: "#0E1110", opacity: 0 } : { backgroundColor: "#0A0B0B", opacity: 1 }}
+      animate={leaving ? { backgroundColor: "#FFFFFF", opacity: 0 } : { backgroundColor: "#0A0B0B", opacity: 1 }}
       transition={leaving ? { backgroundColor: { duration: 0.7 }, opacity: { duration: 0.45, delay: 0.7 } } : { duration: 0.3 }}>
 
       {/* glows */}

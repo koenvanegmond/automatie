@@ -3,13 +3,14 @@
 @tailwind utilities;
 
 html { scroll-behavior: smooth; }
-body { @apply bg-white text-body text-[18px] font-medium leading-[1.45] tracking-[-0.015em]; }
+body { @apply bg-ink text-body text-[18px] font-medium leading-[1.45] tracking-[-0.01em]; }
 
 @layer components {
-  .eyebrow { @apply font-display text-[19px] md:text-[22px] font-extrabold tracking-[-0.02em] text-brand; }
-  .h2 { @apply font-display text-[44px] md:text-[64px] lg:text-[80px] font-black tracking-[-0.045em] text-ink leading-[0.98]; }
-  .lead { @apply text-[20px] md:text-[24px] font-semibold leading-[1.3] tracking-[-0.02em] text-body; }
-  .card { @apply bg-white rounded-lg border border-ink/[0.06] shadow-card; }
+  .eyebrow { @apply inline-flex h-9 items-center rounded-full border-2 border-ink bg-mint px-4 font-ui text-[13px] font-bold uppercase tracking-[0.02em] text-ink; }
+  .h2 { @apply font-display text-[56px] md:text-[96px] lg:text-[120px] uppercase leading-[0.9] tracking-[-0.01em] text-ink; }
+  .card { @apply rounded-[28px] border-2 border-ink bg-white; }
+  .lead { @apply text-[19px] md:text-[22px] font-semibold leading-[1.35] tracking-[-0.015em] text-body; }
+  
   .dot-grid { background-image: radial-gradient(rgba(14,17,16,.12) 1px, transparent 1px); background-size: 22px 22px; }
 }
 
@@ -41,3 +42,10 @@ html:not(.intro-seen):has(#intro) body { overflow: hidden; }
 @keyframes wall-up { from { transform: translateY(0); } to { transform: translateY(-50%); } }
 .wall-col { animation: wall-up var(--dur, 40s) linear infinite; }
 @media (prefers-reduced-motion: reduce) { .wall-col { animation: none; } }
+
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ticker { animation: ticker 40s linear infinite; }
+a:hover .ticker { animation-play-state: paused; }
+@keyframes bob { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)); } 50% { transform: translateY(-12px) rotate(calc(var(--r,0deg) + 3deg)); } }
+.bob { animation: bob var(--d,5s) ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .ticker, .bob { animation: none; } }

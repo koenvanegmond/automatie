@@ -2,18 +2,20 @@
 import { useT } from "@/lib/i18n";
 import { SITE, waLink } from "@/lib/config";
 import { Button } from "@/components/Buttons";
+import { BellSticker } from "@/components/Stickers";
 
 export const Pilot = () => {
   const t = useT();
   return (
-    <section className="py-10">
+    <section className="pb-10">
       <div className="container">
-        <div className="flex flex-col items-start justify-between gap-8 rounded-none bg-ink px-8 py-12 md:flex-row md:items-center md:px-14 md:py-16">
+        <div className="relative flex flex-col items-start justify-between gap-8 overflow-hidden rounded-[28px] border-2 border-ink bg-sun px-8 py-12 md:flex-row md:items-center md:px-14">
+          <BellSticker className="pointer-events-none absolute -right-2 -top-6 hidden w-24 rotate-12 md:block" />
           <div>
-            <h2 className="font-display text-[34px] font-black leading-[1.08] tracking-[-0.03em] text-white md:text-[48px]">{t.pilot.title}</h2>
-            <p className="mt-3 text-[17px] text-white/65">{t.pilot.text}{SITE.pilotPartner && <> · {t.pilot.partner} {SITE.pilotPartner}</>}</p>
+            <h2 className="font-display text-[44px] uppercase leading-[0.92] text-ink md:text-[64px]">{t.pilot.title}</h2>
+            <p className="mt-3 text-[18px] font-semibold text-ink/75">{t.pilot.text}{SITE.pilotPartner && <> · {t.pilot.partner} {SITE.pilotPartner}</>}</p>
           </div>
-          <Button href={waLink(t.pilot.waText)} external size="lg">{t.ui.pilotCta}</Button>
+          <Button href={waLink(t.pilot.waText)} external size="lg" variant="primary" arrow>{t.ui.pilotCta}</Button>
         </div>
       </div>
     </section>

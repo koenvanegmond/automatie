@@ -14,11 +14,15 @@ const config: Config = {
         ink: "#0E1110",
         cream: "#FFFFFF",
         sand: "#F3F4F3",
-        body: "#4B504E",
+        body: "#3A3F3D",
+        sun: "#F7D95C",
+        mint: "#9FE0B8",
+        lilac: "#DCCBF7",
       },
       fontFamily: {
-        sans: ["-apple-system", "BlinkMacSystemFont", "\"SF Pro Text\"", "\"Segoe UI\"", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
-        display: ["var(--font-zt)", "system-ui", "sans-serif"],
+        sans: ["var(--font-zt)", "system-ui", "sans-serif"],
+        display: ["var(--font-anton)", "Impact", "sans-serif"],
+        ui: ["var(--font-zt)", "system-ui", "sans-serif"],
       },
       container: { center: true, padding: { DEFAULT: "20px", md: "32px", lg: "40px" }, screens: { lg: "1240px" } },
       boxShadow: {

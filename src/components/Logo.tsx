@@ -1,11 +1,9 @@
-// Tijdelijk logo: woordmerk "appmaatje" met een vinkje.
-export const Logo = ({ className = "", light = false }: { className?: string; light?: boolean }) => (
-  <span className={`inline-flex items-center gap-1.5 font-display text-[24px] font-black tracking-[-0.05em] ${light ? "text-white" : "text-ink"} ${className}`}>
-    <span className="relative grid h-7 w-7 place-items-center rounded-none bg-brand">
-      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="white" strokeWidth={3.4} strokeLinecap="square">
-        <path d="M5 12.5l4.5 4.5L19 7.5" />
-      </svg>
+// Tijdelijk logo: rond merkteken met vinkje + woordmerk (ref. rond logo in screenshot).
+export const Logo = ({ className = "", light = false, mark = false }: { className?: string; light?: boolean; mark?: boolean }) => (
+  <span className={`inline-flex items-center gap-2.5 ${light ? "text-white" : "text-ink"} ${className}`}>
+    <span className={`grid h-11 w-11 place-items-center rounded-full border-2 ${light ? "border-white" : "border-ink"}`}>
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
     </span>
-    appmaatje
+    {!mark && <span className="font-display text-[26px] uppercase leading-none tracking-[0.005em]">appmaatje</span>}
   </span>
 );

@@ -3,9 +3,6 @@ import { useMemo, useRef } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 
 const COLS = 24, ROWS = 5;
-const ACCENTS = ["#25855A", "#7CC7A0"];
-
-// vaste pseudo-random reeks: server en browser zien hetzelfde patroon
 const rand = (i: number) => { const x = Math.sin(i * 9301 + 49297) * 233280; return x - Math.floor(x); };
 
 const Tile = ({ p, th, color }: { p: MotionValue<number>; th: number; color: string }) => {
@@ -14,10 +11,10 @@ const Tile = ({ p, th, color }: { p: MotionValue<number>; th: number; color: str
 };
 
 /**
- * Blokjes-overgang van de donkere hero naar de lichte pagina (ref. Transform).
- * Onderste rijen zijn al deels weg; tijdens het scrollen lossen de rest op.
+ * Blokjes-overgang tussen twee kleuren. De tegels hebben de kleur van de sectie erboven ("from")
+ * en lossen tijdens het scrollen op in de achtergrond ("to").
  */
-export const PixelWipe = () => {
+export const PixelWipe = ({ from = "#FFFFFF", to = "#0E1110", accents = ["#9FE0B8", "#F7D95C", "#DCCBF7"] }: { from?: string; to?: string; accents?: string[] }) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 85%", "end 15%"] });
   const tiles = useMemo(() => {
@@ -25,14 +22,13 @@ export const PixelWipe = () => {
     for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
       const i = r * COLS + c;
       const th = ((ROWS - r) / ROWS) * 0.95 + (rand(i) - 0.5) * 0.4;
-      const a = rand(i + 777);
-      const color = a > 0.92 ? ACCENTS[Math.floor(rand(i + 31) * ACCENTS.length)] : "#0E1110";
+      const color = rand(i + 777) > 0.9 ? accents[Math.floor(rand(i + 31) * accents.length)] : from;
       out.push({ th, color });
     }
     return out;
-  }, []);
+  }, [from, accents]);
   return (
-    <div ref={ref} aria-hidden className="pointer-events-none relative z-10 grid w-full" style={{ gridTemplateColumns: `repeat(${COLS}, minmax(0, 1fr))` }}>
+    <div ref={ref} aria-hidden className="pointer-events-none relative z-10 grid w-full" style={{ backgroundColor: to, gridTemplateColumns: `repeat(${COLS}, minmax(0, 1fr))` }}>
       {tiles.map((t, i) => <Tile key={i} p={scrollYProgress} th={t.th} color={t.color} />)}
     </div>
   );

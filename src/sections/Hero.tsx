@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion";
-import { useLang, useT } from "@/lib/i18n";
+import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform, type MotionValue } from "framer-motion";
+import { useT } from "@/lib/i18n";
 import { waLink } from "@/lib/config";
 import { Button } from "@/components/Buttons";
-import { PixelWipe } from "@/components/PixelWipe";
+import { BellSticker, CalendarSticker, ChatSticker, CoinSticker } from "@/components/Stickers";
+import { Ticker } from "@/components/Ticker";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -26,58 +27,36 @@ function useIntroDone() {
   return done;
 }
 
-const EVENTS = {
-  nl: [
-    "✓ Briefing → Sam · 07:00 Bakkerij Jansen", "📅 Bezichtiging wo 10:30 ingepland", "💬 Lead beantwoord in 8 sec", "🔔 Herinnering: morgen 09:15",
-    "✓ Rooster bijgewerkt", "💶 Betaallink verstuurd", "⭐ Review-verzoek verstuurd", "🔁 Afspraak verzet → vr 14:30", "📦 Track & trace verstuurd",
-    "👋 Welkom Noor! Contract staat klaar", "✓ 13/14 diensten bevestigd", "🤒 Daan ziek → Mila geappt", "🍽️ Tafel voor 6 · za 20:30", "📄 Offerte opgevolgd na 3 dagen",
-    "✓ Akkoord → deal gewonnen", "📍 Adres + dresscode verstuurd", "💬 Vraag over openingstijden beantwoord", "📨 Urgente mail → samenvatting in WhatsApp",
-  ],
-  en: [
-    "✓ Briefing → Sam · 07:00 Bakery Jansen", "📅 Viewing Wed 10:30 booked", "💬 Lead answered in 8 sec", "🔔 Reminder: tomorrow 09:15",
-    "✓ Roster updated", "💶 Payment link sent", "⭐ Review request sent", "🔁 Appointment moved → Fri 14:30", "📦 Track & trace sent",
-    "👋 Welcome Noor! Contract is ready", "✓ 13/14 shifts confirmed", "🤒 Daan sick → Mila messaged", "🍽️ Table for 6 · Sat 20:30", "📄 Quote followed up after 3 days",
-    "✓ Approved → deal won", "📍 Address + dress code sent", "💬 Opening hours question answered", "📨 Urgent email → summary on WhatsApp",
-  ],
-};
-
-const rand = (i: number) => { const x = Math.sin(i * 12.9898 + 78.233) * 43758.5453; return x - Math.floor(x); };
-
-/** Eén kolom stromende berichtblokken, met eigen diepte voor de muis-parallax */
-const Column = ({ items, i, mx, my }: { items: string[]; i: number; mx: MotionValue<number>; my: MotionValue<number> }) => {
-  const depth = 0.4 + (i % 3) * 0.35;
-  const x = useTransform(mx, (v) => v * -28 * depth);
-  const y = useTransform(my, (v) => v * -22 * depth);
-  const list = [...items, ...items];
+/** Sticker die zweeft en meebeweegt met de muis */
+const Float = ({ children, className, mx, my, depth, r, d, delay, go }: {
+  children: React.ReactNode; className: string; mx: MotionValue<number>; my: MotionValue<number>; depth: number; r: number; d: number; delay: number; go: boolean;
+}) => {
+  const x = useTransform(mx, (v) => v * 50 * depth);
+  const y = useTransform(my, (v) => v * 40 * depth);
   return (
-    <motion.div style={{ x, y, opacity: 0.25 + depth * 0.3 }} className="relative h-full overflow-hidden">
-      <div className="wall-col flex flex-col gap-3" style={{ ["--dur" as string]: `${38 + (i % 4) * 9}s`, animationDelay: `${-rand(i) * 30}s` }}>
-        {list.map((m, j) => {
-          const hot = rand(i * 31 + j) > 0.82;
-          return (
-            <div key={j} className={`px-4 py-3.5 text-[14px] font-bold leading-snug tracking-[-0.01em] ${hot ? "bg-brand text-white" : "bg-white/[0.06] text-white/75"}`}>
-              {m}
-            </div>
-          );
-        })}
-      </div>
+    <motion.div style={{ x, y }} className={`pointer-events-none absolute ${className}`}>
+      <motion.div initial={{ scale: 0, rotate: r - 30 }} animate={go ? { scale: 1, rotate: 0 } : {}} transition={{ type: "spring", stiffness: 220, damping: 14, delay }}>
+        <div className="bob" style={{ ["--r" as string]: `${r}deg`, ["--d" as string]: `${d}s` }}>{children}</div>
+      </motion.div>
     </motion.div>
   );
 };
 
+const Chat = () => (
+  <span className="grid h-full w-full place-items-center rounded-full bg-mint">
+    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="#0E1110" strokeWidth={2.4} strokeLinejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" /></svg>
+  </span>
+);
+
 export const Hero = () => {
   const t = useT();
-  const { lang } = useLang();
   const reduce = useReducedMotion();
   const go = useIntroDone() || !!reduce;
   const ref = useRef<HTMLElement>(null);
-
-  // muis → lagen
   const rmx = useMotionValue(0), rmy = useMotionValue(0);
-  const mx = useSpring(rmx, { stiffness: 60, damping: 20 });
-  const my = useSpring(rmy, { stiffness: 60, damping: 20 });
-  const textX = useTransform(mx, (v) => v * 14);
-  const textY = useTransform(my, (v) => v * 10);
+  const mx = useSpring(rmx, { stiffness: 70, damping: 18 });
+  const my = useSpring(rmy, { stiffness: 70, damping: 18 });
+
   useEffect(() => {
     const el = ref.current;
     if (!el || reduce || !window.matchMedia("(hover:hover) and (pointer:fine)").matches) return;
@@ -87,52 +66,35 @@ export const Hero = () => {
     return () => { el.removeEventListener("pointermove", move); el.removeEventListener("pointerleave", leave); };
   }, [reduce, rmx, rmy]);
 
-  // scroll → tekst zakt iets langzamer weg dan de muur
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, 140]);
-  const wallY = useTransform(scrollYProgress, [0, 1], [0, -80]);
-
-  const cols = useMemo(() => {
-    const ev = EVENTS[lang];
-    return Array.from({ length: 6 }, (_, c) => ev.map((_, j) => ev[(j * 5 + c * 7) % ev.length]).slice(0, 12));
-  }, [lang]);
+  const words = `${t.hero.h1a} ${t.hero.h1b} ${t.hero.h1c}`.split(" ");
 
   return (
-    <>
-      <section ref={ref} id="top" data-theme="dark" className="relative overflow-hidden bg-ink text-white">
-        {/* muur van automatiseringen */}
-        <motion.div aria-hidden style={{ y: wallY }} className="pointer-events-none absolute inset-[-60px] grid grid-cols-3 gap-3 md:grid-cols-6">
-          {cols.map((items, i) => <Column key={`${lang}-${i}`} items={items} i={i} mx={mx} my={my} />)}
-        </motion.div>
-        <div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse 62% 58% at 38% 52%, rgba(14,17,16,.97) 30%, rgba(14,17,16,.75) 62%, rgba(14,17,16,.35))" }} />
-        <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink to-transparent" />
+    <section ref={ref} id="top" className="relative overflow-hidden bg-white">
+      <div className="relative flex min-h-[92svh] flex-col items-center justify-center px-6 pb-16 pt-36 text-center">
+        <Float mx={mx} my={my} depth={1.2} r={-12} d={5.5} delay={0.5} go={go} className="left-[6%] top-[13%] w-20 md:left-[30%] md:top-[9%] md:w-32"><ChatSticker /></Float>
+        <Float mx={mx} my={my} depth={0.8} r={8} d={6.2} delay={0.65} go={go} className="right-[6%] top-[14%] w-16 md:right-[7%] md:top-[30%] md:w-28"><CalendarSticker /></Float>
+        <Float mx={mx} my={my} depth={1.5} r={-6} d={5} delay={0.8} go={go} className="bottom-[14%] left-[5%] w-20 md:bottom-[20%] md:left-[10%] md:w-36"><CoinSticker /></Float>
+        <Float mx={mx} my={my} depth={1} r={10} d={6.8} delay={0.95} go={go} className="bottom-[13%] right-[7%] w-16 md:bottom-[18%] md:right-[17%] md:w-28"><BellSticker /></Float>
 
-        <motion.div style={{ y: contentY }} className="container relative flex min-h-[100svh] flex-col justify-center pb-20 pt-32">
-          <motion.h1 style={{ x: textX, y: textY }} className="font-display text-[44px] font-black leading-[0.92] tracking-[-0.06em] sm:text-[52px] md:text-[112px] lg:text-[148px]">
-            {[t.hero.h1a, t.hero.h1b, t.hero.h1c].map((line, i) => (
-              <span key={i} className="block overflow-hidden pb-[0.06em]">
-                <motion.span className={`block ${i === 1 ? "text-white/40" : i === 2 ? "text-[#7CC7A0]" : ""}`}
-                  initial={{ y: "105%" }} animate={go ? { y: 0 } : { y: "105%" }} transition={{ duration: 1, ease, delay: 0.1 + i * 0.12 }}>
-                  {line}
-                </motion.span>
-              </span>
-            ))}
-          </motion.h1>
-
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={go ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.9, ease, delay: 0.7 }}
-            className="mt-12 grid max-w-[880px] gap-2 md:grid-cols-[1.2fr_1fr]">
-            <div className="bg-white p-6 text-ink md:p-8">
-              <p className="font-display text-[24px] font-extrabold leading-[1.15] tracking-[-0.03em] md:text-[30px]">{t.home.sub}</p>
-            </div>
-            <div className="flex flex-col gap-2">
-              <Button href={waLink(t.hero.waText)} external size="lg" arrow className="h-full min-h-16 w-full justify-between">{t.ui.nav.cta}</Button>
-              <Button href="/kennismaken" variant="dark" size="lg" className="w-full justify-between !bg-white/[0.08]">{t.ui.meet}</Button>
-            </div>
-          </motion.div>
-          <motion.p initial={{ opacity: 0 }} animate={go ? { opacity: 1 } : {}} transition={{ delay: 1.1 }} className="mt-5 text-[15px] font-semibold text-white/50">{t.ui.noBot}</motion.p>
+        <h1 className="relative z-10 mx-auto max-w-[1200px] font-display text-[64px] uppercase leading-[0.86] tracking-[-0.005em] text-ink sm:text-[80px] md:text-[120px] lg:text-[150px]">
+          {words.map((w, i) => (
+            <span key={i} className="inline-block overflow-hidden pb-[0.04em] align-bottom">
+              <motion.span className={`inline-block ${i === words.length - 1 ? "text-brand" : ""}`} initial={{ y: "110%" }} animate={go ? { y: 0 } : {}}
+                transition={{ duration: 0.9, ease, delay: 0.05 + i * 0.07 }}>
+                {w}{i < words.length - 1 ? " " : ""}
+              </motion.span>
+            </span>
+          ))}
+        </h1>
+        <motion.p initial={{ opacity: 0, y: 14 }} animate={go ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.5, duration: 0.7, ease }}
+          className="relative z-10 mt-7 max-w-xl text-[20px] font-semibold leading-snug text-ink md:text-[24px]">{t.home.sub}</motion.p>
+        <motion.div initial={{ opacity: 0, y: 14 }} animate={go ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.62, duration: 0.7, ease }}
+          className="relative z-10 mt-9 flex flex-wrap justify-center gap-2.5">
+          <Button href={waLink(t.hero.waText)} external size="lg" icon={<Chat />}>{t.ui.nav.cta}</Button>
+          <Button href="/kennismaken" size="lg" variant="primary">{t.ui.meet}</Button>
         </motion.div>
-      </section>
-      <div className="bg-white"><PixelWipe /></div>
-    </>
+      </div>
+      <Ticker />
+    </section>
   );
 };

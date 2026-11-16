@@ -3,6 +3,7 @@ import { Hero } from "@/sections/Hero";
 import { Problem, SectorTiles, HowSection, PriceTeaser, EndCta } from "@/sections/HomeSections";
 import { Footer } from "@/sections/Footer";
 import { Intro } from "@/components/intro/Intro";
+import { PixelWipe } from "@/components/PixelWipe";
 
 export default function Home() {
   return (
@@ -10,7 +11,9 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <PixelWipe from="#FFFFFF" to="#0E1110" />
         <Problem />
+        <PixelWipe from="#0E1110" to="#FFFFFF" />
         <SectorTiles />
         <HowSection />
         <PriceTeaser />

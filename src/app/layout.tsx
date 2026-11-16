@@ -4,6 +4,7 @@ import "./globals.css";
 import { LangProvider } from "@/lib/i18n";
 import { content } from "@/lib/content";
 import { SITE } from "@/lib/config";
+import { Frame } from "@/components/Frame";
 
 const zt = localFont({
   src: [
@@ -16,6 +17,12 @@ const zt = localFont({
     { path: "../fonts/ZTNature-Black.woff2", weight: "900" },
   ],
   variable: "--font-zt",
+  display: "swap",
+});
+
+const anton = localFont({
+  src: [{ path: "../fonts/Anton-Regular.woff2", weight: "400" }],
+  variable: "--font-anton",
   display: "swap",
 });
 
@@ -67,9 +74,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('intro-seen'))document.documentElement.classList.add('intro-seen')}catch(e){}` }} />
         <noscript><style>{`#intro{display:none!important}`}</style></noscript>
       </head>
-      <body className={`${zt.variable} font-sans antialiased`}>
+      <body className={`${zt.variable} ${anton.variable} font-sans antialiased`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([orgJsonLd, faqJsonLd]) }} />
-        <LangProvider>{children}</LangProvider>
+        <LangProvider><div className="bg-white">{children}</div></LangProvider>
+        <Frame />
       </body>
     </html>
   );
