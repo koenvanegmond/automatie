@@ -13,7 +13,7 @@ export const HowItWorks = () => {
     <SceneRun key="r" />,
   ];
   return (
-    <section id="hoe-het-werkt" data-flow className="py-28 md:py-36">
+    <section id="hoe-het-werkt" className="py-28 md:py-36">
       <div className="container">
         <div className="text-center">
           <p className="eyebrow">{h.eyebrow}</p>

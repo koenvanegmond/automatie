@@ -8,13 +8,12 @@ const nl = {
   nav: { how: "Hoe het werkt", examples: "Voorbeelden", pricing: "Prijzen", faq: "FAQ", cta: "App ons" },
   hero: {
     eyebrow: "Gratis kennismaking · we komen langs",
-    h1a: "Automatiseren begint",
-    h1not: "niet bij",
-    h1jargon: ["AI-agents", "Zapier", "workflows"],
-    h1yes: "bij WhatsApp.",
-    sub: "De meeste ondernemers denken bij automatiseren aan AI-agents en ingewikkelde systemen. Begin waar je al de hele dag zit. Wij koppelen WhatsApp aan je rooster, agenda en CRM. Vaak binnen 2 dagen live.",
+    h1a: "Automatiseren",
+    h1b: "begint bij",
+    h1c: "WhatsApp.",
+    sub: "Geen ingewikkelde systemen. Gewoon de app die jij, je klanten en je personeel al de hele dag gebruiken. Gekoppeld aan je rooster, agenda en CRM. Vaak binnen 2 dagen live.",
     cta1: "App ons",
-    cta2: "Zo werkt het",
+    cta2: "Bekijk voorbeelden",
     trust: ["Officiële WhatsApp Business API", "Op maat gebouwd", "Vaak binnen 2 dagen live"],
     waText: "Hoi Appmaat! Ik wil weten wat ik kan automatiseren.",
     stage: {
@@ -42,6 +41,21 @@ const nl = {
     withSteps: ["Rooster staat klaar", "Om 09:00 gaan de briefings vanzelf", "Antwoorden komen in het rooster", "Wie niet reageert krijgt een herinnering"],
     nowMin: 42,
     note: "Indicatie op basis van ±3 minuten per briefing. Jouw situatie rekenen we samen door.",
+  },
+  examples: {
+    eyebrow: "Voorbeelden",
+    title: "Zo ziet het eruit.",
+    items: [
+      { no: "01", label: "Uitzendbureau", title: "Briefings voor morgen. Om 09:00 de deur uit.", text: "Iedereen die morgen werkt krijgt automatisch tijd, adres en dresscode. Antwoorden komen in het rooster.", bullets: ["Herkent wie waar werkt", "Ziekmelding? Reserve wordt geappt"] },
+      { no: "02", label: "Vastgoed", title: "Twintig geïnteresseerden. Eén bericht.", text: "Iedereen krijgt een link om zelf een bezichtiging te kiezen. Je agenda vult zichzelf.", bullets: ["Herinnering een dag vooraf", "Verzetten zonder te bellen"] },
+      { no: "03", label: "Leads", title: "Nieuwe lead om 23:14? Al geholpen.", text: "Binnen seconden een persoonlijk antwoord, de juiste vragen en een afspraak. Jij krijgt een seintje.", bullets: ["Geen koude leads meer", "Alles direct in je CRM"] },
+    ],
+    leadChat: [
+      { from: "them", text: "Hoi, ik heb net het formulier ingevuld. Kunnen jullie mij helpen?" },
+      { from: "bot", text: "Hoi Eva! Zeker. Gaat het om één locatie of meerdere?" },
+      { from: "them", text: "Twee locaties" },
+      { from: "bot", text: "Helder. Wil je even bellen? Kies een moment: morgen 10:00 · 14:30" },
+    ] as Msg[],
   },
   how: {
     eyebrow: "Hoe het werkt",
@@ -175,13 +189,12 @@ const en: Dict = {
   nav: { how: "How it works", examples: "Examples", pricing: "Pricing", faq: "FAQ", cta: "Message us" },
   hero: {
     eyebrow: "Free intro · we come to you",
-    h1a: "Automation starts",
-    h1not: "not with",
-    h1jargon: ["AI agents", "Zapier", "workflows"],
-    h1yes: "with WhatsApp.",
-    sub: "Most business owners think of AI agents and complex systems when they hear automation. Start where you already spend your day. We connect WhatsApp to your roster, calendar and CRM. Often live within 2 days.",
+    h1a: "Automation",
+    h1b: "starts with",
+    h1c: "WhatsApp.",
+    sub: "No complicated systems. Just the app you, your customers and your staff already use all day. Connected to your roster, calendar and CRM. Often live within 2 days.",
     cta1: "Message us",
-    cta2: "How it works",
+    cta2: "See examples",
     trust: ["Official WhatsApp Business API", "Custom-built", "Often live within 2 days"],
     waText: "Hi Appmaat! I'd like to know what I can automate.",
     stage: {
@@ -209,6 +222,21 @@ const en: Dict = {
     withSteps: ["Roster is ready", "At 09:00 the briefings go out", "Replies land in the roster", "No reply? Automatic reminder"],
     nowMin: 42,
     note: "Estimate based on ±3 minutes per briefing. We'll work out your situation together.",
+  },
+  examples: {
+    eyebrow: "Examples",
+    title: "What it looks like.",
+    items: [
+      { no: "01", label: "Staffing agency", title: "Tomorrow's briefings. Sent at 09:00.", text: "Everyone working tomorrow gets their time, address and dress code. Replies land in the roster.", bullets: ["Knows who works where", "Sick call? The backup gets a message"] },
+      { no: "02", label: "Real estate", title: "Twenty interested buyers. One message.", text: "Everyone gets a link to pick a viewing. Your calendar fills itself.", bullets: ["Reminder the day before", "Reschedule without calling"] },
+      { no: "03", label: "Leads", title: "New lead at 11:14 pm? Already helped.", text: "A personal reply within seconds, the right questions and a booking. You get a ping.", bullets: ["No more cold leads", "Straight into your CRM"] },
+    ],
+    leadChat: [
+      { from: "them", text: "Hi, I just filled in the form. Can you help me?" },
+      { from: "bot", text: "Hi Eva! Sure. Is it one location or more?" },
+      { from: "them", text: "Two locations" },
+      { from: "bot", text: "Got it. Want a quick call? Pick a time: tomorrow 10:00 · 14:30" },
+    ],
   },
   how: {
     eyebrow: "How it works",

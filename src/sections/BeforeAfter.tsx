@@ -34,7 +34,7 @@ export const BeforeAfter = () => {
   );
 
   return (
-    <section data-flow className="py-28 md:py-36">
+    <section className="pb-24 pt-16 md:pb-32 md:pt-20">
       <div className="container">
         <div className="text-center">
           <p className="eyebrow">{t.eyebrow}</p>
