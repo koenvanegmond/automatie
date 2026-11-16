@@ -15,7 +15,7 @@ const nl = {
     cta1: "App ons",
     cta2: "Bekijk voorbeelden",
     trust: ["Officiële WhatsApp Business API", "Op maat gebouwd", "Vaak binnen 2 dagen live"],
-    waText: "Hoi Appmaat! Ik wil weten wat ik kan automatiseren.",
+    waText: "Hoi Appmaatje! Ik wil weten wat ik kan automatiseren.",
     stage: {
       tab: "Rooster · morgen",
       wa: "WhatsApp",
@@ -35,7 +35,7 @@ const nl = {
     title: "Jij bent geen kopieer‑en‑plakmachine.",
     sub: "Rekenvoorbeeld: een uitzendbureau dat elke dag 14 mensen briefet.",
     now: "Zo gaat het nu",
-    with: "Met Appmaat",
+    with: "Met Appmaatje",
     perDay: "per dag",
     nowSteps: ["Rooster openen en namen opzoeken", "14 appjes typen met adres en tijd", "Antwoorden bijhouden in Excel", "Achter wie niet reageert aan bellen"],
     withSteps: ["Rooster staat klaar", "Om 09:00 gaan de briefings vanzelf", "Antwoorden komen in het rooster", "Wie niet reageert krijgt een herinnering"],
@@ -71,7 +71,7 @@ const nl = {
     title: "Zo ziet WhatsApp-automatisering eruit voor jouw bedrijf.",
     sub: "Kies je sector. Bekijk wat er gebeurt als er een bericht binnenkomt.",
     trigger: "Nieuw bericht",
-    engine: "Appmaat-flow",
+    engine: "Appmaatje-flow",
     pilot: "Pilot in opbouw met",
     phoneName: "Jouw bedrijf",
     online: "online",
@@ -125,7 +125,7 @@ const nl = {
     tools: ["WhatsApp", "Agenda", "Rooster", "Excel", "CRM", "E-mail"],
   },
   why: {
-    eyebrow: "Waarom Appmaat",
+    eyebrow: "Waarom Appmaatje",
     title: "Persoonlijk. Snel. Op maat.",
     items: [
       { title: "We komen langs", text: "Kennismaken doen we bij jou, niet via een call." },
@@ -140,7 +140,7 @@ const nl = {
     text: "Net gestart. Bouw mee: jij krijgt 50% korting op de opzet, wij jouw feedback.",
     partner: "Pilot in opbouw met",
     cta: "Ik doe mee",
-    waText: "Hoi Appmaat! Ik wil meedoen met de pilot.",
+    waText: "Hoi Appmaatje! Ik wil meedoen met de pilot.",
   },
   pricing: {
     eyebrow: "Prijzen",
@@ -155,7 +155,7 @@ const nl = {
     ],
     cta: "Plan gratis kennismaking",
     note: "Daarnaast: onderhoud & hosting vanaf €29 p/m. WhatsApp-berichtkosten van Meta tegen kostprijs. Prijzen excl. btw, indicatie.",
-    waText: "Hoi Appmaat! Ik wil een gratis kennismaking plannen.",
+    waText: "Hoi Appmaatje! Ik wil een gratis kennismaking plannen.",
   },
   faq: {
     eyebrow: "FAQ",
@@ -174,12 +174,12 @@ const nl = {
     sub: "App ons. Geen bot, wij reageren zelf.",
     cta1: "App ons",
     cta2: "Vraag een demo",
-    waDemo: "Hoi Appmaat! Ik wil graag een demo zien.",
+    waDemo: "Hoi Appmaatje! Ik wil graag een demo zien.",
   },
   footer: {
     tagline: "WhatsApp-automatisering op maat.",
     rights: "Alle rechten voorbehouden.",
-    disclaimer: "WhatsApp is een handelsmerk van WhatsApp LLC. Appmaat is niet gelieerd aan Meta.",
+    disclaimer: "WhatsApp is een handelsmerk van WhatsApp LLC. Appmaatje is niet gelieerd aan Meta.",
   },
 };
 
@@ -196,7 +196,7 @@ const en: Dict = {
     cta1: "Message us",
     cta2: "See examples",
     trust: ["Official WhatsApp Business API", "Custom-built", "Often live within 2 days"],
-    waText: "Hi Appmaat! I'd like to know what I can automate.",
+    waText: "Hi Appmaatje! I'd like to know what I can automate.",
     stage: {
       tab: "Roster · tomorrow",
       wa: "WhatsApp",
@@ -216,7 +216,7 @@ const en: Dict = {
     title: "You're not a copy‑paste machine.",
     sub: "Example: a staffing agency briefing 14 people every day.",
     now: "How it works now",
-    with: "With Appmaat",
+    with: "With Appmaatje",
     perDay: "per day",
     nowSteps: ["Open the roster, look up names", "Type 14 messages with address and time", "Track replies in Excel", "Chase whoever doesn't reply"],
     withSteps: ["Roster is ready", "At 09:00 the briefings go out", "Replies land in the roster", "No reply? Automatic reminder"],
@@ -252,7 +252,7 @@ const en: Dict = {
     title: "What WhatsApp automation looks like for your business.",
     sub: "Pick your sector. See what happens when a message comes in.",
     trigger: "New message",
-    engine: "Appmaat flow",
+    engine: "Appmaatje flow",
     pilot: "Pilot being set up with",
     phoneName: "Your business",
     online: "online",
@@ -306,7 +306,7 @@ const en: Dict = {
     tools: ["WhatsApp", "Calendar", "Roster", "Excel", "CRM", "Email"],
   },
   why: {
-    eyebrow: "Why Appmaat",
+    eyebrow: "Why Appmaatje",
     title: "Personal. Fast. Custom.",
     items: [
       { title: "We come to you", text: "We meet at your place, not on a call." },
@@ -321,7 +321,7 @@ const en: Dict = {
     text: "Just launched. Build with us: 50% off setup for you, feedback for us.",
     partner: "Pilot being set up with",
     cta: "I'm in",
-    waText: "Hi Appmaat! I'd like to join the pilot.",
+    waText: "Hi Appmaatje! I'd like to join the pilot.",
   },
   pricing: {
     eyebrow: "Pricing",
@@ -336,7 +336,7 @@ const en: Dict = {
     ],
     cta: "Book a free intro",
     note: "Plus: maintenance & hosting from €29/month. WhatsApp message fees from Meta at cost. Prices excl. VAT, indicative.",
-    waText: "Hi Appmaat! I'd like to book a free intro.",
+    waText: "Hi Appmaatje! I'd like to book a free intro.",
   },
   faq: {
     eyebrow: "FAQ",
@@ -355,12 +355,12 @@ const en: Dict = {
     sub: "Message us. No bot, just us.",
     cta1: "Message us",
     cta2: "Ask for a demo",
-    waDemo: "Hi Appmaat! I'd like to see a demo.",
+    waDemo: "Hi Appmaatje! I'd like to see a demo.",
   },
   footer: {
     tagline: "Custom WhatsApp automation.",
     rights: "All rights reserved.",
-    disclaimer: "WhatsApp is a trademark of WhatsApp LLC. Appmaat is not affiliated with Meta.",
+    disclaimer: "WhatsApp is a trademark of WhatsApp LLC. Appmaatje is not affiliated with Meta.",
   },
 };
 

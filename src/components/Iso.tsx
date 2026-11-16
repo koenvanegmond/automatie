@@ -37,7 +37,7 @@ export const TopLabel = ({ x, y, z, text, color = "#1C1917" }: { x: number; y: n
   const [px, py] = proj(x, y, z);
   return (
     <text x={0} y={0} fill={color} fontSize={22} fontWeight={600} textAnchor="middle" dominantBaseline="middle"
-      transform={`matrix(0.866 0.5 -0.866 0.5 ${px} ${py})`} style={{ fontFamily: "var(--font-raveo)" }}>
+      transform={`matrix(0.866 0.5 -0.866 0.5 ${px} ${py})`} style={{ fontFamily: "var(--font-zt)" }}>
       {text}
     </text>
   );

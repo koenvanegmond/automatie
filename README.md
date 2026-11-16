@@ -1,4 +1,4 @@
-# Appmaat website
+# Appmaatje website
 
 WhatsApp-automatisering op maat. Next.js 14 + Tailwind + Framer Motion, gehost op Vercel.
 
@@ -13,4 +13,4 @@ npm run dev
 
 ## Credits
 - Gebaseerd op "Light Landing Page Task Flow" van Aymane Mehdi (MIT-licentie).
-- Lettertype Raveo © 2024 Jakub Foglar, SIL Open Font License 1.1 (`src/fonts/OFL-LICENSE.txt`).
+- Lettertype ZT Nature van Zelowtype, gratis voor commercieel gebruik (`src/fonts/ZTNature-readme.txt`).

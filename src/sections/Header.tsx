@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
 import { useLang, useT } from "@/lib/i18n";
 import { waLink } from "@/lib/config";
+import { FillButton } from "@/components/Buttons";
 
 export const Header = () => {
   const t = useT();
@@ -28,7 +29,7 @@ export const Header = () => {
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${onDark ? (scrolled ? "bg-ink/70 backdrop-blur-md" : "bg-transparent") : "bg-cream/80 backdrop-blur-md border-b border-ink/5"}`}>
       <div className="container flex h-[72px] items-center justify-between">
-        <a href="#top" aria-label="Appmaat home"><Logo light={onDark} /></a>
+        <a href="#top" aria-label="Appmaatje home"><Logo light={onDark} /></a>
         <nav className="hidden md:flex items-center gap-10">
           {links.map(([href, label]) => (
             <a key={href} href={href} className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${onDark ? "text-white/60 hover:text-white" : "text-ink/70 hover:text-ink"}`}>
@@ -45,7 +46,7 @@ export const Header = () => {
               </button>
             ))}
           </div>
-          <a href={waLink(t.hero.waText)} target="_blank" rel="noopener" className="btn btn-primary !py-2 text-sm">{t.nav.cta}</a>
+          <FillButton href={waLink(t.hero.waText)} external tone={onDark ? "brand" : "ink"} className="!px-5 !py-2 text-sm">{t.nav.cta}</FillButton>
         </div>
       </div>
     </header>

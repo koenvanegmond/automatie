@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useT } from "@/lib/i18n";
 import { waLink } from "@/lib/config";
-import { ArrowIcon, CheckIcon } from "@/components/Icons";
+import { CheckIcon } from "@/components/Icons";
 import { PixelWipe } from "@/components/PixelWipe";
+import { ArrowButton, FillButton } from "@/components/Buttons";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -51,8 +52,6 @@ export const Hero = () => {
             <div className="absolute inset-y-0 left-1/3 w-px bg-white/[0.06]" />
             <div className="absolute inset-y-0 left-2/3 w-px bg-white/[0.06]" />
           </div>
-          <motion.div className="absolute -bottom-40 -left-40 h-[520px] w-[720px] rounded-full bg-brand/30 blur-[140px]"
-            animate={{ opacity: [0.7, 1, 0.7] }} transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }} />
         </div>
 
         <div className="container relative flex min-h-[88svh] flex-col justify-between pb-14 pt-32 md:pt-40">
@@ -83,11 +82,9 @@ export const Hero = () => {
             className="mt-14 grid gap-8 border-t border-white/10 pt-8 md:grid-cols-[1fr_auto] md:items-end">
             <p className="max-w-[520px] text-lg leading-relaxed text-white/65">{t.sub}</p>
             <div>
-              <div className="flex flex-wrap gap-3">
-                <a href={waLink(t.waText)} target="_blank" rel="noopener" className="btn btn-primary btn-glow px-6 py-3 text-base">{t.cta1}</a>
-                <a href="#voorbeelden" className="btn group border border-white/15 px-6 py-3 text-base text-white hover:border-white/40">
-                  {t.cta2}<ArrowIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </a>
+              <div className="flex flex-wrap items-center gap-4">
+                <FillButton href={waLink(t.waText)} external tone="brand">{t.cta1}</FillButton>
+                <ArrowButton href="#voorbeelden" dark>{t.cta2}</ArrowButton>
               </div>
               <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-1.5 text-[13px] text-white/50">
                 {t.trust.map((x) => <li key={x} className="flex items-center gap-1.5"><CheckIcon className="h-3.5 w-3.5 text-[#7CC7A0]" />{x}</li>)}

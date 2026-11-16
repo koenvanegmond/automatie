@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { useT } from "@/lib/i18n";
 import { waLink } from "@/lib/config";
+import { FillButton } from "@/components/Buttons";
 import { CheckIcon } from "@/components/Icons";
 
 export const Pricing = () => {
@@ -19,7 +20,7 @@ export const Pricing = () => {
             return (
               <motion.div key={p.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.6 }}
-                className={`rounded-3xl p-8 ${hi ? "bg-ink text-white shadow-[0_30px_60px_-20px_rgba(28,25,23,.45)] md:py-12" : "card"}`}>
+                className={`rounded-xl p-8 ${hi ? "bg-ink text-white shadow-[0_30px_60px_-20px_rgba(28,25,23,.45)] md:py-12" : "card"}`}>
                 <div className="flex items-center justify-between">
                   <h3 className={`font-display text-xl font-medium ${hi ? "text-white" : "text-ink"}`}>{p.name}</h3>
                   {hi && <span className="rounded-full bg-brand px-3 py-1 text-xs font-semibold">{t.popular}</span>}
@@ -30,7 +31,7 @@ export const Pricing = () => {
                   <span className="text-sm opacity-70">{t.once}</span>
                 </p>
                 <p className={`mt-2 ${hi ? "text-white/70" : ""}`}>{p.text}</p>
-                <a href={waLink(t.waText)} target="_blank" rel="noopener" className={`btn mt-7 w-full py-3 ${hi ? "btn-primary" : "btn-ghost"}`}>{t.cta}</a>
+                <FillButton href={waLink(t.waText)} external tone={hi ? "brand" : "ink"} className="mt-7 w-full">{t.cta}</FillButton>
                 <ul className="mt-7 space-y-3">
                   {p.bullets.map((b) => (
                     <li key={b} className={`flex items-start gap-2 text-sm ${hi ? "text-white/85" : "text-ink"}`}>

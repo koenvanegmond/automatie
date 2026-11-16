@@ -42,11 +42,10 @@ export const Examples = () => {
               <p className="hidden font-mono text-sm text-ink/30 md:block">#{it.no}</p>
             </div>
 
-            <motion.div initial={{ clipPath: "inset(12% 8% 0% 8% round 28px)", opacity: 0.4 }}
-              whileInView={{ clipPath: "inset(0% 0% 0% 0% round 28px)", opacity: 1 }} viewport={{ once: true, margin: "-120px" }}
+            <motion.div initial={{ clipPath: "inset(12% 8% 0% 8% round 12px)", opacity: 0.4 }}
+              whileInView={{ clipPath: "inset(0% 0% 0% 0% round 12px)", opacity: 1 }} viewport={{ once: true, margin: "-120px" }}
               transition={{ duration: 1.1, ease }}
-              className="relative mt-10 overflow-hidden rounded-[28px] bg-ink p-6 md:p-12">
-              <div aria-hidden className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-brand/25 blur-[110px]" />
+              className="relative mt-10 overflow-hidden rounded-xl bg-ink p-6 md:p-12">
               <div className="relative grid items-center gap-10 md:grid-cols-[1fr_1.5fr]">
                 <div className="text-white">
                   <p className="font-mono text-sm text-white/40">{it.no}</p>

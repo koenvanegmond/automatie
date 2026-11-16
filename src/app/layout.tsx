@@ -5,36 +5,29 @@ import { LangProvider } from "@/lib/i18n";
 import { content } from "@/lib/content";
 import { SITE } from "@/lib/config";
 
-const raveo = localFont({
+const zt = localFont({
   src: [
-    { path: "../fonts/Raveo-Regular.woff2", weight: "400" },
-    { path: "../fonts/Raveo-Medium.woff2", weight: "500" },
-    { path: "../fonts/Raveo-SemiBold.woff2", weight: "600" },
+    { path: "../fonts/ZTNature-Light.woff2", weight: "300" },
+    { path: "../fonts/ZTNature-Regular.woff2", weight: "400" },
+    { path: "../fonts/ZTNature-Medium.woff2", weight: "500" },
+    { path: "../fonts/ZTNature-SemiBold.woff2", weight: "600" },
+    { path: "../fonts/ZTNature-Bold.woff2", weight: "700" },
   ],
-  variable: "--font-raveo",
-  display: "swap",
-});
-const raveoDisplay = localFont({
-  src: [
-    { path: "../fonts/RaveoDisplay-Medium.woff2", weight: "500" },
-    { path: "../fonts/RaveoDisplay-SemiBold.woff2", weight: "600" },
-    { path: "../fonts/RaveoDisplay-Bold.woff2", weight: "700" },
-  ],
-  variable: "--font-raveo-display",
+  variable: "--font-zt",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: "WhatsApp automatisering voor het mkb | Appmaat Den Haag",
+  title: "WhatsApp automatisering voor het mkb | Appmaatje Den Haag",
   description:
     "WhatsApp automatisering en chatbots op maat voor het mkb in Den Haag en omgeving. Afspraken, roosters en klantvragen automatisch. Vaak binnen 2 dagen live.",
   openGraph: {
-    title: "Appmaat | WhatsApp automatisering op maat",
+    title: "Appmaatje | WhatsApp automatisering op maat",
     description: "Laat WhatsApp het werk doen. Op maat gebouwd, vaak binnen 2 dagen live.",
     locale: "nl_NL",
     url: "/",
-    siteName: "Appmaat",
+    siteName: "Appmaatje",
     type: "website",
   },
   alternates: { canonical: "/" },
@@ -53,7 +46,7 @@ const faqJsonLd = {
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "Appmaat",
+  name: "Appmaatje",
   url: SITE.url,
   description: "WhatsApp automatisering en chatbots op maat voor het mkb.",
   areaServed: [{ "@type": "City", name: "Den Haag" }, { "@type": "Country", name: "Nederland" }],
@@ -72,7 +65,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('intro-seen'))document.documentElement.classList.add('intro-seen')}catch(e){}` }} />
         <noscript><style>{`#intro{display:none!important}`}</style></noscript>
       </head>
-      <body className={`${raveo.variable} ${raveoDisplay.variable} font-sans antialiased`}>
+      <body className={`${zt.variable} font-sans antialiased`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([orgJsonLd, faqJsonLd]) }} />
         <LangProvider>{children}</LangProvider>
       </body>

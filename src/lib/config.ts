@@ -1,6 +1,6 @@
 // Centrale instellingen: hier pas je nummer, partner en prijzen aan.
 export const SITE = {
-  name: "Appmaat",
+  name: "Appmaatje",
   url: "https://automatie.vercel.app",
   // TODO: vervang door het echte WhatsApp-nummer (internationaal, zonder + of spaties)
   whatsappNumber: "31600000000",

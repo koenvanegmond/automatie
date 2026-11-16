@@ -17,8 +17,8 @@ const config: Config = {
         body: "#44403C",
       },
       fontFamily: {
-        sans: ["var(--font-raveo)", "system-ui", "sans-serif"],
-        display: ["var(--font-raveo-display)", "var(--font-raveo)", "sans-serif"],
+        sans: ["var(--font-zt)", "system-ui", "sans-serif"],
+        display: ["var(--font-zt)", "system-ui", "sans-serif"],
       },
       container: { center: true, padding: { DEFAULT: "20px", lg: "80px" } },
       boxShadow: {

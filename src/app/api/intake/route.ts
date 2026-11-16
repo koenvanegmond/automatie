@@ -38,7 +38,7 @@ export async function POST(req: Request) {
     ...body,
     name: (body.name || "").slice(0, 80),
     phone,
-    consentText: "WhatsApp opt-in via appmaat intro",
+    consentText: "WhatsApp opt-in via appmaatje intro",
     consentAt: new Date().toISOString(),
     source: "website-intro",
   };

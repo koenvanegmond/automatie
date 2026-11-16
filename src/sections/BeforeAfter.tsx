@@ -16,7 +16,7 @@ const Counter = ({ to, run, className }: { to: number; run: boolean; className?:
   return <span className={className}>{v}</span>;
 };
 
-/** Handwerk tegenover Appmaat, met tellers (rekenvoorbeeld) */
+/** Handwerk tegenover Appmaatje, met tellers (rekenvoorbeeld) */
 export const BeforeAfter = () => {
   const t = useT().before;
   const ref = useRef<HTMLDivElement>(null);
@@ -43,7 +43,7 @@ export const BeforeAfter = () => {
         </div>
         <div ref={ref} className="mx-auto mt-14 grid max-w-5xl gap-5 md:grid-cols-2">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease }}
-            className="rounded-[28px] bg-sand p-6 md:p-8">
+            className="rounded-xl bg-sand p-6 md:p-8">
             <div className="flex items-baseline justify-between">
               <p className="text-[13px] font-medium uppercase tracking-[0.18em] text-ink/50">{t.now}</p>
               <p className="font-display text-5xl font-medium tracking-[-0.04em] text-ink tabular-nums">
@@ -54,8 +54,7 @@ export const BeforeAfter = () => {
             <ul className="mt-6 space-y-2">{t.nowSteps.map((s, i) => <Step key={s} i={i} text={s} good={false} />)}</ul>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease, delay: 0.15 }}
-            className="relative overflow-hidden rounded-[28px] bg-brand-light/70 p-6 md:p-8">
-            <div aria-hidden className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand/25 blur-[70px]" />
+            className="relative overflow-hidden rounded-xl bg-brand-light/70 p-6 md:p-8">
             <div className="relative flex items-baseline justify-between">
               <p className="text-[13px] font-medium uppercase tracking-[0.18em] text-brand-dark">{t.with}</p>
               <p className="font-display text-5xl font-medium tracking-[-0.04em] text-brand-dark tabular-nums">0<span className="ml-1 text-xl text-brand-dark/50">min</span></p>

@@ -27,7 +27,7 @@ type Script = {
 const nl: Script = {
   ui: {
     skip: "Intro overslaan",
-    name: "Appmaat",
+    name: "Appmaatje",
     online: "online",
     typing: "typt…",
     you: "Jij",
@@ -42,7 +42,7 @@ const nl: Script = {
       afternoon: "Middag",
       name: "Je naam",
       phone: "Mobiel nummer",
-      consent: "Ik geef Appmaat toestemming om mij via WhatsApp te benaderen over deze afspraak.",
+      consent: "Ik geef Appmaatje toestemming om mij via WhatsApp te benaderen over deze afspraak.",
       submit: "Voorkeur versturen",
       sending: "Versturen…",
       pickDay: "Kies een dag en dagdeel",
@@ -52,18 +52,18 @@ const nl: Script = {
       sub: "Vul je nummer in. Je krijgt een bericht van ons.",
       name: "Je naam",
       phone: "Mobiel nummer",
-      consent: "Ik geef Appmaat toestemming om mij via WhatsApp een bericht te sturen.",
+      consent: "Ik geef Appmaatje toestemming om mij via WhatsApp een bericht te sturen.",
       submit: "Stuur mij een bericht",
       sending: "Versturen…",
     },
     invalidPhone: "Vul een geldig mobiel nummer in.",
     needConsent: "Vink de toestemming aan om verder te gaan.",
     openWa: "Open WhatsApp",
-    waFallbackText: "Hoi Appmaat! Ik kom via de website en wil graag kennismaken.",
+    waFallbackText: "Hoi Appmaatje! Ik kom via de website en wil graag kennismaken.",
   },
   nodes: {
     start: {
-      msgs: ["Hey! 👋 Welkom bij Appmaat. Leuk dat je er bent.", "Ben je hier omdat je je WhatsApp wilt automatiseren?"],
+      msgs: ["Hey! 👋 Welkom bij Appmaatje. Leuk dat je er bent.", "Ben je hier omdat je je WhatsApp wilt automatiseren?"],
       options: [{ label: "Ja, zeker!", next: "interested" }, { label: "Ik kijk even rond", next: "browse" }],
     },
     browse: {
@@ -108,7 +108,7 @@ const nl: Script = {
 const en: Script = {
   ui: {
     skip: "Skip intro",
-    name: "Appmaat",
+    name: "Appmaatje",
     online: "online",
     typing: "typing…",
     you: "You",
@@ -123,7 +123,7 @@ const en: Script = {
       afternoon: "Afternoon",
       name: "Your name",
       phone: "Mobile number",
-      consent: "I allow Appmaat to contact me on WhatsApp about this appointment.",
+      consent: "I allow Appmaatje to contact me on WhatsApp about this appointment.",
       submit: "Send preference",
       sending: "Sending…",
       pickDay: "Pick a day and time of day",
@@ -133,18 +133,18 @@ const en: Script = {
       sub: "Enter your number and we'll send you a message.",
       name: "Your name",
       phone: "Mobile number",
-      consent: "I allow Appmaat to send me a message on WhatsApp.",
+      consent: "I allow Appmaatje to send me a message on WhatsApp.",
       submit: "Message me",
       sending: "Sending…",
     },
     invalidPhone: "Enter a valid mobile number.",
     needConsent: "Tick the consent box to continue.",
     openWa: "Open WhatsApp",
-    waFallbackText: "Hi Appmaat! I found you through the website and would like an intro.",
+    waFallbackText: "Hi Appmaatje! I found you through the website and would like an intro.",
   },
   nodes: {
     start: {
-      msgs: ["Hey! 👋 Welcome to Appmaat. Great to have you here.", "Are you here because you want to automate your WhatsApp?"],
+      msgs: ["Hey! 👋 Welcome to Appmaatje. Great to have you here.", "Are you here because you want to automate your WhatsApp?"],
       options: [{ label: "Yes, definitely!", next: "interested" }, { label: "Just looking around", next: "browse" }],
     },
     browse: {
