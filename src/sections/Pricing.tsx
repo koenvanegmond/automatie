@@ -20,10 +20,10 @@ export const Pricing = () => {
             return (
               <motion.div key={p.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.6 }}
-                className={`rounded-xl p-8 ${hi ? "bg-ink text-white shadow-[0_30px_60px_-20px_rgba(28,25,23,.45)] md:py-12" : "card"}`}>
+                className={`rounded-none p-8 ${hi ? "bg-ink text-white shadow-[0_30px_60px_-20px_rgba(14,17,16,.45)] md:py-12" : "card"}`}>
                 <div className="flex items-center justify-between">
                   <h3 className={`font-display text-xl font-medium ${hi ? "text-white" : "text-ink"}`}>{p.name}</h3>
-                  {hi && <span className="rounded-full bg-brand px-3 py-1 text-xs font-semibold">{t.popular}</span>}
+                  {hi && <span className="bg-brand px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider">{t.popular}</span>}
                 </div>
                 <p className={`mt-6 flex items-baseline gap-1.5 ${hi ? "text-white" : "text-ink"}`}>
                   {p.from && <span className="text-sm opacity-70">{t.from}</span>}
@@ -31,9 +31,9 @@ export const Pricing = () => {
                   <span className="text-sm opacity-70">{t.once}</span>
                 </p>
                 <p className={`mt-2 ${hi ? "text-white/70" : ""}`}>{p.text}</p>
-                <FillButton href={waLink(t.waText)} external tone={hi ? "brand" : "ink"} className="mt-7 w-full">{t.cta}</FillButton>
+                <FillButton href={waLink(t.waText)} external tone={hi ? "brand" : "ink"} className="mt-7 w-full whitespace-nowrap !px-4 !text-[15px]">{t.cta}</FillButton>
                 <ul className="mt-7 space-y-3">
-                  {p.bullets.map((b) => (
+                  {p.bullets.slice(0, 2).map((b) => (
                     <li key={b} className={`flex items-start gap-2 text-sm ${hi ? "text-white/85" : "text-ink"}`}>
                       <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-brand" />{b}
                     </li>

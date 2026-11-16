@@ -57,8 +57,8 @@ export const Hero = () => {
         <div className="container relative flex min-h-[88svh] flex-col justify-between pb-14 pt-32 md:pt-40">
           <div>
             <motion.p initial={{ opacity: 0, y: 10 }} animate={go ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, ease }}
-              className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-[13px] text-white/70">
-              <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#7CC7A0] opacity-60" /><span className="relative inline-flex h-2 w-2 rounded-full bg-[#7CC7A0]" /></span>
+              className="mb-8 inline-flex items-center gap-2 border border-white/15 px-3 py-1.5 font-mono uppercase tracking-[0.14em] text-[11px] text-[13px] text-white/70">
+              <span className="h-2 w-2 bg-[#7CC7A0]" />
               {t.eyebrow}
             </motion.p>
             <h1 className="font-display font-medium leading-[0.98] tracking-[-0.05em] text-[48px] md:text-[96px] lg:text-[128px]">
@@ -66,11 +66,11 @@ export const Hero = () => {
               <Line i={1} go={go} className="text-white/45">{t.h1b}</Line>
               <Line i={2} go={go}>
                 <span className="relative inline-block px-[0.12em]">
-                  <motion.span aria-hidden className="absolute inset-x-0 bottom-[0.06em] top-[0.12em] origin-left rounded-[0.12em] bg-brand"
+                  <motion.span aria-hidden className="absolute inset-x-0 bottom-[0.06em] top-[0.12em] origin-left rounded-none bg-brand"
                     initial={{ scaleX: 0 }} animate={go ? { scaleX: 1 } : {}} transition={{ duration: 0.8, ease, delay: 0.85 }} />
                   <span className="relative">{t.h1c}</span>
                 </span>
-                <motion.span aria-hidden className="ml-[0.18em] inline-grid h-[0.5em] w-[0.5em] translate-y-[-0.08em] place-items-center rounded-full bg-[#7CC7A0] align-middle text-ink"
+                <motion.span aria-hidden className="ml-[0.18em] inline-grid h-[0.5em] w-[0.5em] translate-y-[-0.08em] place-items-center bg-[#7CC7A0] align-middle text-ink"
                   initial={{ scale: 0, rotate: -45 }} animate={go ? { scale: 1, rotate: 0 } : {}} transition={{ delay: 1.35, type: "spring", stiffness: 360, damping: 14 }}>
                   <CheckIcon className="h-[0.3em] w-[0.3em]" />
                 </motion.span>
@@ -80,15 +80,12 @@ export const Hero = () => {
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={go ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.9, ease, delay: 0.9 }}
             className="mt-14 grid gap-8 border-t border-white/10 pt-8 md:grid-cols-[1fr_auto] md:items-end">
-            <p className="max-w-[520px] text-lg leading-relaxed text-white/65">{t.sub}</p>
+            <p className="max-w-[440px] text-xl leading-snug text-white/70">{t.sub}</p>
             <div>
               <div className="flex flex-wrap items-center gap-4">
                 <FillButton href={waLink(t.waText)} external tone="brand">{t.cta1}</FillButton>
                 <ArrowButton href="#voorbeelden" dark>{t.cta2}</ArrowButton>
               </div>
-              <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-1.5 text-[13px] text-white/50">
-                {t.trust.map((x) => <li key={x} className="flex items-center gap-1.5"><CheckIcon className="h-3.5 w-3.5 text-[#7CC7A0]" />{x}</li>)}
-              </ul>
             </div>
           </motion.div>
         </div>

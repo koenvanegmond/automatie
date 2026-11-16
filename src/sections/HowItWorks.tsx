@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import { useT } from "@/lib/i18n";
 import { SceneBuild, SceneRun, SceneVisit } from "@/components/Iso";
-import { CheckIcon } from "@/components/Icons";
 
 export const HowItWorks = () => {
   const t = useT();
@@ -24,14 +23,9 @@ export const HowItWorks = () => {
             <div key={s.tag} className={`grid items-center gap-10 md:grid-cols-2 ${i % 2 ? "md:[&>*:first-child]:order-2" : ""}`}>
               <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className="md:px-10">
-                <span className="inline-block rounded-md bg-ink px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white">{s.tag}</span>
+                <span className="inline-block rounded-none bg-ink px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white">{s.tag}</span>
                 <h3 className="mt-4 font-display text-3xl md:text-[46px] font-medium leading-[1.04] tracking-[-0.04em] text-ink">{s.title}</h3>
                 <p className="mt-4 max-w-md text-lg">{s.text}</p>
-                <ul className="mt-5 space-y-2">
-                  {s.bullets.map((b) => (
-                    <li key={b} className="flex items-center gap-2 text-ink"><CheckIcon className="h-4 w-4 text-brand" />{b}</li>
-                  ))}
-                </ul>
               </motion.div>
               <motion.div initial={{ opacity: 0, scale: 0.92 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }} className="h-[340px] md:h-[420px]">

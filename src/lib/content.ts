@@ -11,7 +11,7 @@ const nl = {
     h1a: "Automatiseren",
     h1b: "begint bij",
     h1c: "WhatsApp.",
-    sub: "Geen ingewikkelde systemen. Gewoon de app die jij, je klanten en je personeel al de hele dag gebruiken. Gekoppeld aan je rooster, agenda en CRM. Vaak binnen 2 dagen live.",
+    sub: "Wij koppelen WhatsApp aan je rooster, agenda en CRM. Vaak binnen 2 dagen live.",
     cta1: "App ons",
     cta2: "Bekijk voorbeelden",
     trust: ["Officiële WhatsApp Business API", "Op maat gebouwd", "Vaak binnen 2 dagen live"],
@@ -33,7 +33,7 @@ const nl = {
   before: {
     eyebrow: "Het knelpunt",
     title: "Jij bent geen kopieer‑en‑plakmachine.",
-    sub: "Rekenvoorbeeld: een uitzendbureau dat elke dag 14 mensen briefet.",
+    sub: "Rekenvoorbeeld: 14 briefings per dag.",
     now: "Zo gaat het nu",
     with: "Met Appmaatje",
     perDay: "per dag",
@@ -46,9 +46,9 @@ const nl = {
     eyebrow: "Voorbeelden",
     title: "Zo ziet het eruit.",
     items: [
-      { no: "01", label: "Uitzendbureau", title: "Briefings voor morgen. Om 09:00 de deur uit.", text: "Iedereen die morgen werkt krijgt automatisch tijd, adres en dresscode. Antwoorden komen in het rooster.", bullets: ["Herkent wie waar werkt", "Ziekmelding? Reserve wordt geappt"] },
-      { no: "02", label: "Vastgoed", title: "Twintig geïnteresseerden. Eén bericht.", text: "Iedereen krijgt een link om zelf een bezichtiging te kiezen. Je agenda vult zichzelf.", bullets: ["Herinnering een dag vooraf", "Verzetten zonder te bellen"] },
-      { no: "03", label: "Leads", title: "Nieuwe lead om 23:14? Al geholpen.", text: "Binnen seconden een persoonlijk antwoord, de juiste vragen en een afspraak. Jij krijgt een seintje.", bullets: ["Geen koude leads meer", "Alles direct in je CRM"] },
+      { no: "01", label: "Uitzendbureau", title: "Briefings voor morgen. Om 09:00 de deur uit.", text: "Tijd, adres en dresscode automatisch naar iedereen die morgen werkt.", bullets: ["Herkent wie waar werkt", "Ziekmelding? Reserve wordt geappt"] },
+      { no: "02", label: "Vastgoed", title: "Twintig geïnteresseerden. Eén bericht.", text: "Iedereen kiest zelf een bezichtiging. Je agenda vult zichzelf.", bullets: ["Herinnering een dag vooraf", "Verzetten zonder te bellen"] },
+      { no: "03", label: "Leads", title: "Nieuwe lead om 23:14? Al geholpen.", text: "Binnen seconden een antwoord en een afspraak. Jij krijgt een seintje.", bullets: ["Geen koude leads meer", "Alles direct in je CRM"] },
     ],
     leadChat: [
       { from: "them", text: "Hoi, ik heb net het formulier ingevuld. Kunnen jullie mij helpen?" },
@@ -61,9 +61,9 @@ const nl = {
     eyebrow: "Hoe het werkt",
     title: "In drie stappen live.",
     steps: [
-      { tag: "Stap 1", title: "We komen langs.", text: "Gratis kennismaking bij jou op locatie. We kijken welke berichten steeds terugkomen.", bullets: ["Op locatie, niet via een call", "Vooraf een heldere offerte"] },
-      { tag: "Stap 2", title: "We bouwen het op maat.", text: "Je eigen WhatsApp-flow, gekoppeld aan wat je al gebruikt.", bullets: ["Agenda, Excel, rooster of CRM", "Jouw toon, jouw huisstijl"] },
-      { tag: "Stap 3", title: "Het draait. Jij niet.", text: "Vaak binnen 2 dagen live, afhankelijk van je data. Wij houden het draaiend.", bullets: ["Wij houden het in de gaten", "Aanpassen? Even appen"] },
+      { tag: "Stap 1", title: "We komen langs.", text: "Gratis kennismaking bij jou op locatie.", bullets: ["Op locatie, niet via een call", "Vooraf een heldere offerte"] },
+      { tag: "Stap 2", title: "We bouwen het op maat.", text: "Gekoppeld aan wat je al gebruikt.", bullets: ["Agenda, Excel, rooster of CRM", "Jouw toon, jouw huisstijl"] },
+      { tag: "Stap 3", title: "Het draait. Jij niet.", text: "Vaak binnen 2 dagen live. Wij houden het draaiend.", bullets: ["Wij houden het in de gaten", "Aanpassen? Even appen"] },
     ],
   },
   sectors: {
@@ -137,7 +137,7 @@ const nl = {
   pilot: {
     eyebrow: "Pilot",
     title: "Eerste 5 bedrijven: 50% korting op de opzet.",
-    text: "Net gestart. Bouw mee: jij krijgt 50% korting op de opzet, wij jouw feedback.",
+    text: "In ruil voor je feedback.",
     partner: "Pilot in opbouw met",
     cta: "Ik doe mee",
     waText: "Hoi Appmaatje! Ik wil meedoen met de pilot.",
@@ -192,7 +192,7 @@ const en: Dict = {
     h1a: "Automation",
     h1b: "starts with",
     h1c: "WhatsApp.",
-    sub: "No complicated systems. Just the app you, your customers and your staff already use all day. Connected to your roster, calendar and CRM. Often live within 2 days.",
+    sub: "We connect WhatsApp to your roster, calendar and CRM. Often live within 2 days.",
     cta1: "Message us",
     cta2: "See examples",
     trust: ["Official WhatsApp Business API", "Custom-built", "Often live within 2 days"],
@@ -214,7 +214,7 @@ const en: Dict = {
   before: {
     eyebrow: "The bottleneck",
     title: "You're not a copy‑paste machine.",
-    sub: "Example: a staffing agency briefing 14 people every day.",
+    sub: "Example: 14 briefings a day.",
     now: "How it works now",
     with: "With Appmaatje",
     perDay: "per day",
@@ -227,9 +227,9 @@ const en: Dict = {
     eyebrow: "Examples",
     title: "What it looks like.",
     items: [
-      { no: "01", label: "Staffing agency", title: "Tomorrow's briefings. Sent at 09:00.", text: "Everyone working tomorrow gets their time, address and dress code. Replies land in the roster.", bullets: ["Knows who works where", "Sick call? The backup gets a message"] },
-      { no: "02", label: "Real estate", title: "Twenty interested buyers. One message.", text: "Everyone gets a link to pick a viewing. Your calendar fills itself.", bullets: ["Reminder the day before", "Reschedule without calling"] },
-      { no: "03", label: "Leads", title: "New lead at 11:14 pm? Already helped.", text: "A personal reply within seconds, the right questions and a booking. You get a ping.", bullets: ["No more cold leads", "Straight into your CRM"] },
+      { no: "01", label: "Staffing agency", title: "Tomorrow's briefings. Sent at 09:00.", text: "Time, address and dress code sent to everyone working tomorrow.", bullets: ["Knows who works where", "Sick call? The backup gets a message"] },
+      { no: "02", label: "Real estate", title: "Twenty interested buyers. One message.", text: "Everyone picks their own viewing. Your calendar fills itself.", bullets: ["Reminder the day before", "Reschedule without calling"] },
+      { no: "03", label: "Leads", title: "New lead at 11:14 pm? Already helped.", text: "A reply and a booking within seconds. You get a ping.", bullets: ["No more cold leads", "Straight into your CRM"] },
     ],
     leadChat: [
       { from: "them", text: "Hi, I just filled in the form. Can you help me?" },
@@ -242,9 +242,9 @@ const en: Dict = {
     eyebrow: "How it works",
     title: "Live in three steps.",
     steps: [
-      { tag: "Step 1", title: "We come to you.", text: "A free intro meeting at your location. We spot the messages that keep coming back.", bullets: ["On site, not on a call", "A clear quote upfront"] },
-      { tag: "Step 2", title: "We build it for you.", text: "Your own WhatsApp flow, connected to the tools you already use.", bullets: ["Calendar, Excel, roster or CRM", "Your tone, your brand"] },
-      { tag: "Step 3", title: "It runs. You don't.", text: "Often live within 2 days, depending on your data. We keep it running.", bullets: ["We keep an eye on it", "Changes? Just message us"] },
+      { tag: "Step 1", title: "We come to you.", text: "A free intro at your location.", bullets: ["On site, not on a call", "A clear quote upfront"] },
+      { tag: "Step 2", title: "We build it for you.", text: "Connected to what you already use.", bullets: ["Calendar, Excel, roster or CRM", "Your tone, your brand"] },
+      { tag: "Step 3", title: "It runs. You don't.", text: "Often live within 2 days. We keep it running.", bullets: ["We keep an eye on it", "Changes? Just message us"] },
     ],
   },
   sectors: {
@@ -318,7 +318,7 @@ const en: Dict = {
   pilot: {
     eyebrow: "Pilot",
     title: "First 5 businesses: 50% off setup.",
-    text: "Just launched. Build with us: 50% off setup for you, feedback for us.",
+    text: "In exchange for your feedback.",
     partner: "Pilot being set up with",
     cta: "I'm in",
     waText: "Hi Appmaatje! I'd like to join the pilot.",

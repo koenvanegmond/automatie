@@ -31,8 +31,8 @@ export const Phone = ({ chat, name, status }: { chat: Msg[]; name: string; statu
   }, [chat]);
 
   return (
-    <div className="relative mx-auto w-[300px] rounded-[46px] bg-ink p-3 shadow-[0_40px_80px_-30px_rgba(28,25,23,.5)]">
-      <div className="overflow-hidden rounded-[36px] bg-[#EFEDE6]">
+    <div className="relative mx-auto w-[300px] rounded-[46px] bg-ink p-3 shadow-[0_40px_80px_-30px_rgba(14,17,16,.5)]">
+      <div className="overflow-hidden rounded-[36px] bg-[#F3F4F3]">
         <div className="flex items-center gap-3 bg-brand px-4 pb-3 pt-7 text-white">
           <span className="grid h-9 w-9 place-items-center rounded-full bg-white/20 font-display font-bold">{name[0]}</span>
           <div className="leading-tight">

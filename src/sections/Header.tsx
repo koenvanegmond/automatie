@@ -28,7 +28,7 @@ export const Header = () => {
   ];
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${onDark ? (scrolled ? "bg-ink/70 backdrop-blur-md" : "bg-transparent") : "bg-cream/80 backdrop-blur-md border-b border-ink/5"}`}>
-      <div className="container flex h-[72px] items-center justify-between">
+      <div className="container flex h-20 items-center justify-between">
         <a href="#top" aria-label="Appmaatje home"><Logo light={onDark} /></a>
         <nav className="hidden md:flex items-center gap-10">
           {links.map(([href, label]) => (
@@ -38,15 +38,15 @@ export const Header = () => {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <div className={`flex rounded-full border p-0.5 text-[11px] font-semibold uppercase tracking-wider ${onDark ? "border-white/15 bg-white/5" : "border-ink/10 bg-white"}`} role="group" aria-label="Language">
+          <div className={`flex border p-0.5 text-[11px] font-semibold uppercase tracking-wider ${onDark ? "border-white/15 bg-white/5" : "border-ink/10 bg-white"}`} role="group" aria-label="Language">
             {(["nl", "en"] as const).map((l) => (
               <button key={l} onClick={() => setLang(l)} aria-pressed={lang === l}
-                className={`rounded-full px-2.5 py-1 transition-colors ${lang === l ? (onDark ? "bg-white text-ink" : "bg-ink text-white") : onDark ? "text-white/60 hover:text-white" : "text-ink/60 hover:text-ink"}`}>
+                className={`px-2.5 py-1 transition-colors ${lang === l ? (onDark ? "bg-white text-ink" : "bg-ink text-white") : onDark ? "text-white/60 hover:text-white" : "text-ink/60 hover:text-ink"}`}>
                 {l}
               </button>
             ))}
           </div>
-          <FillButton href={waLink(t.hero.waText)} external tone={onDark ? "brand" : "ink"} className="!px-5 !py-2 text-sm">{t.nav.cta}</FillButton>
+          <FillButton href={waLink(t.hero.waText)} external tone={onDark ? "brand" : "ink"} className="!h-11 !px-6 text-sm">{t.nav.cta}</FillButton>
         </div>
       </div>
     </header>

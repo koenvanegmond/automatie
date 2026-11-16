@@ -9,7 +9,7 @@ body { @apply bg-cream text-body; }
   .eyebrow { @apply text-[11px] font-medium uppercase tracking-[0.25em] text-brand; }
   .h2 { @apply font-display text-4xl md:text-[64px] font-medium tracking-[-0.045em] text-ink leading-[1.02]; }
   .card { @apply bg-white rounded-lg border border-ink/[0.06] shadow-card; }
-  .dot-grid { background-image: radial-gradient(rgba(28,25,23,.12) 1px, transparent 1px); background-size: 22px 22px; }
+  .dot-grid { background-image: radial-gradient(rgba(14,17,16,.12) 1px, transparent 1px); background-size: 22px 22px; }
 }
 
 @keyframes dash { to { stroke-dashoffset: -24; } }
@@ -44,10 +44,10 @@ html:not(.intro-seen):has(#intro) body { overflow: hidden; }
 .stacked-form li:nth-child(2)::before, .stacked-form li:nth-child(2)::after { background: var(--c2); }
 .stacked-form li:nth-child(3)::before, .stacked-form li:nth-child(3)::after { background: var(--c1); }
 .stacked-form .input {
-  width: 100%; height: 44px; border: 0; outline: none; padding: 0 0 0 12px; color: #1C1917;
+  width: 100%; height: 44px; border: 0; outline: none; padding: 0 0 0 12px; color: #0E1110;
   font: inherit; font-size: 15px; transform: var(--rot);
 }
-.stacked-form .input::placeholder { color: #1C1917; opacity: .65; }
+.stacked-form .input::placeholder { color: #0E1110; opacity: .65; }
 .stacked-form li:nth-child(1) .input { background: var(--c3); }
 .stacked-form li:nth-child(2) .input { background: var(--c2); }
 .stacked-form li:nth-child(3) .input { background: var(--c1); }

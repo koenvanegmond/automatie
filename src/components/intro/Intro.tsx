@@ -140,8 +140,8 @@ export const Intro = () => {
     return (
       <motion.button initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
         onClick={start}
-        className="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-ink py-2.5 pl-2.5 pr-4 text-sm font-medium text-white shadow-[0_10px_30px_-8px_rgba(28,25,23,.5)] hover:-translate-y-0.5 transition-transform">
-        <span className="grid h-8 w-8 place-items-center rounded-full bg-brand"><ChatIcon className="h-4 w-4" /></span>
+        className="fixed bottom-5 right-5 z-40 flex items-center gap-2 bg-ink py-2.5 pl-2.5 pr-4 text-sm font-medium text-white shadow-[0_10px_30px_-8px_rgba(14,17,16,.5)] hover:-translate-y-0.5 transition-transform">
+        <span className="grid h-8 w-8 place-items-center bg-brand"><ChatIcon className="h-4 w-4" /></span>
         {s.ui.reopen}
       </motion.button>
     );
@@ -151,7 +151,7 @@ export const Intro = () => {
     <motion.div id="intro" role="dialog" aria-modal="true" aria-label="Appmaatje chat"
       className="fixed inset-0 z-[100] flex flex-col overflow-hidden"
       initial={false}
-      animate={leaving ? { backgroundColor: "#1C1917", opacity: 0 } : { backgroundColor: "#0A0B0B", opacity: 1 }}
+      animate={leaving ? { backgroundColor: "#0E1110", opacity: 0 } : { backgroundColor: "#0A0B0B", opacity: 1 }}
       transition={leaving ? { backgroundColor: { duration: 0.7 }, opacity: { duration: 0.45, delay: 0.7 } } : { duration: 0.3 }}>
 
       {/* glows */}

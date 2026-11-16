@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import { useT } from "@/lib/i18n";
 import { SITE } from "@/lib/config";
-import { CheckIcon } from "@/components/Icons";
 import { Phone } from "@/components/Phone";
 import { RosterScene } from "@/components/scenes/RosterScene";
 
@@ -42,21 +41,14 @@ export const Examples = () => {
               <p className="hidden font-mono text-sm text-ink/30 md:block">#{it.no}</p>
             </div>
 
-            <motion.div initial={{ clipPath: "inset(12% 8% 0% 8% round 12px)", opacity: 0.4 }}
-              whileInView={{ clipPath: "inset(0% 0% 0% 0% round 12px)", opacity: 1 }} viewport={{ once: true, margin: "-120px" }}
+            <motion.div initial={{ clipPath: "inset(12% 8% 0% 8% round 0px)", opacity: 0.4 }}
+              whileInView={{ clipPath: "inset(0% 0% 0% 0% round 0px)", opacity: 1 }} viewport={{ once: true, margin: "-120px" }}
               transition={{ duration: 1.1, ease }}
-              className="relative mt-10 overflow-hidden rounded-xl bg-ink p-6 md:p-12">
+              className="relative mt-10 overflow-hidden rounded-none bg-ink p-6 md:p-12">
               <div className="relative grid items-center gap-10 md:grid-cols-[1fr_1.5fr]">
                 <div className="text-white">
                   <p className="font-mono text-sm text-white/40">{it.no}</p>
                   <p className="mt-3 max-w-sm text-lg leading-relaxed text-white/75">{it.text}</p>
-                  <ul className="mt-6 space-y-2.5">
-                    {it.bullets.map((b) => (
-                      <li key={b} className="flex items-center gap-2.5 text-white/90">
-                        <span className="grid h-5 w-5 place-items-center rounded-full bg-[#7CC7A0] text-ink"><CheckIcon className="h-3 w-3" /></span>{b}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
                 <div>{scenes[i]}</div>
               </div>

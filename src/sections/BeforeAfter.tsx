@@ -25,7 +25,7 @@ export const BeforeAfter = () => {
   const Step = ({ i, text, good }: { i: number; text: string; good: boolean }) => (
     <motion.li initial={{ opacity: 0, x: good ? 16 : -16 }} animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ delay: 0.3 + i * 0.18 + (good ? 0.5 : 0), duration: 0.6, ease }}
-      className={`flex items-center gap-3 rounded-xl px-4 py-3 text-[15px] ${good ? "bg-white text-ink shadow-[0_1px_2px_rgba(28,25,23,.04),0_8px_20px_-12px_rgba(28,25,23,.18)]" : "bg-white/60 text-body"}`}>
+      className={`flex items-center gap-3 rounded-none px-4 py-3 text-[15px] ${good ? "bg-white text-ink shadow-[0_1px_2px_rgba(14,17,16,.04),0_8px_20px_-12px_rgba(14,17,16,.18)]" : "bg-white/60 text-body"}`}>
       {good
         ? <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand text-white"><CheckIcon className="h-3.5 w-3.5" /></span>
         : <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-ink/15 text-[11px] text-ink/40">{i + 1}</span>}
@@ -43,7 +43,7 @@ export const BeforeAfter = () => {
         </div>
         <div ref={ref} className="mx-auto mt-14 grid max-w-5xl gap-5 md:grid-cols-2">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease }}
-            className="rounded-xl bg-sand p-6 md:p-8">
+            className="rounded-none bg-sand p-6 md:p-8">
             <div className="flex items-baseline justify-between">
               <p className="text-[13px] font-medium uppercase tracking-[0.18em] text-ink/50">{t.now}</p>
               <p className="font-display text-5xl font-medium tracking-[-0.04em] text-ink tabular-nums">
@@ -54,7 +54,7 @@ export const BeforeAfter = () => {
             <ul className="mt-6 space-y-2">{t.nowSteps.map((s, i) => <Step key={s} i={i} text={s} good={false} />)}</ul>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease, delay: 0.15 }}
-            className="relative overflow-hidden rounded-xl bg-brand-light/70 p-6 md:p-8">
+            className="relative overflow-hidden rounded-none bg-brand-light/70 p-6 md:p-8">
             <div className="relative flex items-baseline justify-between">
               <p className="text-[13px] font-medium uppercase tracking-[0.18em] text-brand-dark">{t.with}</p>
               <p className="font-display text-5xl font-medium tracking-[-0.04em] text-brand-dark tabular-nums">0<span className="ml-1 text-xl text-brand-dark/50">min</span></p>

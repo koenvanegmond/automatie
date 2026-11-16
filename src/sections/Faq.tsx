@@ -19,7 +19,7 @@ export const Faq = () => {
               <button onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i}
                 className="flex w-full items-center justify-between gap-6 py-6 text-left">
                 <span className="font-display text-xl font-medium tracking-[-0.02em] text-ink">{it.q}</span>
-                <motion.span animate={{ rotate: open === i ? 45 : 0 }} className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-sand text-xl text-ink">+</motion.span>
+                <motion.span animate={{ rotate: open === i ? 45 : 0 }} className="grid h-9 w-9 shrink-0 place-items-center border border-ink/15 text-xl text-ink">+</motion.span>
               </button>
               <AnimatePresence initial={false}>
                 {open === i && (

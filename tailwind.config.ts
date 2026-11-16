@@ -11,10 +11,10 @@ const config: Config = {
     extend: {
       colors: {
         brand: { DEFAULT: "#25855A", dark: "#1D6B48", light: "#DCEFE5" },
-        ink: "#1C1917",
-        cream: "#FAF9F6",
-        sand: "#F0EFEA",
-        body: "#44403C",
+        ink: "#0E1110",
+        cream: "#FFFFFF",
+        sand: "#F3F4F3",
+        body: "#4B504E",
       },
       fontFamily: {
         sans: ["var(--font-zt)", "system-ui", "sans-serif"],
@@ -22,7 +22,7 @@ const config: Config = {
       },
       container: { center: true, padding: { DEFAULT: "20px", lg: "80px" } },
       boxShadow: {
-        card: "0 1px 2px rgba(28,25,23,.04), 0 8px 24px -8px rgba(28,25,23,.12)",
+        card: "0 1px 0 rgba(14,17,16,.04)",
       },
     },
   },

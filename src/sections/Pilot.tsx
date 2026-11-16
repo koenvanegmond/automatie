@@ -10,7 +10,7 @@ export const Pilot = () => {
     <section className="py-10">
       <div className="container">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
-          className="relative overflow-hidden rounded-xl bg-ink px-8 py-14 md:px-16 md:py-20">
+          className="relative overflow-hidden rounded-none bg-ink px-8 py-14 md:px-16 md:py-20">
           <div className="relative grid items-center gap-10 md:grid-cols-[1.4fr_1fr]">
             <div>
               <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#7CC7A0]">{t.eyebrow}</p>
@@ -21,7 +21,7 @@ export const Pilot = () => {
             <div className="flex flex-col items-start gap-3 md:items-end">
               <div className="flex gap-2" aria-hidden>
                 {[0, 1, 2, 3, 4].map((i) => (
-                  <motion.span key={i} className={`h-12 w-12 rounded-2xl border ${i === 0 && SITE.pilotPartner ? "border-brand bg-brand" : "border-white/20 bg-white/5"}`}
+                  <motion.span key={i} className={`h-12 w-12 rounded-none border ${i === 0 && SITE.pilotPartner ? "border-brand bg-brand" : "border-white/20 bg-white/5"}`}
                     animate={i > 0 ? { opacity: [0.4, 1, 0.4] } : {}} transition={{ repeat: Infinity, duration: 2, delay: i * 0.3 }} />
                 ))}
               </div>

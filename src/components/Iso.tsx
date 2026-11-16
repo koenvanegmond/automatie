@@ -9,9 +9,9 @@ const poly = (pts: (readonly [number, number])[]) => pts.map((p) => p.join(","))
 
 export const tones = {
   green: ["#46A877", "#25855A", "#1B6644"],
-  white: ["#FFFFFF", "#EEECE6", "#DEDBD2"],
-  sand: ["#F4F3EE", "#E4E2D9", "#D2CFC4"],
-  ink: ["#34302C", "#1C1917", "#0F0D0C"],
+  white: ["#FFFFFF", "#EEF0EF", "#DDE1DF"],
+  sand: ["#F3F4F3", "#E3E6E4", "#D0D5D2"],
+  ink: ["#2A2E2C", "#0E1110", "#060807"],
   mint: ["#E4F3EA", "#C8E6D4", "#A9D5BB"],
 } as const;
 export type Tone = keyof typeof tones;
@@ -33,7 +33,7 @@ export const Box = ({ x, y, z = 0, w, d, h, tone = "white", children }:
 };
 
 /** Plat label op het bovenvlak van een blok */
-export const TopLabel = ({ x, y, z, text, color = "#1C1917" }: { x: number; y: number; z: number; text: string; color?: string }) => {
+export const TopLabel = ({ x, y, z, text, color = "#0E1110" }: { x: number; y: number; z: number; text: string; color?: string }) => {
   const [px, py] = proj(x, y, z);
   return (
     <text x={0} y={0} fill={color} fontSize={22} fontWeight={600} textAnchor="middle" dominantBaseline="middle"
@@ -50,7 +50,7 @@ export const Float = ({ children, delay = 0, amp = 8, dur = 3.2 }: { children: R
 );
 
 export const Shadow = ({ cx, cy, rx, ry }: { cx: number; cy: number; rx: number; ry: number }) => (
-  <ellipse cx={cx} cy={cy} rx={rx} ry={ry} fill="rgba(28,25,23,.10)" filter="url(#soft)" />
+  <ellipse cx={cx} cy={cy} rx={rx} ry={ry} fill="rgba(14,17,16,.10)" filter="url(#soft)" />
 );
 
 export const IsoDefs = () => (
@@ -79,7 +79,7 @@ export const SceneVisit = () => (
     <Float amp={14} dur={2.4}>
       <g transform="translate(-35,-215)">
         <path d="M0 0c-26 0-44 19-44 42 0 31 44 70 44 70s44-39 44-70C44 19 26 0 0 0z" fill="#25855A" />
-        <circle cx="0" cy="42" r="15" fill="#FAF9F6" />
+        <circle cx="0" cy="42" r="15" fill="#FFFFFF" />
       </g>
     </Float>
   </svg>
@@ -97,9 +97,9 @@ export const SceneBuild = ({ labels }: { labels: [string, string, string] }) => 
     <svg viewBox="-240 -260 480 420" className="h-full w-full" aria-hidden>
       <IsoDefs />
       <Shadow cx={0} cy={120} rx={190} ry={55} />
-      {layer(0, "sand", labels[2], "#44403C")}
+      {layer(0, "sand", labels[2], "#4B504E")}
       {layer(1, "green", labels[1], "#FFFFFF")}
-      {layer(2, "white", labels[0], "#1C1917")}
+      {layer(2, "white", labels[0], "#0E1110")}
     </svg>
   );
 };

@@ -3,7 +3,7 @@ import { useMemo, useRef } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 
 const COLS = 24, ROWS = 5;
-const ACCENTS = ["#25855A", "#7CC7A0", "#FAF9F6"];
+const ACCENTS = ["#25855A", "#7CC7A0", "#FFFFFF"];
 
 // vaste pseudo-random reeks: server en browser zien hetzelfde patroon
 const rand = (i: number) => { const x = Math.sin(i * 9301 + 49297) * 233280; return x - Math.floor(x); };
@@ -26,7 +26,7 @@ export const PixelWipe = () => {
       const i = r * COLS + c;
       const th = ((ROWS - r) / ROWS) * 0.95 + (rand(i) - 0.5) * 0.4;
       const a = rand(i + 777);
-      const color = a > 0.86 ? ACCENTS[Math.floor(rand(i + 31) * ACCENTS.length)] : "#1C1917";
+      const color = a > 0.86 ? ACCENTS[Math.floor(rand(i + 31) * ACCENTS.length)] : "#0E1110";
       out.push({ th, color });
     }
     return out;
