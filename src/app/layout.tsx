@@ -66,7 +66,12 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="nl">
+    <html lang="nl" suppressHydrationWarning>
+      <head>
+        {/* Intro alleen bij eerste bezoek: verbergen vóór de eerste paint om flitsen te voorkomen */}
+        <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('intro-seen'))document.documentElement.classList.add('intro-seen')}catch(e){}` }} />
+        <noscript><style>{`#intro{display:none!important}`}</style></noscript>
+      </head>
       <body className={`${raveo.variable} ${raveoDisplay.variable} font-sans antialiased`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([orgJsonLd, faqJsonLd]) }} />
         <LangProvider>{children}</LangProvider>

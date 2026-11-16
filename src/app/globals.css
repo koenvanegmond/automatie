@@ -18,3 +18,7 @@ body { @apply bg-cream text-body; }
 @keyframes dash { to { stroke-dashoffset: -24; } }
 .flow-dash { stroke-dasharray: 6 6; animation: dash 1s linear infinite; }
 @media (prefers-reduced-motion: reduce) { .flow-dash { animation: none; } html { scroll-behavior: auto; } }
+
+/* Intro-chat: verborgen voor terugkerende bezoekers, en scroll vergrendeld zolang hij open is */
+.intro-seen #intro { display: none; }
+html:not(.intro-seen):has(#intro) body { overflow: hidden; }

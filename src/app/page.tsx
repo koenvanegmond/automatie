@@ -11,6 +11,7 @@ import { Faq } from "@/sections/Faq";
 import { CallToAction } from "@/sections/CallToAction";
 import { Footer } from "@/sections/Footer";
 import { FlowLine } from "@/components/FlowLine";
+import { Intro } from "@/components/intro/Intro";
 
 export default function Home() {
   return (
@@ -31,6 +32,7 @@ export default function Home() {
         <CallToAction />
       </main>
       <Footer />
+      <Intro />
     </>
   );
 }
