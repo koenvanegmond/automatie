@@ -2,6 +2,7 @@
 import { useMemo, useState, type FormEvent } from "react";
 import type { Lang } from "@/lib/content";
 import { scripts } from "./script";
+import { Loader } from "@/components/Loader";
 
 type UI = (typeof scripts)["nl"]["ui"];
 type Done = (result: "ok" | "notConnected", summary: string) => void;
@@ -106,7 +107,7 @@ export const MeetingWidget = ({ ui, lang, interest, onDone }: { ui: UI; lang: La
         <Contact labels={ui.meeting} name={name} setName={setName} phone={phone} setPhone={setPhone} consent={consent} setConsent={setConsent} error={error} />
       </div>
       <button disabled={busy} className="mt-4 w-full rounded-xl bg-brand py-3 font-medium text-white transition-colors hover:bg-brand-dark disabled:opacity-60">
-        {busy ? ui.meeting.sending : ui.meeting.submit}
+        {busy ? <Loader size={20} color="#FFFFFF" label={ui.meeting.sending} /> : ui.meeting.submit}
       </button>
     </form>
   );
@@ -136,7 +137,7 @@ export const WhatsAppWidget = ({ ui, lang, interest, onDone }: { ui: UI; lang: L
       <p className="mb-4 mt-0.5 text-[13px] text-white/50">{ui.whatsapp.sub}</p>
       <Contact labels={ui.whatsapp} name={name} setName={setName} phone={phone} setPhone={setPhone} consent={consent} setConsent={setConsent} error={error} />
       <button disabled={busy} className="mt-4 w-full rounded-xl bg-brand py-3 font-medium text-white transition-colors hover:bg-brand-dark disabled:opacity-60">
-        {busy ? ui.whatsapp.sending : ui.whatsapp.submit}
+        {busy ? <Loader size={20} color="#FFFFFF" label={ui.whatsapp.sending} /> : ui.whatsapp.submit}
       </button>
     </form>
   );

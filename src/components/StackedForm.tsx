@@ -3,6 +3,7 @@ import { useState, type FormEvent } from "react";
 import { useLang } from "@/lib/i18n";
 import { waLink } from "@/lib/config";
 import { normalizePhone } from "@/components/intro/Widgets";
+import { Loader } from "@/components/Loader";
 
 /* Gestapeld 3D-formulier, gebaseerd op Uiverse.io (MBerkayHamurcu), in Appmaatje-groen */
 
@@ -60,7 +61,7 @@ export const StackedForm = () => {
             </li>
           ))}
           <button type="submit" style={{ ["--i" as string]: 1 }} disabled={state === "busy"}>
-            <span>{state === "busy" ? "…" : t.send}</span>
+            <span className="flex h-full items-center justify-center">{state === "busy" ? <Loader size={22} color="#FFFFFF" /> : t.send}</span>
           </button>
         </ul>
       </form>

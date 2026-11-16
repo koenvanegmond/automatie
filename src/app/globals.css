@@ -52,8 +52,22 @@ html:not(.intro-seen):has(#intro) body { overflow: hidden; }
 .stacked-form li:nth-child(2) .input { background: var(--c2); }
 .stacked-form li:nth-child(3) .input { background: var(--c1); }
 .stacked-form button { background: var(--cb); border: 0; cursor: pointer; font: inherit; font-weight: 500; font-size: 15px; }
-.stacked-form button span { display: block; transform: var(--rot); }
+.stacked-form button > span { display: flex; align-items: center; justify-content: center; height: 100%; transform: var(--rot); }
 .stacked-form .wrapper li:hover, .stacked-form .wrapper li:has(input:focus), .stacked-form button:hover, .stacked-form button:focus-visible { transform: translateX(-20px); }
 .stacked-form button:hover, .stacked-form button:hover::before, .stacked-form button:hover::after,
 .stacked-form button:focus-visible, .stacked-form button:focus-visible::before, .stacked-form button:focus-visible::after { background: var(--ca); }
 .stacked-form button:active { transform: translateX(0); }
+
+/* Lader (Uiverse.io, dovatgabriel) */
+.three-body { --uib-size: 35px; --uib-speed: 0.8s; --uib-color: #25855A; position: relative; display: inline-block; height: var(--uib-size); width: var(--uib-size); animation: tb-spin calc(var(--uib-speed) * 2.5) infinite linear; vertical-align: middle; }
+.three-body__dot { position: absolute; height: 100%; width: 30%; }
+.three-body__dot::after { content: ""; position: absolute; height: 0%; width: 100%; padding-bottom: 100%; background-color: var(--uib-color); border-radius: 50%; }
+.three-body__dot:nth-child(1) { bottom: 5%; left: 0; transform: rotate(60deg); transform-origin: 50% 85%; }
+.three-body__dot:nth-child(1)::after { bottom: 0; left: 0; animation: tb-wobble1 var(--uib-speed) infinite ease-in-out; animation-delay: calc(var(--uib-speed) * -0.3); }
+.three-body__dot:nth-child(2) { bottom: 5%; right: 0; transform: rotate(-60deg); transform-origin: 50% 85%; }
+.three-body__dot:nth-child(2)::after { bottom: 0; left: 0; animation: tb-wobble1 var(--uib-speed) infinite calc(var(--uib-speed) * -0.15) ease-in-out; }
+.three-body__dot:nth-child(3) { bottom: -5%; left: 0; transform: translateX(116.666%); }
+.three-body__dot:nth-child(3)::after { top: 0; left: 0; animation: tb-wobble2 var(--uib-speed) infinite ease-in-out; }
+@keyframes tb-spin { to { transform: rotate(360deg); } }
+@keyframes tb-wobble1 { 0%, 100% { transform: translateY(0%) scale(1); opacity: 1; } 50% { transform: translateY(-66%) scale(0.65); opacity: 0.8; } }
+@keyframes tb-wobble2 { 0%, 100% { transform: translateY(0%) scale(1); opacity: 1; } 50% { transform: translateY(66%) scale(0.65); opacity: 0.8; } }
