@@ -43,7 +43,7 @@ export const Header = () => {
     <>
       <header className={`fixed inset-x-0 top-0 z-[70] transition-colors duration-300 ${scrolled && !open ? "bg-white/90 backdrop-blur-xl" : "bg-transparent"}`}>
         <div className="flex h-[84px] items-center justify-between px-6 pt-2 md:h-[96px] md:px-10 md:pt-3">
-          <a href="/" aria-label="Appmaatje home"><Logo mark /></a>
+          <a href="/" aria-label="Appmaatje home"><span className="md:hidden"><Logo mark /></span><span className="hidden md:block"><Logo /></span></a>
           <nav className="flex items-center gap-1.5">
             {nav.map((l) => (
               <span key={l.href} className="hidden lg:inline-flex">

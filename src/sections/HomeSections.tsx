@@ -1,4 +1,5 @@
 "use client";
+import { Mascot } from "@/components/Mascot";
 import { useEffect, useRef, useState } from "react";
 import { animate, motion, useInView } from "framer-motion";
 import { useT } from "@/lib/i18n";
@@ -152,7 +153,7 @@ export const EndCta = () => {
   const t = useT();
   return (
     <section className="relative overflow-hidden border-t-2 border-ink bg-mint py-28 md:py-40">
-      <ChatSticker className="bob pointer-events-none absolute left-[6%] top-[16%] hidden w-32 md:block" />
+      <Mascot className="pointer-events-none absolute bottom-[6%] left-[4%] hidden w-56 lg:block" />
       <CalendarSticker className="bob pointer-events-none absolute bottom-[14%] right-[7%] hidden w-28 md:block" />
       <Reveal className="container relative text-center">
         <h2 className="h2 mx-auto max-w-5xl"><Slant text={t.home.end.title} last={2} /></h2>

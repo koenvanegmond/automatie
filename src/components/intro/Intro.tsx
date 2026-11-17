@@ -6,7 +6,9 @@ import { waLink } from "@/lib/config";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/Buttons";
 import { Slant } from "@/components/Slant";
-import { BellSticker, CalendarSticker, ChatSticker, CoinSticker } from "@/components/Stickers";
+import { BellSticker, CalendarSticker, CoinSticker } from "@/components/Stickers";
+import { Mascot } from "@/components/Mascot";
+import { LogoMark } from "@/components/LogoMark";
 import { scripts, type NodeId, type Option } from "./script";
 import { MeetingWidget, WhatsAppWidget } from "./Widgets";
 
@@ -30,7 +32,7 @@ const Ticks = () => (
 
 const Avatar = ({ size = "h-10 w-10" }: { size?: string }) => (
   <span className={`grid ${size} shrink-0 place-items-center rounded-full border-2 border-ink bg-mint text-ink`}>
-    <svg viewBox="0 0 24 24" className="h-1/2 w-1/2" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+    <LogoMark className="h-[78%] w-auto" />
   </span>
 );
 
@@ -179,7 +181,7 @@ export const Intro = () => {
 
           {/* zijpaneel (desktop) */}
           <aside className="relative hidden w-[360px] shrink-0 flex-col justify-between overflow-hidden border-r-2 border-ink bg-lilac p-8 lg:flex">
-            <div className="bob w-32" style={{ ["--r" as string]: "-6deg" }}><ChatSticker /></div>
+            <Mascot className="w-44 md:w-52" />
             <div>
               <p className="font-display text-[64px] uppercase leading-[0.88] text-ink">
                 <Slant text={lang === "nl" ? "Laat WhatsApp het werk doen." : "Let WhatsApp do the work."} last={2} />
@@ -192,7 +194,7 @@ export const Intro = () => {
           <section className="flex min-w-0 flex-1 flex-col bg-white">
             <header className="flex items-center gap-3 border-b-2 border-ink bg-mint px-4 py-3 md:px-5">
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border-2 border-ink bg-white text-ink">
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+                <LogoMark className="h-[78%] w-auto" />
               </span>
               <div className="leading-tight">
                 <p className="font-ui text-[15px] font-bold uppercase text-ink">{s.ui.name}</p>

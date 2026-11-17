@@ -1,0 +1,35 @@
+// Gegenereerd door tools/build_brand.py. Inline SVG zodat de arm en ogen kunnen bewegen.
+export const Mascot = ({ className = "", animate = true }: { className?: string; animate?: boolean }) => (
+  <svg viewBox="0 0 400 420" fill="none" role="img" aria-label="Appmaatje robot" className={`${animate ? "mascot-live" : ""} ${className}`}>
+    <rect x="168" y="330" width="30" height="62" rx="13" fill="#9FE0B8" stroke="#0E1110" strokeWidth="4"/>
+<rect x="206" y="330" width="30" height="62" rx="13" fill="#9FE0B8" stroke="#0E1110" strokeWidth="4"/>
+<rect x="158" y="378" width="46" height="24" rx="12" fill="#DCCBF7" stroke="#0E1110" strokeWidth="4"/>
+<rect x="200" y="378" width="46" height="24" rx="12" fill="#DCCBF7" stroke="#0E1110" strokeWidth="4"/><rect x="150" y="196" width="104" height="150" rx="48" fill="#9FE0B8" stroke="#0E1110" strokeWidth="4"/><circle cx="152" cy="236" r="15" fill="#DCCBF7" stroke="#0E1110" strokeWidth="4"/><circle cx="252" cy="236" r="15" fill="#DCCBF7" stroke="#0E1110" strokeWidth="4"/><g className="m-wave"><path d="M152 238 Q96 244 82 192" fill="none" stroke="#0E1110" strokeWidth="30" strokeLinecap="round"/><path d="M152 238 Q96 244 82 192" fill="none" stroke="#9FE0B8" strokeWidth="22" strokeLinecap="round"/><rect x="61" y="150" width="10" height="26" rx="5" transform="rotate(-18 66 176)" fill="#9FE0B8" stroke="#0E1110" strokeWidth="3.5"/><rect x="75" y="150" width="10" height="26" rx="5" transform="rotate(-4 80 176)" fill="#9FE0B8" stroke="#0E1110" strokeWidth="3.5"/><rect x="89" y="150" width="10" height="26" rx="5" transform="rotate(12 94 176)" fill="#9FE0B8" stroke="#0E1110" strokeWidth="3.5"/><circle cx="82" cy="184" r="19" fill="#9FE0B8" stroke="#0E1110" strokeWidth="4"/></g><g className="m-phone"><path d="M252 238 Q292 244 296 286" fill="none" stroke="#0E1110" strokeWidth="30" strokeLinecap="round"/><path d="M252 238 Q292 244 296 286" fill="none" stroke="#9FE0B8" strokeWidth="22" strokeLinecap="round"/>
+<rect x="288" y="196" width="68" height="118" rx="13" fill="#fff" stroke="#0E1110" strokeWidth="5"/>
+<rect x="296" y="205" width="52" height="100" rx="8" fill="#DCEFE5"/>
+<g><path d="M308 260 L304 272 L320 260 Z" fill="#9FE0B8" stroke="#0E1110" strokeWidth="3" strokeLinejoin="round"/>
+<rect x="300" y="232" width="40" height="30" rx="12" fill="#9FE0B8" stroke="#0E1110" strokeWidth="3"/>
+<rect x="306" y="256" width="14" height="8" fill="#9FE0B8"/>
+</g>
+<path d="M311 247 l6 6 l12 -12" fill="none" stroke="#0E1110" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
+<rect x="283" y="272" width="22" height="30" rx="11" fill="#9FE0B8" stroke="#0E1110" strokeWidth="4"/>
+<rect x="344" y="250" width="14" height="30" rx="7" fill="#9FE0B8" stroke="#0E1110" strokeWidth="4"/></g><g transform="translate(116 8) scale(1.12)"><g strokeLinejoin="round" strokeLinecap="round">
+<rect x="14" y="56" width="120" height="100" rx="24" fill="#25855A" stroke="#0E1110" strokeWidth="4"/>
+<path d="M66 44 Q66 28 78 20" fill="none" stroke="#0E1110" strokeWidth="4"/>
+<circle cx="80" cy="15" r="8.5" fill="#F7D95C" stroke="#0E1110" strokeWidth="4"/>
+<path d="M100 14 Q108 17 109 26 M104 5 Q118 9 119 27" fill="none" stroke="#0E1110" strokeWidth="3.5" strokeLinecap="round"/>
+<path d="M52 156 L64 182 L82 156 Z" fill="#9FE0B8" stroke="#0E1110" strokeWidth="4"/>
+<rect x="6" y="48" width="120" height="108" rx="24" fill="#9FE0B8" stroke="#0E1110" strokeWidth="4"/>
+<rect x="55" y="152" width="24" height="9" fill="#9FE0B8" stroke="none"/>
+<g className="m-blink"><circle cx="44" cy="92" r="6.5" fill="#0E1110"/><circle cx="88" cy="92" r="6.5" fill="#0E1110"/></g>
+<path d="M44 112 Q66 138 88 112 Z" fill="#0E1110" stroke="#0E1110" strokeWidth="3"/>
+<path d="M55 119 Q66 128 77 119 Q66 114 55 119 Z" fill="#DCCBF7"/>
+</g></g><path d="M330 133 Q334.76 145.24 347 150 Q334.76 154.76 330 167 Q325.24 154.76 313 150 Q325.24 145.24 330 133 Z" fill="#fff" stroke="#0E1110" strokeWidth="2.5" strokeLinejoin="round"/><path d="M358 167 Q360.52 173.48 367 176 Q360.52 178.52 358 185 Q355.48 178.52 349 176 Q355.48 173.48 358 167 Z" fill="#fff" stroke="#0E1110" strokeWidth="2.5" strokeLinejoin="round"/><path d="M112 319 Q115.08 326.92 123 330 Q115.08 333.08 112 341 Q108.92 333.08 101 330 Q108.92 326.92 112 319 Z" fill="#fff" stroke="#0E1110" strokeWidth="2.5" strokeLinejoin="round"/><path d="M138 346 Q142.48 357.52 154 362 Q142.48 366.48 138 378 Q133.52 366.48 122 362 Q133.52 357.52 138 346 Z" fill="#fff" stroke="#0E1110" strokeWidth="2.5" strokeLinejoin="round"/><g><path d="M56 122 L52 134 L68 122 Z" fill="#9FE0B8" stroke="#0E1110" strokeWidth="3" strokeLinejoin="round"/>
+<rect x="48" y="92" width="44" height="32" rx="12" fill="#9FE0B8" stroke="#0E1110" strokeWidth="3"/>
+<rect x="54" y="118" width="14" height="8" fill="#9FE0B8"/>
+<circle cx="61.2" cy="108.0" r="2.6" fill="#0E1110"/><circle cx="70.0" cy="108.0" r="2.6" fill="#0E1110"/><circle cx="78.8" cy="108.0" r="2.6" fill="#0E1110"/></g><g><path d="M298 378 L294 390 L310 378 Z" fill="#9FE0B8" stroke="#0E1110" strokeWidth="3" strokeLinejoin="round"/>
+<rect x="290" y="352" width="40" height="28" rx="12" fill="#9FE0B8" stroke="#0E1110" strokeWidth="3"/>
+<rect x="296" y="374" width="14" height="8" fill="#9FE0B8"/>
+<circle cx="302.0" cy="366.0" r="2.6" fill="#0E1110"/><circle cx="310.0" cy="366.0" r="2.6" fill="#0E1110"/><circle cx="318.0" cy="366.0" r="2.6" fill="#0E1110"/></g>
+  </svg>
+);
