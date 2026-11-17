@@ -61,7 +61,7 @@ export const SectorPage = ({ k }: { k: SectorKey }) => {
           <h2 className="h2">{t.home.how.title}</h2>
           <div className="mx-auto mt-12 grid max-w-4xl gap-8 md:grid-cols-3">
             {t.home.how.steps.map((st) => (
-              <div key={st.t}><p className="font-display text-[36px] uppercase leading-[0.95] text-ink">{st.t}</p><p className="mt-1 text-body">{st.d}</p></div>
+              <div key={st.t}><p className="font-display text-[36px] uppercase leading-[0.95] text-ink">{st.t}</p><p className="sub mt-2">{st.d}</p></div>
             ))}
           </div>
           <div className="mt-14 inline-flex flex-wrap items-center justify-center gap-x-8 gap-y-3 rounded-full border-2 border-ink bg-sun px-8 py-4">

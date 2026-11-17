@@ -13,7 +13,7 @@ export const Pilot = () => {
           <BellSticker className="pointer-events-none absolute -right-2 -top-6 hidden w-24 rotate-12 md:block" />
           <div>
             <h2 className="font-display text-[44px] uppercase leading-[0.92] text-ink md:text-[64px]">{t.pilot.title}</h2>
-            <p className="mt-3 text-[18px] font-semibold text-ink/75">{t.pilot.text}{SITE.pilotPartner && <> · {t.pilot.partner} {SITE.pilotPartner}</>}</p>
+            <p className="sub mt-3">{t.pilot.text}{SITE.pilotPartner && <> · {t.pilot.partner} {SITE.pilotPartner}</>}</p>
           </div>
           <Button href={waLink(t.pilot.waText)} external size="lg" variant="primary" arrow>{t.ui.pilotCta}</Button>
         </div>

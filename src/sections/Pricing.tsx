@@ -31,7 +31,7 @@ export const Pricing = () => {
                 <span className="font-display text-[72px] leading-none">€{p.price}</span>
               </p>
               <p className="mt-1 font-ui text-[13px] font-bold uppercase text-ink/60">{t.once}</p>
-              <p className="mt-4 text-[18px] font-semibold text-ink">{p.text}</p>
+              <p className="sub mt-4">{p.text}</p>
               <ul className="mb-8 mt-3 space-y-1.5">
                 {p.bullets.slice(0, 2).map((b) => <li key={b} className="text-[16px] font-medium text-ink/75">→ {b}</li>)}
               </ul>

@@ -87,7 +87,7 @@ export const Hero = () => {
           ))}
         </h1>
         <motion.p initial={{ opacity: 0, y: 14 }} animate={go ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.5, duration: 0.7, ease }}
-          className="relative z-10 mt-7 max-w-xl text-[20px] font-semibold leading-snug text-ink md:text-[24px]">{t.home.sub}</motion.p>
+          className="lead relative z-10 mt-7 max-w-2xl">{t.home.sub}</motion.p>
         <motion.div initial={{ opacity: 0, y: 14 }} animate={go ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.62, duration: 0.7, ease }}
           className="relative z-10 mt-9 flex flex-wrap justify-center gap-2.5">
           <Button href={waLink(t.hero.waText)} external size="lg" icon={<Chat />}>{t.ui.nav.cta}</Button>

@@ -5,6 +5,7 @@ import { useT } from "@/lib/i18n";
 import type { SectorKey } from "@/lib/content";
 import { waLink } from "@/lib/config";
 import { Button, TextLink, openChat } from "@/components/Buttons";
+import { Slant } from "@/components/Slant";
 import { BellSticker, CalendarSticker, ChatSticker, CoinSticker } from "@/components/Stickers";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -34,7 +35,7 @@ export const Problem = () => {
       <div ref={ref} className="container grid items-center gap-10 md:grid-cols-[1.4fr_1fr]">
         <Reveal>
           <h2 className="font-display text-[56px] uppercase leading-[0.9] md:text-[104px]">{t.title}</h2>
-          <p className="mt-6 text-[16px] font-semibold text-white/55">{t.note}</p>
+          <p className="sub mt-6 max-w-lg !text-white/70">{t.note}</p>
         </Reveal>
         <Reveal delay={0.1}>
           <div className={`relative rounded-[28px] border-2 border-white p-8 text-ink transition-colors duration-700 md:p-10 ${v === 0 ? "bg-mint" : "bg-sun"}`}>
@@ -115,8 +116,8 @@ export const HowSection = () => {
                 <span className="font-display text-[88px] leading-[0.8] text-ink">{i + 1}</span>
                 <div className="bob" style={{ ["--r" as string]: `${i % 2 ? 6 : -6}deg`, ["--d" as string]: `${5 + i}s` }}>{art[i]}</div>
               </div>
-              <h3 className="mt-8 font-display text-[40px] uppercase leading-[0.92] text-ink">{s.t}</h3>
-              <p className="mt-2 text-[18px] font-semibold text-ink/75">{s.d}</p>
+              <h3 className="mt-8 font-display text-[44px] uppercase leading-[0.92] text-ink md:text-[56px]"><Slant text={s.t} /></h3>
+              <p className="sub mt-3">{s.d}</p>
             </Reveal>
           ))}
         </div>
@@ -135,7 +136,7 @@ export const PriceTeaser = () => {
           <BellSticker className="pointer-events-none absolute -left-4 -top-4 hidden w-28 -rotate-12 md:block" />
           <CoinSticker className="pointer-events-none absolute -bottom-6 -right-4 hidden w-36 rotate-6 md:block" />
           <h2 className="h2 relative">{t.home.price.title}</h2>
-          <p className="relative mx-auto mt-5 max-w-xl text-[20px] font-semibold text-ink md:text-[22px]">{t.home.price.sub}</p>
+          <p className="lead relative mx-auto mt-5 max-w-2xl">{t.home.price.sub}</p>
           <div className="relative mt-9 flex flex-wrap justify-center gap-2.5">
             <Button href={waLink(t.pilot.waText)} external size="lg" variant="primary" arrow>{t.ui.pilotCta}</Button>
             <Button href="/prijzen" size="lg">{t.ui.seePricing}</Button>
@@ -154,8 +155,8 @@ export const EndCta = () => {
       <ChatSticker className="bob pointer-events-none absolute left-[6%] top-[16%] hidden w-32 md:block" />
       <CalendarSticker className="bob pointer-events-none absolute bottom-[14%] right-[7%] hidden w-28 md:block" />
       <Reveal className="container relative text-center">
-        <h2 className="h2 mx-auto max-w-5xl">{t.home.end.title}</h2>
-        <p className="mt-5 text-[20px] font-semibold text-ink md:text-[22px]">{t.home.end.sub}</p>
+        <h2 className="h2 mx-auto max-w-5xl"><Slant text={t.home.end.title} last={2} /></h2>
+        <p className="lead mt-5">{t.home.end.sub}</p>
         <div className="mt-10 flex flex-wrap justify-center gap-2.5">
           <Button href={waLink(t.hero.waText)} external size="lg" variant="primary" arrow>{t.ui.nav.cta}</Button>
           <Button href="/kennismaken" size="lg">{t.ui.meet}</Button>

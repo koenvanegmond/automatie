@@ -9,7 +9,8 @@ body { @apply bg-ink text-body text-[18px] font-medium leading-[1.45] tracking-[
   .eyebrow { @apply inline-flex h-9 items-center rounded-full border-2 border-ink bg-mint px-4 font-ui text-[13px] font-bold uppercase tracking-[0.02em] text-ink; }
   .h2 { @apply font-display text-[56px] md:text-[96px] lg:text-[120px] uppercase leading-[0.9] tracking-[-0.01em] text-ink; }
   .card { @apply rounded-[28px] border-2 border-ink bg-white; }
-  .lead { @apply text-[19px] md:text-[22px] font-semibold leading-[1.35] tracking-[-0.015em] text-body; }
+  .lead { @apply text-[22px] md:text-[30px] font-medium leading-[1.15] tracking-[-0.025em] text-ink; }
+  .sub { @apply text-[20px] md:text-[25px] font-medium leading-[1.2] tracking-[-0.02em] text-ink; }
   
   .dot-grid { background-image: radial-gradient(rgba(14,17,16,.12) 1px, transparent 1px); background-size: 22px 22px; }
 }
