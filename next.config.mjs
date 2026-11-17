@@ -28,7 +28,14 @@ const nextConfig = {
     return config;
   },
 
-  // ...other config
+  async redirects() {
+    return [
+      { source: "/oplossingen/vastgoed", destination: "/oplossingen/advies-vastgoed", permanent: true },
+      { source: "/oplossingen/uitzendbureaus", destination: "/oplossingen/handel-personeel", permanent: true },
+      { source: "/oplossingen/horeca", destination: "/oplossingen/horeca-zorg-sport", permanent: true },
+      { source: "/oplossingen/zorg", destination: "/oplossingen/horeca-zorg-sport", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

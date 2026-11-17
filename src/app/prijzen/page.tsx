@@ -18,7 +18,7 @@ export default function PrijzenPage() {
       <main>
         <Pricing />
         <Pilot />
-        <Faq />
+        <Faq limit={4} link />
       </main>
       <Footer />
     </>

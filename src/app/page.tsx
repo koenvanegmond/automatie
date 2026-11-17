@@ -1,6 +1,6 @@
 import { Header } from "@/sections/Header";
 import { Hero } from "@/sections/Hero";
-import { Problem, Branches, Integrations, HowSection, PriceTeaser, EndCta } from "@/sections/HomeSections";
+import { Calculator, Branches, Integrations, HowSection, PriceTeaser, FaqTeaser, EndCta } from "@/sections/HomeSections";
 import { Footer } from "@/sections/Footer";
 import { Intro } from "@/components/intro/Intro";
 import { PixelWipe } from "@/components/PixelWipe";
@@ -12,13 +12,14 @@ export default function Home() {
       <main>
         <Hero />
         <PixelWipe from="#FFFFFF" to="#0E1110" />
-        <Problem />
+        <Calculator />
         <PixelWipe from="#0E1110" to="#FFFFFF" />
         <Branches />
       <Integrations />
         <HowSection />
         <PriceTeaser />
-        <EndCta />
+        <FaqTeaser />
+      <EndCta />
       </main>
       <Footer />
       <Intro />

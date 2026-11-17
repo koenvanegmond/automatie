@@ -1,5 +1,6 @@
 "use client";
 import { Mascot } from "@/components/Mascot";
+import { Faq } from "@/sections/Faq";
 import { useEffect, useRef, useState } from "react";
 import { animate, motion, useInView } from "framer-motion";
 import { useT } from "@/lib/i18n";
@@ -7,6 +8,8 @@ import { waLink } from "@/lib/config";
 import { Button, TextLink, openChat } from "@/components/Buttons";
 import { Slant } from "@/components/Slant";
 import { BellSticker, CalendarSticker, ChatSticker, CoinSticker } from "@/components/Stickers";
+import { BRAND_LOGOS } from "@/components/BrandLogos";
+import { sectorKeys, type SectorKey } from "@/lib/content";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -19,29 +22,94 @@ export const Reveal = ({ children, className = "", delay = 0 }: { children: Reac
 
 const pop = "transition-[transform,box-shadow] duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_#0E1110]";
 
-/* 2. Knelpunt (donker): grote kop + kaart die van 42 naar 0 telt */
-export const Problem = () => {
-  const t = useT().home.problem;
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-120px" });
-  const [v, setV] = useState(42);
+/* 2. Rekenmachine (donker): schuiven en zien hoeveel tijd je terugkrijgt */
+const Slider = ({ id, label, value, min, max, onChange, suffix }: { id: string; label: string; value: number; min: number; max: number; onChange: (v: number) => void; suffix: string }) => (
+  <div>
+    <div className="flex items-baseline justify-between gap-4">
+      <label htmlFor={id} className="font-ui text-[14px] font-bold uppercase text-white">{label}</label>
+      <span className="font-display text-[44px] leading-none text-white tabular-nums">{value}<span className="ml-1 font-ui text-[13px] font-bold uppercase text-white/60">{suffix}</span></span>
+    </div>
+    <input id={id} type="range" min={min} max={max} value={value} onChange={(e) => onChange(+e.target.value)} className="range mt-3" aria-valuetext={`${value} ${suffix}`} />
+  </div>
+);
+
+export const Calculator = () => {
+  const t = useT().home.calc;
+  const [msgs, setMsgs] = useState(20);
+  const [mins, setMins] = useState(2);
+  const target = Math.round((msgs * mins * 21 * 0.7) / 60);
+  const [shown, setShown] = useState(target);
+  const prev = useRef(target);
   useEffect(() => {
-    if (!inView) return;
-    const c = animate(42, 0, { duration: 2.2, delay: 0.5, ease: [0.65, 0, 0.35, 1], onUpdate: (x) => setV(Math.round(x)) });
-    return () => c.stop();
-  }, [inView]);
+    const c = animate(prev.current, target, { duration: 0.5, ease: [0.22, 1, 0.36, 1], onUpdate: (x) => setShown(Math.round(x)), onComplete: () => { prev.current = target; } });
+    return () => { prev.current = shown; c.stop(); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [target]);
+  const days = Math.max(1, Math.round((target * 12) / 8));
   return (
     <section className="bg-ink pb-24 pt-10 text-white md:pb-36">
-      <div ref={ref} className="container grid items-center gap-10 md:grid-cols-[1.4fr_1fr]">
+      <div className="container grid items-center gap-10 md:grid-cols-[1.2fr_1fr]">
         <Reveal>
-          <h2 className="font-display text-[56px] uppercase leading-[0.9] md:text-[104px]">{t.title}</h2>
-          <p className="sub mt-6 max-w-lg !text-white/70">{t.note}</p>
+          <h2 className="font-display text-[56px] uppercase leading-[0.9] md:text-[96px]">{t.title}</h2>
+          <p className="sub mt-6 max-w-lg !text-white/70">{t.sub}</p>
+          <div className="mt-10 grid max-w-lg gap-8">
+            <Slider id="calc-msgs" label={t.msgs} value={msgs} min={5} max={100} onChange={setMsgs} suffix="" />
+            <Slider id="calc-mins" label={t.mins} value={mins} min={1} max={10} onChange={setMins} suffix="min" />
+          </div>
         </Reveal>
         <Reveal delay={0.1}>
-          <div className={`relative rounded-[28px] border-2 border-white p-8 text-ink transition-colors duration-700 md:p-10 ${v === 0 ? "bg-mint" : "bg-sun"}`}>
-            <p className="font-display text-[150px] leading-[0.8] tabular-nums md:text-[200px]">{v}</p>
+          <div className="relative rounded-[28px] border-2 border-white bg-sun p-8 text-ink md:p-10">
+            <p className="font-display text-[150px] leading-[0.8] tabular-nums md:text-[200px]" aria-live="polite">{shown}</p>
             <p className="mt-4 font-ui text-[15px] font-bold uppercase">{t.unit}</p>
+            <p className="mt-3 text-[17px] font-medium text-ink/80">{t.year.replace("{d}", String(days))}</p>
             <ChatSticker className="absolute -right-6 -top-10 w-24 rotate-12" />
+          </div>
+          <p className="mt-4 text-[13px] font-medium text-white/50">{t.note}</p>
+        </Reveal>
+      </div>
+    </section>
+  );
+};
+
+/* 3. Oplossingen: 4 groepen, elk met eigen pagina */
+const groupBg: Record<SectorKey, string> = { service: "bg-mint", techniek: "bg-sun", advies: "bg-lilac", handel: "bg-white" };
+
+export const Branches = () => {
+  const t = useT();
+  const b = t.branches;
+  return (
+    <section id="oplossingen" className="scroll-mt-24 bg-white py-24 md:py-32">
+      <div className="container">
+        <Reveal className="text-center">
+          <p className="eyebrow">{b.eyebrow}</p>
+          <h2 className="h2 mt-5">{b.title}</h2>
+          <p className="lead mx-auto mt-5 max-w-2xl">{b.sub}</p>
+        </Reveal>
+        <div className="mt-14 grid gap-4 md:grid-cols-2">
+          {sectorKeys.map((k, i) => {
+            const s = t.solutions[k];
+            return (
+              <Reveal key={k} delay={(i % 2) * 0.06}>
+                <a href={`/oplossingen/${s.slug}`} className={`group flex h-full flex-col rounded-[28px] border-2 border-ink p-7 md:p-9 ${groupBg[k]} ${pop}`}>
+                  <h3 className="font-display text-[44px] uppercase leading-[0.92] text-ink md:text-[60px]">{s.name}</h3>
+                  <p className="mt-3 text-[19px] font-semibold leading-snug text-ink/85">{s.tile}</p>
+                  <p className="mt-6 font-ui text-[12px] font-bold uppercase text-ink/60">{b.covers}</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {s.covers.map((c) => <span key={c} className="rounded-full border-2 border-ink bg-white/70 px-3 py-1 text-[14px] font-semibold text-ink">{c}</span>)}
+                  </div>
+                  <span className="mt-8 inline-flex items-center gap-2 font-ui text-[14px] font-bold uppercase text-ink">
+                    {b.see}<span className="transition-transform group-hover:translate-x-1">→</span>
+                  </span>
+                </a>
+              </Reveal>
+            );
+          })}
+        </div>
+        <Reveal className="mt-10 text-center">
+          <p className="lead">{b.other.title} {b.other.text}</p>
+          <div className="mt-5 flex flex-wrap justify-center gap-2.5">
+            <Button href={waLink(t.hero.waText)} external variant="primary" arrow>{t.ui.nav.cta}</Button>
+            <Button onClick={openChat}>{t.ui.demo}</Button>
           </div>
         </Reveal>
       </div>
@@ -49,46 +117,7 @@ export const Problem = () => {
   );
 };
 
-/* 3. Branches: algemeen, zodat elke ondernemer zich herkent */
-const cardBg = ["bg-mint", "bg-sun", "bg-lilac", "bg-white"];
-
-export const Branches = () => {
-  const t = useT();
-  const b = t.branches;
-  return (
-    <section id="branches" className="scroll-mt-24 bg-white py-24 md:py-32">
-      <div className="container">
-        <Reveal className="text-center">
-          <p className="eyebrow">{b.eyebrow}</p>
-          <h2 className="h2 mt-5">{b.title}</h2>
-          <p className="lead mx-auto mt-5 max-w-2xl">{b.sub}</p>
-        </Reveal>
-        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {b.items.map((it, i) => (
-            <Reveal key={it.name} delay={(i % 3) * 0.06}>
-              <div className={`h-full rounded-[24px] border-2 border-ink p-6 md:p-7 ${cardBg[i % 4]} ${pop}`}>
-                <h3 className="font-display text-[34px] uppercase leading-[0.95] text-ink md:text-[40px]">{it.name}</h3>
-                <p className="mt-3 text-[17px] font-medium leading-snug text-ink/80">{it.flow}</p>
-              </div>
-            </Reveal>
-          ))}
-          <Reveal delay={0.1}>
-            <div className="flex h-full flex-col justify-between rounded-[24px] border-2 border-ink bg-ink p-6 text-white md:p-7">
-              <div>
-                <h3 className="font-display text-[34px] uppercase leading-[0.95] md:text-[40px]">{b.other.title}</h3>
-                <p className="mt-3 text-[17px] font-medium leading-snug text-white/80">{b.other.text}</p>
-              </div>
-              <div className="mt-6"><Button href={waLink(t.hero.waText)} external variant="highlight" arrow>{t.ui.nav.cta}</Button></div>
-            </div>
-          </Reveal>
-        </div>
-        <div className="mt-10 text-center"><TextLink onClick={openChat}>{t.ui.demo}</TextLink></div>
-      </div>
-    </section>
-  );
-};
-
-/* 3b. Koppelingen */
+/* 3b. Koppelingen als logo-tegels */
 export const Integrations = () => {
   const t = useT();
   const g = t.integrations;
@@ -100,19 +129,27 @@ export const Integrations = () => {
           <h2 className="h2 mt-5">{g.title}</h2>
           <p className="lead mx-auto mt-5 max-w-2xl">{g.sub}</p>
         </Reveal>
-        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {g.groups.map((grp, i) => (
-            <Reveal key={grp.name} delay={(i % 4) * 0.05}>
-              <div className="h-full rounded-[24px] border-2 border-ink bg-white p-5 md:p-6">
-                <p className="font-ui text-[13px] font-bold uppercase text-ink">{grp.name}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {grp.items.map((n) => <span key={n} className="rounded-full border-2 border-ink bg-[#F7F7F2] px-3 py-1 text-[14px] font-semibold text-ink">{n}</span>)}
+        <div role="list" className="mt-14 grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-6">
+          {g.tools.map((n, i) => {
+            const logo = BRAND_LOGOS[n];
+            return (
+              <Reveal key={n} delay={(i % 6) * 0.04}>
+                <div role="listitem" className={`flex h-[112px] flex-col items-center justify-center gap-2 rounded-[20px] border-2 border-ink bg-white px-3 text-center ${pop}`}>
+                  {logo ? (
+                    <>
+                      <svg viewBox={logo.vb} className={(() => { const [,,w,hh] = logo.vb.split(" ").map(Number); return w / hh > 2 ? "h-auto w-[84%] max-h-9" : "h-9 w-9"; })()} aria-hidden dangerouslySetInnerHTML={{ __html: logo.body }} />
+                      <span className="font-ui text-[12px] font-bold uppercase text-ink">{n}</span>
+                    </>
+                  ) : (
+                    <span className="font-display text-[28px] uppercase leading-none text-ink">{n}</span>
+                  )}
                 </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
-        <p className="lead mx-auto mt-10 max-w-2xl text-center">{g.note}</p>
+        <p className="mt-8 text-center font-ui text-[13px] font-bold uppercase tracking-[0.02em] text-ink/70">{g.cats}</p>
+        <p className="lead mx-auto mt-4 max-w-2xl text-center">{g.note}</p>
       </div>
     </section>
   );
@@ -186,3 +223,6 @@ export const EndCta = () => {
     </section>
   );
 };
+
+/* FAQ-teaser op de homepage */
+export const FaqTeaser = () => <Faq limit={4} link />;

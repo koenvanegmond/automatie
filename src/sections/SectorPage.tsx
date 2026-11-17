@@ -1,11 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 import { useLang, useT } from "@/lib/i18n";
-import type { SectorKey } from "@/lib/content";
-import { SITE, waLink } from "@/lib/config";
+import { sectorKeys, type SectorKey } from "@/lib/content";
+import { waLink } from "@/lib/config";
 import { Button, TextLink } from "@/components/Buttons";
 import { Phone } from "@/components/Phone";
-import { RosterScene } from "@/components/scenes/RosterScene";
 import { CheckIcon } from "@/components/Icons";
 import { EndCta } from "@/sections/HomeSections";
 
@@ -25,6 +24,10 @@ export const SectorPage = ({ k }: { k: SectorKey }) => {
           <p className="eyebrow">{s.name}</p>
           <h1 className="h2 mx-auto mt-5 max-w-5xl">{s.title}</h1>
           <p className="lead mx-auto mt-5 max-w-2xl">{s.sub}</p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+            <span className="font-ui text-[12px] font-bold uppercase text-ink/60">{t.solutions.covers}</span>
+            {s.covers.map((c) => <span key={c} className="rounded-full border-2 border-ink bg-white px-3 py-1 text-[14px] font-semibold text-ink">{c}</span>)}
+          </div>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Button href={waLink(wa)} external size="lg" variant="primary" arrow>{t.ui.nav.cta}</Button>
             <Button href="/kennismaken" variant="outline" size="lg">{t.ui.meet}</Button>
@@ -34,9 +37,8 @@ export const SectorPage = ({ k }: { k: SectorKey }) => {
 
       <section className="pb-24 md:pb-32">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease }} className="container">
-          <div className={`rounded-[28px] border-2 border-ink p-6 md:p-14 ${k === "uitzend" ? "bg-ink" : "bg-lilac"}`}>
-            {k === "uitzend" ? <div className="mx-auto max-w-3xl"><RosterScene /></div> : <Phone chat={item.chat} name={t.sectors.phoneName} status={t.sectors.online} />}
-            {k === "vastgoed" && SITE.pilotPartner && <p className="mt-6 text-center text-[14px] text-body/70">{t.sectors.pilot} {SITE.pilotPartner}</p>}
+          <div className="rounded-[28px] border-2 border-ink bg-lilac p-6 md:p-14">
+            <Phone chat={item.chat} name={t.sectors.phoneName} status={t.sectors.online} />
           </div>
         </motion.div>
       </section>
@@ -67,6 +69,15 @@ export const SectorPage = ({ k }: { k: SectorKey }) => {
           <div className="mt-14 inline-flex flex-wrap items-center justify-center gap-x-8 gap-y-3 rounded-full border-2 border-ink bg-sun px-8 py-4">
             <span className="font-ui text-[15px] font-bold uppercase text-ink">{t.home.price.title} {lang === "nl" ? "Eenmalig." : "One-off."}</span>
             <TextLink href="/prijzen">{t.ui.seePricing}</TextLink>
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-24 md:pb-32">
+        <div className="container text-center">
+          <p className="eyebrow">{t.solutions.others}</p>
+          <div className="mt-6 flex flex-wrap justify-center gap-2.5">
+            {sectorKeys.filter((o) => o !== k).map((o) => <Button key={o} href={`/oplossingen/${t.solutions[o].slug}`} size="md">{t.solutions[o].name}</Button>)}
           </div>
         </div>
       </section>
