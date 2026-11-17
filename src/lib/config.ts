@@ -3,7 +3,7 @@ export const SITE = {
   name: "Appmaatje",
   url: "https://automatie.vercel.app",
   // TODO: vervang door het echte WhatsApp-nummer (internationaal, zonder + of spaties)
-  whatsappNumber: "31600000000",
+  whatsappNumber: "31622159048",
   // Pilotpartner: zet op null om te verbergen
   pilotPartner: "Stay Vastgoed" as string | null,
 };
