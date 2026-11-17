@@ -7,7 +7,7 @@ import { Footer } from "@/sections/Footer";
 
 export const metadata: Metadata = {
   title: "Prijzen | Appmaatje",
-  description: "WhatsApp automatisering vanaf €300 eenmalig. Heldere prijzen, offerte vooraf. Eerste 5 bedrijven 50% korting.",
+  description: "WhatsApp automatisering vanaf €300 eenmalig. Heldere prijzen, offerte vooraf. Black Friday: 40% korting op de opzet.",
   alternates: { canonical: "/prijzen" },
 };
 

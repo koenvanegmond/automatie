@@ -25,7 +25,7 @@ async function send(payload: Record<string, unknown>): Promise<"ok" | "notConnec
   }
 }
 
-const field = "w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-[15px] text-white placeholder:text-white/30 outline-none transition-colors focus:border-brand";
+const field = "h-12 w-full rounded-full border-2 border-ink bg-white px-4 text-[15px] font-medium text-ink placeholder:text-ink/40 outline-none focus:bg-mint/40";
 
 const Contact = ({ labels, name, setName, phone, setPhone, consent, setConsent, error }: {
   labels: { name: string; phone: string; consent: string };
@@ -37,11 +37,11 @@ const Contact = ({ labels, name, setName, phone, setPhone, consent, setConsent, 
       <input className={field} placeholder={labels.name} value={name} onChange={(e) => setName(e.target.value)} autoComplete="given-name" aria-label={labels.name} />
       <input className={field} placeholder={labels.phone + " (06…)"} value={phone} onChange={(e) => setPhone(e.target.value)} inputMode="tel" autoComplete="tel" aria-label={labels.phone} />
     </div>
-    <label className="mt-3 flex cursor-pointer items-start gap-2.5 text-[13px] leading-snug text-white/60">
+    <label className="mt-3 flex cursor-pointer items-start gap-2.5 text-[13px] font-medium leading-snug text-ink">
       <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-0.5 h-4 w-4 shrink-0 accent-[#25855A]" />
       {labels.consent}
     </label>
-    {error && <p className="mt-2 text-[13px] text-[#F28B82]" role="alert">{error}</p>}
+    {error && <p className="mt-2 text-[13px] font-semibold text-[#B42318]" role="alert">{error}</p>}
   </>
 );
 
@@ -79,17 +79,17 @@ export const MeetingWidget = ({ ui, lang, interest, onDone }: { ui: UI; lang: La
   };
 
   return (
-    <form onSubmit={submit} className="rounded-2xl rounded-tl-md border border-white/10 bg-[#141D1B] p-4 shadow-[0_20px_40px_-20px_rgba(0,0,0,.6)]">
-      <p className="font-semibold text-white">{ui.meeting.title}</p>
-      <p className="mt-0.5 text-[13px] text-white/50">{ui.meeting.sub}</p>
+    <form onSubmit={submit} className="rounded-[22px] rounded-tl-md border-2 border-ink bg-sun p-4 md:p-5">
+      <p className="font-display text-[30px] uppercase leading-none text-ink">{ui.meeting.title}</p>
+      <p className="mt-1.5 text-[14px] font-medium text-ink/75">{ui.meeting.sub}</p>
       <div className="mt-4 grid grid-cols-5 gap-1.5">
         {days.map((d) => {
           const active = day?.toDateString() === d.toDateString();
           return (
             <button type="button" key={d.toISOString()} onClick={() => setDay(d)} aria-pressed={active}
-              className={`rounded-xl border px-1 py-2 text-center transition-all ${active ? "border-brand bg-brand text-white" : "border-white/10 bg-white/[0.03] text-white/80 hover:border-white/30"}`}>
+              className={`rounded-2xl border-2 border-ink px-1 py-2 text-center transition-colors ${active ? "bg-ink text-white" : "bg-white text-ink hover:bg-mint"}`}>
               <span className="block text-[10px] uppercase tracking-wider opacity-70">{d.toLocaleDateString(locale, { weekday: "short" })}</span>
-              <span className="block text-lg font-semibold leading-tight">{d.getDate()}</span>
+              <span className="block font-display text-[24px] leading-none">{d.getDate()}</span>
               <span className="block text-[10px] opacity-60">{d.toLocaleDateString(locale, { month: "short" })}</span>
             </button>
           );
@@ -98,7 +98,7 @@ export const MeetingWidget = ({ ui, lang, interest, onDone }: { ui: UI; lang: La
       <div className="mt-3 grid grid-cols-2 gap-1.5">
         {(["morning", "afternoon"] as const).map((pt) => (
           <button type="button" key={pt} onClick={() => setPart(pt)} aria-pressed={part === pt}
-            className={`rounded-xl border py-2 text-sm font-medium transition-all ${part === pt ? "border-brand bg-brand text-white" : "border-white/10 bg-white/[0.03] text-white/80 hover:border-white/30"}`}>
+            className={`rounded-full border-2 border-ink py-2 font-ui text-[13px] font-bold uppercase transition-colors ${part === pt ? "bg-ink text-white" : "bg-white text-ink hover:bg-mint"}`}>
             {pt === "morning" ? ui.meeting.morning : ui.meeting.afternoon}
           </button>
         ))}
@@ -106,7 +106,7 @@ export const MeetingWidget = ({ ui, lang, interest, onDone }: { ui: UI; lang: La
       <div className="mt-4">
         <Contact labels={ui.meeting} name={name} setName={setName} phone={phone} setPhone={setPhone} consent={consent} setConsent={setConsent} error={error} />
       </div>
-      <button disabled={busy} className="mt-4 w-full rounded-xl bg-brand py-3 font-medium text-white transition-colors hover:bg-brand-dark disabled:opacity-60">
+      <button disabled={busy} className="mt-4 flex h-12 w-full items-center justify-center rounded-full border-2 border-ink bg-ink font-ui text-[14px] font-bold uppercase text-white transition-colors hover:bg-brand active:scale-[0.97] disabled:opacity-70">
         {busy ? <Loader size={20} color="#FFFFFF" label={ui.meeting.sending} /> : ui.meeting.submit}
       </button>
     </form>
@@ -132,11 +132,11 @@ export const WhatsAppWidget = ({ ui, lang, interest, onDone }: { ui: UI; lang: L
   };
 
   return (
-    <form onSubmit={submit} className="rounded-2xl rounded-tl-md border border-white/10 bg-[#141D1B] p-4 shadow-[0_20px_40px_-20px_rgba(0,0,0,.6)]">
-      <p className="font-semibold text-white">{ui.whatsapp.title}</p>
-      <p className="mb-4 mt-0.5 text-[13px] text-white/50">{ui.whatsapp.sub}</p>
+    <form onSubmit={submit} className="rounded-[22px] rounded-tl-md border-2 border-ink bg-sun p-4 md:p-5">
+      <p className="font-display text-[30px] uppercase leading-none text-ink">{ui.whatsapp.title}</p>
+      <p className="mb-4 mt-1.5 text-[14px] font-medium text-ink/75">{ui.whatsapp.sub}</p>
       <Contact labels={ui.whatsapp} name={name} setName={setName} phone={phone} setPhone={setPhone} consent={consent} setConsent={setConsent} error={error} />
-      <button disabled={busy} className="mt-4 w-full rounded-xl bg-brand py-3 font-medium text-white transition-colors hover:bg-brand-dark disabled:opacity-60">
+      <button disabled={busy} className="mt-4 flex h-12 w-full items-center justify-center rounded-full border-2 border-ink bg-ink font-ui text-[14px] font-bold uppercase text-white transition-colors hover:bg-brand active:scale-[0.97] disabled:opacity-70">
         {busy ? <Loader size={20} color="#FFFFFF" label={ui.whatsapp.sending} /> : ui.whatsapp.submit}
       </button>
     </form>
