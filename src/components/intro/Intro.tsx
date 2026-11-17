@@ -181,7 +181,7 @@ export const Intro = () => {
 
           {/* zijpaneel (desktop) */}
           <aside className="relative hidden w-[360px] shrink-0 flex-col justify-between overflow-hidden border-r-2 border-ink bg-lilac p-8 lg:flex">
-            <Mascot className="w-48 md:w-56" />
+            <Mascot className="w-56 md:w-64" />
             <div>
               <p className="font-display text-[64px] uppercase leading-[0.88] text-ink">
                 <Slant text={lang === "nl" ? "Laat WhatsApp het werk doen." : "Let WhatsApp do the work."} last={2} />

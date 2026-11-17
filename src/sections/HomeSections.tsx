@@ -210,7 +210,7 @@ export const EndCta = () => {
   const t = useT();
   return (
     <section className="relative overflow-hidden border-t-2 border-ink bg-mint py-28 md:py-40">
-      <Mascot className="pointer-events-none absolute bottom-[6%] left-[4%] hidden w-56 lg:block" />
+      <Mascot className="pointer-events-none absolute bottom-[6%] left-[4%] hidden w-64 lg:block" />
       <CalendarSticker className="bob pointer-events-none absolute bottom-[14%] right-[7%] hidden w-28 md:block" />
       <Reveal className="container relative text-center">
         <h2 className="h2 mx-auto max-w-5xl"><Slant text={t.home.end.title} last={2} /></h2>
