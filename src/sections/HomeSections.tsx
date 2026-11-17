@@ -3,7 +3,7 @@ import { Mascot } from "@/components/Mascot";
 import { Faq } from "@/sections/Faq";
 import { useEffect, useRef, useState } from "react";
 import { animate, motion, useInView } from "framer-motion";
-import { useT } from "@/lib/i18n";
+import { useLang, useT } from "@/lib/i18n";
 import { waLink } from "@/lib/config";
 import { Button, TextLink, openChat } from "@/components/Buttons";
 import { Slant } from "@/components/Slant";
@@ -23,21 +23,26 @@ export const Reveal = ({ children, className = "", delay = 0 }: { children: Reac
 const pop = "transition-[transform,box-shadow] duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_#0E1110]";
 
 /* 2. Rekenmachine (donker): schuiven en zien hoeveel tijd je terugkrijgt */
-const Slider = ({ id, label, value, min, max, onChange, suffix }: { id: string; label: string; value: number; min: number; max: number; onChange: (v: number) => void; suffix: string }) => (
+const Slider = ({ id, label, value, min, max, step = 1, onChange, prefix = "", suffix = "", fmt = (v: number) => String(v) }: {
+  id: string; label: string; value: number; min: number; max: number; step?: number; onChange: (v: number) => void; prefix?: string; suffix?: string; fmt?: (v: number) => string;
+}) => (
   <div>
     <div className="flex items-baseline justify-between gap-4">
       <label htmlFor={id} className="font-ui text-[14px] font-bold uppercase text-white">{label}</label>
-      <span className="font-display text-[44px] leading-none text-white tabular-nums">{value}<span className="ml-1 font-ui text-[13px] font-bold uppercase text-white/60">{suffix}</span></span>
+      <span className="font-display text-[44px] leading-none text-white tabular-nums">
+        {prefix && <span className="mr-1 font-ui text-[13px] font-bold uppercase text-white/60">{prefix}</span>}{fmt(value)}
+        {suffix && <span className="ml-1 font-ui text-[13px] font-bold uppercase text-white/60">{suffix}</span>}
+      </span>
     </div>
-    <input id={id} type="range" min={min} max={max} value={value} onChange={(e) => onChange(+e.target.value)} className="range mt-3" aria-valuetext={`${value} ${suffix}`} />
+    <input id={id} type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(+e.target.value)} className="range mt-3" aria-valuetext={`${prefix}${fmt(value)} ${suffix}`} />
   </div>
 );
 
-export const Calculator = () => {
-  const t = useT().home.calc;
-  const [msgs, setMsgs] = useState(20);
-  const [mins, setMins] = useState(2);
-  const target = Math.round((msgs * mins * 21 * 0.7) / 60);
+// Aannames (onderzoek nov 2026): ~45% volledig automatisch afgehandeld (Comm100 2025),
+// 22 werkdagen per maand; minuten per bericht en uurkosten vult de bezoeker zelf in.
+const AUTO = 0.45, DAYS = 22;
+
+const useCount = (target: number) => {
   const [shown, setShown] = useState(target);
   const prev = useRef(target);
   useEffect(() => {
@@ -45,22 +50,41 @@ export const Calculator = () => {
     return () => { prev.current = shown; c.stop(); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [target]);
-  const days = Math.max(1, Math.round((target * 12) / 8));
+  return shown;
+};
+
+export const Calculator = () => {
+  const t = useT().home.calc;
+  const { lang } = useLang();
+  const loc = lang === "nl" ? "nl-NL" : "en-GB";
+  const [msgs, setMsgs] = useState(60);
+  const [mins, setMins] = useState(2);
+  const [rate, setRate] = useState(30);
+  const hours = Math.round((msgs * mins * DAYS * AUTO) / 60);
+  const euros = Math.round((hours * rate) / 10) * 10;
+  const shownH = useCount(hours);
+  const shownE = useCount(euros);
+  const days = Math.max(1, Math.round((hours * 12) / 8));
   return (
-    <section className="bg-ink pb-24 pt-10 text-white md:pb-36">
+    <section id="rekenmachine" className="scroll-mt-24 bg-ink pb-24 pt-10 text-white md:pb-36">
       <div className="container grid items-center gap-10 md:grid-cols-[1.2fr_1fr]">
         <Reveal>
           <h2 className="font-display text-[56px] uppercase leading-[0.9] md:text-[96px]">{t.title}</h2>
           <p className="sub mt-6 max-w-lg !text-white/70">{t.sub}</p>
           <div className="mt-10 grid max-w-lg gap-8">
-            <Slider id="calc-msgs" label={t.msgs} value={msgs} min={5} max={100} onChange={setMsgs} suffix="" />
-            <Slider id="calc-mins" label={t.mins} value={mins} min={1} max={10} onChange={setMins} suffix="min" />
+            <Slider id="calc-msgs" label={t.msgs} value={msgs} min={10} max={500} step={10} onChange={setMsgs} />
+            <Slider id="calc-mins" label={t.mins} value={mins} min={1} max={5} step={0.5} onChange={setMins} suffix="min" fmt={(v) => v.toLocaleString(loc)} />
+            <Slider id="calc-rate" label={t.rate} value={rate} min={20} max={60} step={1} onChange={setRate} prefix="€" suffix={t.perHour} />
           </div>
         </Reveal>
         <Reveal delay={0.1}>
           <div className="relative rounded-[28px] border-2 border-white bg-sun p-8 text-ink md:p-10">
-            <p className="font-display text-[150px] leading-[0.8] tabular-nums md:text-[200px]" aria-live="polite">{shown}</p>
+            <p className="font-display text-[150px] leading-[0.8] tabular-nums md:text-[200px]" aria-live="polite">{shownH}</p>
             <p className="mt-4 font-ui text-[15px] font-bold uppercase">{t.unit}</p>
+            <div className="mt-6 flex items-baseline gap-3 border-t-2 border-ink pt-5">
+              <span className="font-display text-[48px] leading-none tabular-nums md:text-[60px]">€{shownE.toLocaleString(loc)}</span>
+              <span className="font-ui text-[13px] font-bold uppercase text-ink/70">{t.money}</span>
+            </div>
             <p className="mt-3 text-[17px] font-medium text-ink/80">{t.year.replace("{d}", String(days))}</p>
             <ChatSticker className="absolute -right-6 -top-10 w-24 rotate-12" />
           </div>
@@ -85,29 +109,37 @@ export const Branches = () => {
           <h2 className="h2 mt-5">{b.title}</h2>
           <p className="lead mx-auto mt-5 max-w-2xl">{b.sub}</p>
         </Reveal>
-        <div className="mt-14 grid gap-4 md:grid-cols-2">
-          {sectorKeys.map((k, i) => {
+        {/* 4 groepen als kolommen, elke sector een eigen vakje (12 in totaal) */}
+        <div className="mt-14 grid gap-8 md:grid-cols-2 md:gap-5 lg:grid-cols-4">
+          {sectorKeys.map((k, gi) => {
             const s = t.solutions[k];
+            const href = `/oplossingen/${s.slug}`;
             return (
-              <Reveal key={k} delay={(i % 2) * 0.06}>
-                <a href={`/oplossingen/${s.slug}`} className={`group flex h-full flex-col rounded-[28px] border-2 border-ink p-7 md:p-9 ${groupBg[k]} ${pop}`}>
-                  <h3 className="font-display text-[44px] uppercase leading-[0.92] text-ink md:text-[60px]">{s.name}</h3>
-                  <p className="mt-3 text-[19px] font-semibold leading-snug text-ink/85">{s.tile}</p>
-                  <p className="mt-6 font-ui text-[12px] font-bold uppercase text-ink/60">{b.covers}</p>
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {s.covers.map((c) => <span key={c} className="rounded-full border-2 border-ink bg-white/70 px-3 py-1 text-[14px] font-semibold text-ink">{c}</span>)}
-                  </div>
-                  <span className="mt-8 inline-flex items-center gap-2 font-ui text-[14px] font-bold uppercase text-ink">
-                    {b.see}<span className="transition-transform group-hover:translate-x-1">→</span>
-                  </span>
+              <Reveal key={k} delay={gi * 0.06} className="flex flex-col">
+                <a href={href} className="group flex items-center justify-between gap-3 px-1 pb-3">
+                  <span className="text-[19px] font-bold leading-tight text-ink">{s.name}</span>
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border-2 border-ink bg-white text-ink transition-colors group-hover:bg-ink group-hover:text-white" aria-hidden>→</span>
                 </a>
+                <div className="grid flex-1 grid-cols-2 gap-3 lg:grid-cols-1 [&>*:last-child:nth-child(odd)]:col-span-2 lg:[&>*:last-child:nth-child(odd)]:col-span-1">
+                  {s.covers.map((c) => (
+                    <a key={c} href={href} className={`group flex min-h-[112px] flex-col justify-between rounded-[20px] border-2 border-ink p-4 md:min-h-[136px] md:p-5 ${groupBg[k]} ${pop}`}>
+                      <span className="font-display text-[26px] uppercase leading-[0.95] text-ink md:text-[32px]">{c}</span>
+                      <span className="mt-3 font-ui text-[12px] font-bold uppercase text-ink/70">{b.see} <span className="inline-block transition-transform group-hover:translate-x-1">→</span></span>
+                    </a>
+                  ))}
+                  {s.covers.length < 3 && (
+                    <a href={waLink(t.hero.waText)} target="_blank" rel="noopener" className={`group flex min-h-[112px] flex-col justify-between rounded-[20px] border-2 border-dashed border-ink bg-white p-4 md:min-h-[136px] md:p-5 ${pop}`}>
+                      <span className="font-display text-[26px] uppercase leading-[0.95] text-ink md:text-[32px]">{b.other.title}</span>
+                      <span className="mt-3 font-ui text-[12px] font-bold uppercase text-ink/70">{t.ui.nav.cta} <span className="inline-block transition-transform group-hover:translate-x-1">→</span></span>
+                    </a>
+                  )}
+                </div>
               </Reveal>
             );
           })}
         </div>
         <Reveal className="mt-10 text-center">
-          <p className="lead">{b.other.title} {b.other.text}</p>
-          <div className="mt-5 flex flex-wrap justify-center gap-2.5">
+          <div className="flex flex-wrap justify-center gap-2.5">
             <Button href={waLink(t.hero.waText)} external variant="primary" arrow>{t.ui.nav.cta}</Button>
             <Button onClick={openChat}>{t.ui.demo}</Button>
           </div>

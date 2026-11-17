@@ -76,7 +76,7 @@ export const Hero = () => {
         <Float mx={mx} my={my} depth={1.5} r={-6} d={5} delay={0.8} go={go} className="bottom-[14%] left-[5%] w-20 md:bottom-[20%] md:left-[10%] md:w-36"><CoinSticker /></Float>
         <Float mx={mx} my={my} depth={1} r={10} d={6.8} delay={0.95} go={go} className="bottom-[13%] right-[7%] w-16 md:bottom-[18%] md:right-[17%] md:w-28"><BellSticker /></Float>
 
-        <h1 className="relative z-10 mx-auto max-w-[1200px] font-display text-[64px] uppercase leading-[0.86] tracking-[-0.005em] text-ink sm:text-[80px] md:text-[120px] lg:text-[150px]">
+        <h1 className="relative z-10 mx-auto max-w-[1200px] font-display text-[clamp(44px,14vw,80px)] uppercase leading-[0.86] tracking-[-0.005em] text-ink md:text-[120px] lg:text-[150px]">
           {words.map((w, i) => (
             <span key={i} className="inline-block overflow-hidden pb-[0.04em] align-bottom">
               <motion.span className={`inline-block ${i === words.length - 1 ? "text-brand" : ""}`} initial={{ y: "110%" }} animate={go ? { y: 0 } : {}}
