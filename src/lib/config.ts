@@ -1,7 +1,7 @@
 // Centrale instellingen: hier pas je nummer, partner en prijzen aan.
 export const SITE = {
   name: "Appmaatje",
-  url: "https://automatie.vercel.app",
+  url: "https://appmaatje.com",
   // TODO: vervang door het echte WhatsApp-nummer (internationaal, zonder + of spaties)
   whatsappNumber: "31622159048",
   // Pilotpartner: zet op null om te verbergen
