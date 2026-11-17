@@ -1,9 +1,8 @@
 import { Header } from "@/sections/Header";
 import { Hero } from "@/sections/Hero";
-import { Calculator, Branches, Integrations, HowSection, PriceTeaser, FaqTeaser, EndCta } from "@/sections/HomeSections";
+import { Branches, Integrations, HowSection, PriceTeaser, FaqTeaser, EndCta } from "@/sections/HomeSections";
 import { Footer } from "@/sections/Footer";
 import { Intro } from "@/components/intro/Intro";
-import { PixelWipe } from "@/components/PixelWipe";
 
 export default function Home() {
   return (
@@ -11,9 +10,6 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <PixelWipe from="#FFFFFF" to="#0E1110" />
-        <Calculator />
-        <PixelWipe from="#0E1110" to="#FFFFFF" />
         <Branches />
       <Integrations />
         <HowSection />
