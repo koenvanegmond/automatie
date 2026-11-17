@@ -8,7 +8,7 @@ export const Sparkle = ({ x, y, s = 1 }: { x: number; y: number; s?: number }) =
 const bubble = "M24 12h72a22 22 0 0 1 22 22v30a22 22 0 0 1-22 22H52l-22 18V86h-6A22 22 0 0 1 2 64V34a22 22 0 0 1 22-22Z";
 
 export const ChatSticker = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="-6 -6 140 132" className={className} aria-hidden>
+  <svg overflow="visible" viewBox="-6 -6 140 132" className={className} aria-hidden>
     <path d={bubble} transform="translate(7 8)" fill="#5CB884" {...S} />
     <path d={bubble} fill="#9FE0B8" {...S} />
     <circle cx="36" cy="49" r="6" fill="#0E1110" /><circle cx="60" cy="49" r="6" fill="#0E1110" /><circle cx="84" cy="49" r="6" fill="#0E1110" />
@@ -17,7 +17,7 @@ export const ChatSticker = ({ className = "" }: { className?: string }) => (
 );
 
 export const CalendarSticker = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="-6 -10 136 132" className={className} aria-hidden>
+  <svg overflow="visible" viewBox="-6 -10 136 132" className={className} aria-hidden>
     <rect x="10" y="16" width="100" height="94" rx="16" fill="#D9B53A" {...S} />
     <rect x="2" y="8" width="100" height="94" rx="16" fill="#F7D95C" {...S} />
     <path d="M2 34h100" {...S} fill="none" />
@@ -29,7 +29,7 @@ export const CalendarSticker = ({ className = "" }: { className?: string }) => (
 );
 
 export const CoinSticker = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="-8 -8 136 120" className={className} aria-hidden>
+  <svg overflow="visible" viewBox="-8 -8 136 120" className={className} aria-hidden>
     <ellipse cx="62" cy="62" rx="56" ry="40" fill="#1D6B48" {...S} />
     <path d="M6 62v-12" {...S} /><path d="M118 62v-12" {...S} />
     <ellipse cx="62" cy="50" rx="56" ry="40" fill="#25855A" {...S} />
@@ -40,7 +40,7 @@ export const CoinSticker = ({ className = "" }: { className?: string }) => (
 );
 
 export const BellSticker = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="-8 -8 132 140" className={className} aria-hidden>
+  <svg overflow="visible" viewBox="-8 -8 132 140" className={className} aria-hidden>
     <path d="M60 14c-24 0-38 18-38 42v22L10 96h100L98 78V56c0-24-14-42-38-42Z" transform="translate(6 6)" fill="#B79CE6" {...S} />
     <path d="M60 14c-24 0-38 18-38 42v22L10 96h100L98 78V56c0-24-14-42-38-42Z" fill="#DCCBF7" {...S} />
     <circle cx="60" cy="10" r="7" fill="#DCCBF7" {...S} />

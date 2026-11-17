@@ -16,19 +16,17 @@ def wordmark(text, size, track=1.0):
     return pen.getCommands(), x-track, f['OS/2'].sCapHeight*s
 
 def head(face_extra=True, arcs=False, cls=""):
-    a = f'<path d="M100 14 Q108 17 109 26 M104 5 Q118 9 119 27" fill="none" stroke="{INK}" stroke-width="3.5" stroke-linecap="round"/>' if arcs else ""
-    tongue = f'<path d="M55 119 Q66 128 77 119 Q66 114 55 119 Z" fill="{LIL}"/>' if face_extra else ""
+    SIDE="#7FB69A"
     return f'''<g stroke-linejoin="round" stroke-linecap="round">
-<rect x="14" y="56" width="120" height="100" rx="24" fill="{DK}" stroke="{INK}" stroke-width="4"/>
-<path d="M66 44 Q66 28 78 20" fill="none" stroke="{INK}" stroke-width="4"/>
-<circle cx="80" cy="15" r="8.5" fill="{YEL}" stroke="{INK}" stroke-width="4"/>
-{a}
+<rect x="18" y="42" width="120" height="108" rx="26" fill="{SIDE}" stroke="{INK}" stroke-width="4"/>
+<path d="M68 40 Q66 26 78 20" fill="none" stroke="{INK}" stroke-width="4"/>
+<circle cx="81" cy="15" r="8.5" fill="{YEL}" stroke="{INK}" stroke-width="4"/>
 <path d="M52 156 L64 182 L82 156 Z" fill="{MINT}" stroke="{INK}" stroke-width="4"/>
-<rect x="6" y="48" width="120" height="108" rx="24" fill="{MINT}" stroke="{INK}" stroke-width="4"/>
+<rect x="6" y="48" width="120" height="108" rx="26" fill="{MINT}" stroke="{INK}" stroke-width="4"/>
 <rect x="55" y="152" width="24" height="9" fill="{MINT}" stroke="none"/>
-<g class="{cls}"><circle cx="44" cy="92" r="6.5" fill="{INK}"/><circle cx="88" cy="92" r="6.5" fill="{INK}"/></g>
-<path d="M44 112 Q66 138 88 112 Z" fill="{INK}" stroke="{INK}" stroke-width="3"/>
-{tongue}
+<path d="M50 49 Q50 36 66 36 Q82 36 82 49 Z" fill="{YEL}" stroke="{INK}" stroke-width="4"/>
+<g class="{cls}"><circle cx="44" cy="92" r="6" fill="{INK}"/><circle cx="88" cy="92" r="6" fill="{INK}"/></g>
+<path d="M42 110 Q66 138 90 110 Z" fill="{INK}" stroke="{INK}" stroke-width="3"/>
 </g>'''
 
 def sparkle(cx, cy, r, fill="#fff"):
@@ -81,19 +79,10 @@ base = 140
 def lockup(txt):
     return W(f'{hd}<path transform="translate(160 {base})" d="{d}" fill="{txt}"/>', f"0 0 {160+w:.1f} 190")
 write("public/logo.svg", lockup(INK)); write("public/logo-light.svg", lockup("#FFFFFF"))
-write("public/mascot.svg", W(mascot(), "0 0 400 420"))
 # favicon
 fav = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="{MINT}"/><circle cx="16" cy="6.2" r="3" fill="{YEL}" stroke="{INK}" stroke-width="1.6"/><circle cx="10.5" cy="15" r="2.3" fill="{INK}"/><circle cx="21.5" cy="15" r="2.3" fill="{INK}"/><path d="M9.5 21 Q16 28 22.5 21 Z" fill="{INK}" stroke="{INK}" stroke-width="1.5" stroke-linejoin="round"/></svg>\n'
 write("src/app/icon.svg", fav)
 # React: mascot (animatable, inline) and head
-m = jsx(mascot())
-write("src/components/Mascot.tsx", f'''// Gegenereerd door tools/build_brand.py. Inline SVG zodat de arm en ogen kunnen bewegen.
-export const Mascot = ({{ className = "", animate = true }}: {{ className?: string; animate?: boolean }}) => (
-  <svg viewBox="0 0 400 420" fill="none" role="img" aria-label="Appmaatje robot" className={{`${{animate ? "mascot-live" : ""}} ${{className}}`}}>
-    {m}
-  </svg>
-);
-''')
 h = jsx(head(True, False))
 write("src/components/LogoMark.tsx", f'''// Gegenereerd door tools/build_brand.py.
 export const LogoMark = ({{ className = "" }}: {{ className?: string }}) => (

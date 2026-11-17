@@ -30,10 +30,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: "WhatsApp automatisering voor het mkb | Appmaatje Den Haag",
   description:
-    "WhatsApp automatisering en chatbots op maat voor het mkb in Den Haag en omgeving. Afspraken, roosters en klantvragen automatisch. Vaak binnen 2 dagen live.",
+    "WhatsApp automatisering en chatbots op maat voor het mkb in Den Haag en omgeving. Afspraken, roosters en klantvragen automatisch. Binnen een week live.",
   openGraph: {
     title: "Appmaatje | WhatsApp automatisering op maat",
-    description: "Laat WhatsApp het werk doen. Op maat gebouwd, vaak binnen 2 dagen live.",
+    description: "Laat WhatsApp het werk doen. Op maat gebouwd, binnen een week live.",
     locale: "nl_NL",
     url: "/",
     siteName: "Appmaatje",

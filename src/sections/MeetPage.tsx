@@ -16,7 +16,7 @@ export const MeetPage = () => {
   const { lang } = useLang();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [consent, setConsent] = useState(false);
+  const consent = true;
   const [error, setError] = useState<string | null>(null);
   const [state, setState] = useState<"idle" | "busy" | "ok" | "off">("idle");
 
@@ -24,7 +24,6 @@ export const MeetPage = () => {
     e.preventDefault();
     const p = normalizePhone(phone);
     if (!p) return setError(m.bad);
-    if (!consent) return setError(m.noConsent);
     setError(null); setState("busy");
     try {
       const res = await fetch("/api/intake", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ type: "whatsapp", name, phone: p, consent, lang }) });
@@ -57,9 +56,7 @@ export const MeetPage = () => {
                   <input className={field} placeholder={m.name} aria-label={m.name} autoComplete="given-name" value={name} onChange={(e) => setName(e.target.value)} />
                   <input className={field} placeholder={`${m.phone} (06…)`} aria-label={m.phone} inputMode="tel" autoComplete="tel" value={phone} onChange={(e) => setPhone(e.target.value)} />
                 </div>
-                <label className="mt-4 flex cursor-pointer items-start gap-2.5 text-[15px] font-medium text-ink">
-                  <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-0.5 h-4 w-4 shrink-0 accent-[#25855A]" />{m.consent}
-                </label>
+                <p className="mt-4 text-[15px] font-medium text-ink/70">{m.consent}</p>
                 {error && <p role="alert" className="mt-2 text-[14px] text-[#B42318]">{error}</p>}
                 <Button type="submit" size="lg" variant="primary" className="mt-5 w-fit min-w-[200px]">{state === "busy" ? <Loader size={22} color="#FFFFFF" /> : m.send}</Button>
               </>

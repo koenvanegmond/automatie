@@ -33,7 +33,7 @@ export const Header = () => {
   }, [open]);
 
   const nav = [
-    { href: `/oplossingen/${t.solutions.uitzend.slug}`, label: t.ui.nav.solutions, active: path.startsWith("/oplossingen") },
+    { href: "/#branches", label: t.ui.nav.solutions, active: path.startsWith("/oplossingen") },
     { href: "/#werkwijze", label: t.ui.nav.how, active: false },
     { href: "/prijzen", label: t.ui.nav.pricing, active: path === "/prijzen" },
     { href: "/kennismaken", label: t.ui.nav.meet, active: path === "/kennismaken" },

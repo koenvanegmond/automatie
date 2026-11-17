@@ -5,7 +5,7 @@ import { Footer } from "@/sections/Footer";
 
 export const metadata: Metadata = {
   title: "Kennismaken | Appmaatje",
-  description: "Gratis kennismaking. We komen langs of je appt ons.",
+  description: "Gratis kennismaking, meestal online. Of app ons direct.",
   alternates: { canonical: "/kennismaken" },
 };
 

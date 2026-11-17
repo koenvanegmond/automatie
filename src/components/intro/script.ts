@@ -42,7 +42,7 @@ const nl: Script = {
       afternoon: "Middag",
       name: "Je naam",
       phone: "Mobiel nummer",
-      consent: "Ik geef Appmaatje toestemming om mij via WhatsApp te benaderen over deze afspraak.",
+      consent: "Door te versturen mag Appmaatje je over deze afspraak appen.",
       submit: "Voorkeur versturen",
       sending: "Versturen…",
       pickDay: "Kies een dag en dagdeel",
@@ -52,7 +52,7 @@ const nl: Script = {
       sub: "Vul je nummer in. Je krijgt een bericht van ons.",
       name: "Je naam",
       phone: "Mobiel nummer",
-      consent: "Ik geef Appmaatje toestemming om mij via WhatsApp een bericht te sturen.",
+      consent: "Door te versturen mag Appmaatje je appen.",
       submit: "Stuur mij een bericht",
       sending: "Versturen…",
     },
@@ -86,7 +86,7 @@ const nl: Script = {
     service: { msgs: ["Logisch. De vragen die steeds terugkomen worden direct beantwoord, ook 's avonds en in het weekend.", "Kan de automatisering iets niet? Dan neemt een collega het gesprek over."], options: [{ label: "Klinkt goed", next: "offer" }] },
     unsure: { msgs: ["Geen probleem, daar zijn we voor.", "Meestal begin je met wat het vaakst terugkomt: afspraken, beschikbaarheid of dezelfde vragen. Dat zoeken we samen uit."], options: [{ label: "Vertel meer", next: "offer" }] },
     offer: {
-      msgs: ["Zullen we kennismaken? Gratis, en we komen bij je langs."],
+      msgs: ["Zullen we kennismaken? Gratis en online."],
       options: [
         { label: "Plan een kennismaking", next: "meeting" },
         { label: "Stuur me een WhatsApp", next: "whatsapp" },
@@ -123,7 +123,7 @@ const en: Script = {
       afternoon: "Afternoon",
       name: "Your name",
       phone: "Mobile number",
-      consent: "I allow Appmaatje to contact me on WhatsApp about this appointment.",
+      consent: "By sending, Appmaatje may message you about this appointment.",
       submit: "Send preference",
       sending: "Sending…",
       pickDay: "Pick a day and time of day",
@@ -133,7 +133,7 @@ const en: Script = {
       sub: "Enter your number and we'll send you a message.",
       name: "Your name",
       phone: "Mobile number",
-      consent: "I allow Appmaatje to send me a message on WhatsApp.",
+      consent: "By sending, Appmaatje may message you.",
       submit: "Message me",
       sending: "Sending…",
     },
@@ -167,7 +167,7 @@ const en: Script = {
     service: { msgs: ["Makes sense. Recurring questions get answered instantly, evenings and weekends too.", "If the automation can't help, a colleague takes over the chat."], options: [{ label: "Sounds good", next: "offer" }] },
     unsure: { msgs: ["No problem, that's what we're here for.", "Most businesses start with what comes up most: appointments, availability or the same questions. We'll figure it out together."], options: [{ label: "Tell me more", next: "offer" }] },
     offer: {
-      msgs: ["Shall we meet? It's free, and we come to you."],
+      msgs: ["Shall we meet? It's free and online."],
       options: [
         { label: "Book an intro", next: "meeting" },
         { label: "Send me a WhatsApp", next: "whatsapp" },

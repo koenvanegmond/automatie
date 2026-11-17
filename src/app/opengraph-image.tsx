@@ -15,7 +15,7 @@ export default function OgImage() {
           appmaatje
         </div>
         <div style={{ marginTop: 50, fontSize: 84, fontWeight: 700, letterSpacing: -3, lineHeight: 1.05 }}>Laat WhatsApp het werk doen.</div>
-        <div style={{ marginTop: 26, fontSize: 34, color: "#4B504E" }}>WhatsApp automatisering op maat · vaak binnen 2 dagen live</div>
+        <div style={{ marginTop: 26, fontSize: 34, color: "#4B504E" }}>WhatsApp automatisering op maat · binnen een week live</div>
       </div>
     ),
     size

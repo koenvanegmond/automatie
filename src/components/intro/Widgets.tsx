@@ -27,20 +27,17 @@ async function send(payload: Record<string, unknown>): Promise<"ok" | "notConnec
 
 const field = "h-12 w-full rounded-full border-2 border-ink bg-white px-4 text-[15px] font-medium text-ink placeholder:text-ink/40 outline-none focus:bg-mint/40";
 
-const Contact = ({ labels, name, setName, phone, setPhone, consent, setConsent, error }: {
+const Contact = ({ labels, name, setName, phone, setPhone, error }: {
   labels: { name: string; phone: string; consent: string };
   name: string; setName: (v: string) => void; phone: string; setPhone: (v: string) => void;
-  consent: boolean; setConsent: (v: boolean) => void; error: string | null;
+  error: string | null;
 }) => (
   <>
     <div className="grid gap-2 sm:grid-cols-2">
       <input className={field} placeholder={labels.name} value={name} onChange={(e) => setName(e.target.value)} autoComplete="given-name" aria-label={labels.name} />
       <input className={field} placeholder={labels.phone + " (06…)"} value={phone} onChange={(e) => setPhone(e.target.value)} inputMode="tel" autoComplete="tel" aria-label={labels.phone} />
     </div>
-    <label className="mt-3 flex cursor-pointer items-start gap-2.5 text-[13px] font-medium leading-snug text-ink">
-      <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-0.5 h-4 w-4 shrink-0 accent-[#25855A]" />
-      {labels.consent}
-    </label>
+    <p className="mt-3 text-[13px] font-medium leading-snug text-ink/70">{labels.consent}</p>
     {error && <p className="mt-2 text-[13px] font-semibold text-[#B42318]" role="alert">{error}</p>}
   </>
 );
@@ -60,7 +57,7 @@ export const MeetingWidget = ({ ui, lang, interest, onDone }: { ui: UI; lang: La
   const [part, setPart] = useState<"morning" | "afternoon" | null>(null);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [consent, setConsent] = useState(false);
+  const consent = true; // geen vinkje: korte tekst bij de knop is de toestemming
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -69,7 +66,6 @@ export const MeetingWidget = ({ ui, lang, interest, onDone }: { ui: UI; lang: La
     if (!day || !part) return setError(ui.meeting.pickDay);
     const p = normalizePhone(phone);
     if (!p) return setError(ui.invalidPhone);
-    if (!consent) return setError(ui.needConsent);
     setError(null);
     setBusy(true);
     const iso = `${day.getFullYear()}-${String(day.getMonth() + 1).padStart(2, "0")}-${String(day.getDate()).padStart(2, "0")}`;
@@ -104,7 +100,7 @@ export const MeetingWidget = ({ ui, lang, interest, onDone }: { ui: UI; lang: La
         ))}
       </div>
       <div className="mt-4">
-        <Contact labels={ui.meeting} name={name} setName={setName} phone={phone} setPhone={setPhone} consent={consent} setConsent={setConsent} error={error} />
+        <Contact labels={ui.meeting} name={name} setName={setName} phone={phone} setPhone={setPhone} error={error} />
       </div>
       <button disabled={busy} className="mt-4 flex h-12 w-full items-center justify-center rounded-full border-2 border-ink bg-ink font-ui text-[14px] font-bold uppercase text-white transition-colors hover:bg-brand active:scale-[0.97] disabled:opacity-70">
         {busy ? <Loader size={20} color="#FFFFFF" label={ui.meeting.sending} /> : ui.meeting.submit}
@@ -116,7 +112,7 @@ export const MeetingWidget = ({ ui, lang, interest, onDone }: { ui: UI; lang: La
 export const WhatsAppWidget = ({ ui, lang, interest, onDone }: { ui: UI; lang: Lang; interest: string; onDone: Done }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [consent, setConsent] = useState(false);
+  const consent = true; // geen vinkje: korte tekst bij de knop is de toestemming
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -124,7 +120,6 @@ export const WhatsAppWidget = ({ ui, lang, interest, onDone }: { ui: UI; lang: L
     e.preventDefault();
     const p = normalizePhone(phone);
     if (!p) return setError(ui.invalidPhone);
-    if (!consent) return setError(ui.needConsent);
     setError(null);
     setBusy(true);
     const result = await send({ type: "whatsapp", name, phone: p, consent, interest, lang });
@@ -135,7 +130,7 @@ export const WhatsAppWidget = ({ ui, lang, interest, onDone }: { ui: UI; lang: L
     <form onSubmit={submit} className="rounded-[22px] rounded-tl-md border-2 border-ink bg-sun p-4 md:p-5">
       <p className="font-display text-[30px] uppercase leading-none text-ink">{ui.whatsapp.title}</p>
       <p className="mb-4 mt-1.5 text-[14px] font-medium text-ink/75">{ui.whatsapp.sub}</p>
-      <Contact labels={ui.whatsapp} name={name} setName={setName} phone={phone} setPhone={setPhone} consent={consent} setConsent={setConsent} error={error} />
+      <Contact labels={ui.whatsapp} name={name} setName={setName} phone={phone} setPhone={setPhone} error={error} />
       <button disabled={busy} className="mt-4 flex h-12 w-full items-center justify-center rounded-full border-2 border-ink bg-ink font-ui text-[14px] font-bold uppercase text-white transition-colors hover:bg-brand active:scale-[0.97] disabled:opacity-70">
         {busy ? <Loader size={20} color="#FFFFFF" label={ui.whatsapp.sending} /> : ui.whatsapp.submit}
       </button>
