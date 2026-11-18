@@ -21,9 +21,9 @@ def head(face_extra=True, arcs=False, cls=""):
 <rect x="18" y="42" width="120" height="108" rx="26" fill="{SIDE}" stroke="{INK}" stroke-width="4"/>
 <path d="M68 40 Q66 26 78 20" fill="none" stroke="{INK}" stroke-width="4"/>
 <circle cx="81" cy="15" r="8.5" fill="{YEL}" stroke="{INK}" stroke-width="4"/>
-<path d="M52 156 L64 182 L82 156 Z" fill="{MINT}" stroke="{INK}" stroke-width="4"/>
 <rect x="6" y="48" width="120" height="108" rx="26" fill="{MINT}" stroke="{INK}" stroke-width="4"/>
-<rect x="55" y="152" width="24" height="9" fill="{MINT}" stroke="none"/>
+<path d="M51.1 153.9 L64 182 L83.4 153.9 Z" fill="{MINT}" stroke="none"/>
+<path d="M52 156 L64 182 L82 156" fill="none" stroke="{INK}" stroke-width="4"/>
 <path d="M50 49 Q50 36 66 36 Q82 36 82 49 Z" fill="{YEL}" stroke="{INK}" stroke-width="4"/>
 <g class="{cls}"><circle cx="44" cy="92" r="6" fill="{INK}"/><circle cx="88" cy="92" r="6" fill="{INK}"/></g>
 <path d="M42 110 Q66 138 90 110 Z" fill="{INK}" stroke="{INK}" stroke-width="3"/>
@@ -73,12 +73,25 @@ def write(p, s): open(f"{REPO}/{p}", "w").write(s)
 
 W = lambda body, vb: f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" fill="none">{body}</svg>\n'
 hd = head(True, False)
-write("public/logo-mark.svg", W(hd, "0 0 140 190"))
+write("public/logo-mark.svg", W(hd, "0 0 142 190"))
 d, w, cap = wordmark("APPMAATJE", 100, 1.2)
 base = 140
+def halo(h):
+    # witte stickerrand achter de robot, zodat de zwarte lijnen op donker zichtbaar blijven
+    import re as _re
+    b = _re.sub(r'stroke-width="[0-9.]+"', 'stroke-width="12"', h)
+    b = _re.sub(r'(fill|stroke)="#[0-9A-Fa-f]{6}"', r'\1="#FFFFFF"', b)
+    return b.replace('<g class="">', '<g>') + h
 def lockup(txt):
-    return W(f'{hd}<path transform="translate(160 {base})" d="{d}" fill="{txt}"/>', f"0 0 {160+w:.1f} 190")
+    return W(f'{halo(hd) if txt != INK else hd}<path transform="translate(162 {base})" d="{d}" fill="{txt}"/>', f"0 0 {162+w:.1f} 190")
 write("public/logo.svg", lockup(INK)); write("public/logo-light.svg", lockup("#FFFFFF"))
+# gestapeld: robot boven, naam eronder
+def stacked(txt):
+    tw = 300.0; sz = 100 * tw / w
+    d2, w2, cap2 = wordmark("APPMAATJE", sz, 1.2 * sz / 100)
+    W_ = max(w2, 142) + 20; hx = (W_ - 142) / 2; tx = (W_ - w2) / 2; ty = 190 + 30 + cap2
+    return W(f'<g transform="translate({hx:.1f} 0)">{halo(hd) if txt != INK else hd}</g><path transform="translate({tx:.1f} {ty:.1f})" d="{d2}" fill="{txt}"/>', f"0 0 {W_:.1f} {ty + 6:.1f}")
+write("public/logo-stacked.svg", stacked(INK)); write("public/logo-stacked-light.svg", stacked("#FFFFFF"))
 # favicon
 fav = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="{MINT}"/><circle cx="16" cy="6.2" r="3" fill="{YEL}" stroke="{INK}" stroke-width="1.6"/><circle cx="10.5" cy="15" r="2.3" fill="{INK}"/><circle cx="21.5" cy="15" r="2.3" fill="{INK}"/><path d="M9.5 21 Q16 28 22.5 21 Z" fill="{INK}" stroke="{INK}" stroke-width="1.5" stroke-linejoin="round"/></svg>\n'
 write("src/app/icon.svg", fav)
@@ -86,7 +99,7 @@ write("src/app/icon.svg", fav)
 h = jsx(head(True, False))
 write("src/components/LogoMark.tsx", f'''// Gegenereerd door tools/build_brand.py.
 export const LogoMark = ({{ className = "" }}: {{ className?: string }}) => (
-  <svg viewBox="0 0 140 190" fill="none" aria-hidden="true" className={{className}}>
+  <svg viewBox="0 0 142 190" fill="none" aria-hidden="true" className={{className}}>
     {h}
   </svg>
 );
