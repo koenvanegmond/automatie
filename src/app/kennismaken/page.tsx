@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { Header } from "@/sections/Header";
 import { MeetPage } from "@/sections/MeetPage";
 import { Footer } from "@/sections/Footer";
 
-export const metadata: Metadata = {
-  title: "Kennismaken | Appmaatje",
+export const metadata = pageMeta({
+  path: "/kennismaken",
+  title: "Gratis kennismaking over WhatsApp-automatisering | Appmaatje",
   description: "Gratis kennismaking, meestal online. Of app ons direct.",
-  alternates: { canonical: "/kennismaken" },
-};
+});
 
 export default function KennismakenPage() {
   return (<><Header /><main><MeetPage /></main><Footer /></>);

@@ -5,6 +5,7 @@ import { LangProvider } from "@/lib/i18n";
 import { content } from "@/lib/content";
 import { SITE } from "@/lib/config";
 import { Frame } from "@/components/Frame";
+import { AREA_SERVED, ORG_ID, jsonLd } from "@/lib/seo";
 
 const zt = localFont({
   src: [
@@ -26,20 +27,19 @@ const anton = localFont({
   display: "swap",
 });
 
+// Standaardwaarden. Elke pagina zet zelf title, description, canonical, Open Graph en Twitter (zie lib/seo.ts).
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: "WhatsApp automatisering voor het mkb | Appmaatje Den Haag",
+  title: "WhatsApp-automatisering Katwijk–Leiden–Den Haag | Appmaatje",
   description:
-    "WhatsApp automatisering en chatbots op maat voor het mkb in Den Haag en omgeving. Afspraken, roosters en klantvragen automatisch. Binnen een week live.",
+    "WhatsApp-automatisering op maat voor ondernemers in Katwijk, Leiden en Den Haag. Afspraken, herinneringen en vragen lopen vanzelf. Eerst een offerte.",
   openGraph: {
     title: "Appmaatje | WhatsApp automatisering op maat",
     description: "Laat WhatsApp het werk doen. Op maat gebouwd, binnen een week live.",
     locale: "nl_NL",
-    url: "/",
     siteName: "Appmaatje",
     type: "website",
   },
-  alternates: { canonical: "/" },
 };
 
 const faqJsonLd = {
@@ -55,10 +55,15 @@ const faqJsonLd = {
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": ORG_ID,
   name: "Appmaatje",
   url: SITE.url,
+  logo: `${SITE.url}/mascot.png`,
+  image: `${SITE.url}/opengraph-image`,
+  email: "info@appmaatje.com",
+  telephone: `+${SITE.whatsappNumber}`,
   description: "WhatsApp automatisering en chatbots op maat voor het mkb.",
-  areaServed: [{ "@type": "City", name: "Den Haag" }, { "@type": "Country", name: "Nederland" }],
+  areaServed: AREA_SERVED.map((name) => ({ "@type": "City", name })),
   makesOffer: {
     "@type": "Offer",
     itemOffered: { "@type": "Service", name: "WhatsApp automatisering op maat", serviceType: "WhatsApp chatbot en automatisering" },
@@ -75,7 +80,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <noscript><style>{`#intro{display:none!important}`}</style></noscript>
       </head>
       <body className={`${zt.variable} ${anton.variable} font-sans antialiased`}>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([orgJsonLd, faqJsonLd]) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd([orgJsonLd, faqJsonLd]) }} />
         <LangProvider><div className="bg-white">{children}</div></LangProvider>
         <Frame />
       </body>

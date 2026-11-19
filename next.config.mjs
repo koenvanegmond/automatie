@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Markdown-content (blog, branchepagina's) wordt bij ISR op runtime gelezen: meenemen in de serverless bundel.
+  experimental: {
+    outputFileTracingIncludes: {
+      "/**/*": ["./content/**/*"],
+    },
+  },
+
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>
@@ -30,6 +37,8 @@ const nextConfig = {
 
   async redirects() {
     return [
+      // Productie-host op vercel.app naar het eigen domein. Alleen exact deze host: preview-URL's blijven werken.
+      { source: "/:path*", has: [{ type: "host", value: "automatie.vercel.app" }], destination: "https://appmaatje.com/:path*", permanent: true },
       { source: "/oplossingen/vastgoed", destination: "/oplossingen/advies-vastgoed", permanent: true },
       { source: "/oplossingen/uitzendbureaus", destination: "/oplossingen/handel-personeel", permanent: true },
       { source: "/oplossingen/horeca", destination: "/oplossingen/horeca-zorg-sport", permanent: true },

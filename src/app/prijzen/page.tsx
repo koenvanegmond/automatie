@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { Header } from "@/sections/Header";
 import { Pricing } from "@/sections/Pricing";
 import { Pilot } from "@/sections/Pilot";
 import { Faq } from "@/sections/Faq";
 import { Footer } from "@/sections/Footer";
 
-export const metadata: Metadata = {
-  title: "Prijzen | Appmaatje",
+export const metadata = pageMeta({
+  path: "/prijzen",
+  title: "Prijzen WhatsApp-automatisering | Appmaatje",
+  // LET OP: de Black Friday-zin hieronder moet na 30-11-2026 weg uit de description.
   description: "WhatsApp automatisering vanaf €300 eenmalig. Heldere prijzen, offerte vooraf. Black Friday: 40% korting op de opzet.",
-  alternates: { canonical: "/prijzen" },
-};
+});
 
 export default function PrijzenPage() {
   return (
