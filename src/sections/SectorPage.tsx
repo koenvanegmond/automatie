@@ -10,7 +10,7 @@ import { EndCta } from "@/sections/HomeSections";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-export const SectorPage = ({ k }: { k: SectorKey }) => {
+export const SectorPage = ({ k, subs = [] }: { k: SectorKey; subs?: { href: string; label: string }[] }) => {
   const t = useT();
   const { lang } = useLang();
   const s = t.solutions[k];
@@ -57,6 +57,22 @@ export const SectorPage = ({ k }: { k: SectorKey }) => {
           </div>
         </div>
       </section>
+
+      {subs.length > 0 && (
+        <section className="pt-24 md:pt-32">
+          <div className="container text-center">
+            <p className="eyebrow">{lang === "nl" ? "Per branche" : "By industry"}</p>
+            <div className="mx-auto mt-8 grid max-w-4xl gap-4 md:grid-cols-2">
+              {subs.map((s) => (
+                <a key={s.href} href={s.href} className="group flex items-center justify-between gap-4 rounded-[24px] border-2 border-ink bg-white px-6 py-5 text-left transition-[transform,box-shadow] duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_#0E1110]">
+                  <span className="text-[19px] font-bold leading-tight text-ink md:text-[21px]">{s.label}</span>
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border-2 border-ink bg-mint text-ink transition-transform group-hover:translate-x-1" aria-hidden>→</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="py-24 md:py-32">
         <div className="container text-center">
