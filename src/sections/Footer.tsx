@@ -18,6 +18,7 @@ export const Footer = () => {
             <a href="/prijzen" className={link}>{t.ui.nav.pricing}</a>
             <a href="/veelgestelde-vragen" className={link}>{t.ui.nav.faq}</a>
             <a href="/kennismaken" className={link}>{t.ui.nav.meet}</a>
+            <a href="/blog" className={link}>Blog</a>
           </div>
           <div className="space-y-2.5">
             <button onClick={() => setLang("nl")} className={`${link} ${lang === "nl" ? "!text-ink underline decoration-2 underline-offset-4" : ""}`}>Nederlands</button>

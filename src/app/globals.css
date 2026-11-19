@@ -61,3 +61,26 @@ a:hover .ticker { animation-play-state: paused; }
 .range::-moz-range-thumb { width: 28px; height: 28px; border-radius: 999px; background: #F7D95C; border: 3px solid #0E1110; box-shadow: 0 0 0 2px #fff; }
 .range:active::-webkit-slider-thumb { transform: scale(1.12); }
 .range:focus-visible { box-shadow: 0 0 0 4px rgba(159,224,184,.6); }
+
+/* Lange teksten (blog en branchepagina's), gerenderd uit markdown */
+@layer components {
+  .prose-am { @apply text-[18px] font-medium leading-[1.6] tracking-[-0.005em] text-body md:text-[19px]; }
+  .prose-am > * + * { @apply mt-5; }
+  .prose-am h2 { @apply !mt-14 font-display text-[34px] uppercase leading-[1] tracking-[-0.005em] text-ink md:text-[46px]; }
+  .prose-am h3 { @apply !mt-10 text-[22px] font-bold leading-tight tracking-[-0.01em] text-ink md:text-[24px]; }
+  .prose-am h2 + *, .prose-am h3 + * { @apply !mt-4; }
+  .prose-am strong { @apply font-bold text-ink; }
+  .prose-am a { @apply font-semibold text-ink underline decoration-brand decoration-2 underline-offset-4 hover:decoration-ink; overflow-wrap: anywhere; }
+  .prose-am ul { @apply list-disc space-y-2 pl-6 marker:text-brand; }
+  .prose-am ol { @apply list-decimal space-y-2 pl-6 marker:font-bold marker:text-ink; }
+  .prose-am li > p { @apply mt-0; }
+  .prose-am blockquote { @apply max-w-[560px] rounded-[22px] rounded-bl-[6px] border-2 border-ink bg-mint px-5 py-4 text-[17px] leading-[1.5] text-ink md:text-[18px]; }
+  .prose-am blockquote > * + * { @apply mt-3; }
+  .prose-am em { @apply text-body/80; }
+  .prose-am hr { @apply my-10 border-t-2 border-ink; }
+  .prose-am .table-wrap { @apply overflow-x-auto rounded-[20px] border-2 border-ink; }
+  .prose-am table { @apply w-full min-w-[560px] border-collapse text-left text-[15px] leading-[1.45] md:text-[16px]; }
+  .prose-am th { @apply border-b-2 border-ink bg-sand px-4 py-3 font-bold text-ink; }
+  .prose-am td { @apply border-t border-ink/15 px-4 py-3 align-top; }
+  .prose-am tr:first-child td { @apply border-t-0; }
+}
