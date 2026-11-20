@@ -2,6 +2,7 @@
 import { Logo } from "@/components/Logo";
 import { useLang, useT } from "@/lib/i18n";
 import { sectorKeys } from "@/lib/content";
+import { SITE } from "@/lib/config";
 
 export const Footer = () => {
   const t = useT();
@@ -25,7 +26,14 @@ export const Footer = () => {
             <button onClick={() => setLang("en")} className={`${link} ${lang === "en" ? "!text-ink underline decoration-2 underline-offset-4" : ""}`}>English</button>
           </div>
         </div>
-        <div className="flex flex-col gap-2 border-t-2 border-ink py-5 text-[13px] font-medium text-body/70 md:flex-row md:justify-between">
+        {/* Bedrijfsgegevens. Email staat er altijd; KvK/btw verschijnen zodra ze in lib/config.ts zijn ingevuld. */}
+        <div className="flex flex-wrap gap-x-5 gap-y-1 border-t-2 border-ink pt-5 text-[13px] font-medium text-body/70">
+          <a href={`mailto:${SITE.email}`} className="hover:text-ink">{SITE.email}</a>
+          {SITE.kvk && <span>KvK {SITE.kvk}</span>}
+          {SITE.btw && <span>Btw {SITE.btw}</span>}
+          <a href="/privacy" className="hover:text-ink">Privacy</a>
+        </div>
+        <div className="flex flex-col gap-2 py-5 text-[13px] font-medium text-body/70 md:flex-row md:justify-between">
           <p>© {new Date().getFullYear()} Appmaatje. {t.footer.rights}</p>
           <p>{t.footer.disclaimer}</p>
         </div>
