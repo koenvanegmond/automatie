@@ -1,7 +1,7 @@
 "use client";
 import { useState, type FormEvent } from "react";
 import { useLang, useT } from "@/lib/i18n";
-import { waLink } from "@/lib/config";
+import { waLink, SITE } from "@/lib/config";
 import { Button } from "@/components/Buttons";
 import { Loader } from "@/components/Loader";
 import { Slant } from "@/components/Slant";
@@ -37,8 +37,13 @@ export const MeetPage = () => {
         <div className="text-center">
           <h1 className="h2">{m.title}</h1>
           <p className="lead mx-auto mt-5 max-w-2xl">{m.sub}</p>
+          <div className="mt-8 flex flex-col items-center gap-3">
+            <Button href={SITE.bookingUrl} external size="lg" variant="primary" arrow>{m.book}</Button>
+            <p className="text-[15px] font-medium text-ink/60">{m.bookNote}</p>
+          </div>
         </div>
-        <div className="mt-14 grid gap-4 md:grid-cols-2">
+        <p className="mt-14 text-center text-[17px] font-semibold text-ink/80">{m.altLine}</p>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
           <div className="relative flex min-h-[460px] flex-col overflow-hidden rounded-[28px] border-2 border-ink bg-lilac p-8 text-ink md:p-12">
             <ChatSticker className="bob pointer-events-none absolute bottom-8 right-8 w-28 md:w-40" />
             <h2 className="font-display text-[72px] uppercase leading-[0.88] md:text-[104px]"><Slant text={m.appTitle} /></h2>

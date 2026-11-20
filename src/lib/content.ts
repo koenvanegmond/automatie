@@ -244,6 +244,9 @@ const nl = {
   meetPage: {
     title: "Kennismaken.",
     sub: "Gratis en meestal online. Of je appt ons gewoon.",
+    book: "Plan direct een kennismaking",
+    bookNote: "Kies zelf een moment in de agenda. Duurt ongeveer een half uur.",
+    altLine: "Liever dat wij jou appen? Laat je nummer achter.",
     appTitle: "App ons",
     appText: "Snelste route. Wij appen zelf terug.",
     formTitle: "Wij appen jou",
@@ -505,6 +508,9 @@ const en: Dict = {
   meetPage: {
     title: "Get in touch.",
     sub: "Free and usually online. Or just message us.",
+    book: "Book an intro right away",
+    bookNote: "Pick a time in the calendar yourself. Takes about half an hour.",
+    altLine: "Rather we message you? Leave your number.",
     appTitle: "Message us",
     appText: "Fastest way. We reply ourselves.",
     formTitle: "We message you",
