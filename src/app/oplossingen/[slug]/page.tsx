@@ -7,6 +7,7 @@ import { SubSectorPage } from "@/sections/SubSectorPage";
 import { content, sectorKeys, type SectorKey } from "@/lib/content";
 import { subPages } from "@/lib/md";
 import { pageMeta } from "@/lib/seo";
+import { PAGE_EXAMPLES, pick } from "@/lib/voorbeelden";
 
 const bySlug = (slug: string) => sectorKeys.find((k) => content.nl.solutions[k].slug === slug) as SectorKey | undefined;
 const subBySlug = (slug: string) => subPages().find((s) => s.slug === slug);
@@ -33,7 +34,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   const k = bySlug(params.slug);
   if (k) {
     const subs = subPages().filter((s) => s.parent === k).map((s) => ({ href: `/oplossingen/${s.slug}`, label: s.card }));
-    return (<><Header /><main><SectorPage k={k} subs={subs} /></main><Footer /></>);
+    return (<><Header /><main><SectorPage k={k} subs={subs} examples={pick(PAGE_EXAMPLES[k] ?? [])} /></main><Footer /></>);
   }
   const sub = subBySlug(params.slug);
   if (!sub) notFound();

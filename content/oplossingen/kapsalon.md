@@ -15,21 +15,11 @@ Veel salonsoftware stuurt herinneringen per e-mail of sms. Salonized noemt bijvo
 
 ## Wat je kunt automatiseren
 
-**1. Bevestiging direct na het boeken**
-> Hoi Sanne, je afspraak bij Salon Lisa staat: knippen + föhnen op vrijdag 6 december om 14:30. Kun je toch niet? Tik hieronder op "Verzetten".
+Zo loopt dat in de praktijk. Per voorbeeld zie je wat je klant op zijn telefoon ziet, en daaronder wat er ondertussen vanzelf bij jou gebeurt.
 
-**2. Herinnering de dag ervoor, met één tik bevestigen**
-> Hoi Sanne, morgen om 14:30 zien we je bij Salon Lisa. Kom je? 👍 Ja, ik kom / 🔁 Verzetten
+<!-- voorbeelden -->
 
-Tikt iemand op "Verzetten", dan krijgt die een paar vrije tijden te zien. Jouw agenda wordt bijgewerkt zonder dat jij iets typt.
-
-**3. Vrijgekomen plek? Eerst de wachtlijst**
-> Hoi Mo, er is morgen om 11:00 een plek vrijgekomen bij Salon Lisa. Wil je die? Antwoord met JA, dan zetten we je erin.
-
-**4. Antwoorden op de vaste vragen**
-Openingstijden, prijzen van een kleurbehandeling, parkeren: zulke vragen krijgen meteen antwoord. Een lastige vraag komt bij jou terecht en jij neemt het gesprek gewoon over.
-
-*(Voorbeeldberichten. "Salon Lisa", "Sanne" en "Mo" zijn verzonnen namen.)*
+Daarnaast krijgen vaste vragen meteen antwoord: openingstijden, prijzen van een kleurbehandeling, parkeren. Een lastige vraag komt bij jou terecht en jij neemt het gesprek gewoon over.
 
 ## Werkt het met mijn agenda?
 

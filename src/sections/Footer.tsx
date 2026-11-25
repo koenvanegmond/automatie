@@ -16,6 +16,7 @@ export const Footer = () => {
           <div className="space-y-2.5">{sectorKeys.map((k) => <a key={k} href={`/oplossingen/${t.solutions[k].slug}`} className={link}>{t.solutions[k].name}</a>)}</div>
           <div className="space-y-2.5">
             <a href="/#werkwijze" className={link}>{t.ui.nav.how}</a>
+            <a href="/voorbeelden" className={link}>{lang === "nl" ? "Voorbeelden" : "Examples"}</a>
             <a href="/prijzen" className={link}>{t.ui.nav.pricing}</a>
             <a href="/veelgestelde-vragen" className={link}>{t.ui.nav.faq}</a>
             <a href="/kennismaken" className={link}>{t.ui.nav.meet}</a>

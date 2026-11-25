@@ -4,12 +4,19 @@ import type { SubPage } from "@/lib/md";
 import { Button, TextLink } from "@/components/Buttons";
 import { Markdown } from "@/components/Markdown";
 import { EndCta } from "@/sections/HomeSections";
+import { PAGE_EXAMPLES, pick } from "@/lib/voorbeelden";
+import { Disclaimer, ExampleGrid } from "@/components/voorbeelden/Example";
+
+/** In de markdown markeert `<!-- voorbeelden -->` waar de voorbeeldgesprekken komen. */
+const MARKER = /<!--\s*voorbeelden\s*-->/;
 
 /** Branchepagina (bv. /oplossingen/kapsalon): subpagina van een groepspagina, tekst uit content/oplossingen/*.md */
 export const SubSectorPage = ({ page }: { page: SubPage }) => {
   const t = content.nl;
   const parent = t.solutions[page.parent as SectorKey];
   const wa = `Hoi Appmaatje! Ik kom via de pagina ${page.name}.`;
+  const examples = pick(PAGE_EXAMPLES[page.slug] ?? []);
+  const parts = page.body.split(MARKER);
   return (
     <>
       <section className="pb-14 pt-36 text-center md:pb-20 md:pt-44">
@@ -28,8 +35,20 @@ export const SubSectorPage = ({ page }: { page: SubPage }) => {
 
       <section className="pb-20 md:pb-28">
         <div className="container">
+          {examples.length > 0 && parts.length === 2 ? (
+            <>
+              <div className="mx-auto max-w-[720px]"><Markdown>{parts[0]}</Markdown></div>
+              <div className="my-14 md:my-16">
+                <ExampleGrid moments={examples} />
+                <div className="mt-12 flex flex-col items-center gap-3 text-center">
+                  <TextLink href="/voorbeelden">Bekijk alle voorbeelden</TextLink>
+                  <Disclaimer />
+                </div>
+              </div>
+            </>
+          ) : null}
           <div className="mx-auto max-w-[720px]">
-            <Markdown>{page.body}</Markdown>
+            <Markdown>{examples.length > 0 && parts.length === 2 ? parts[1] : page.body.replace(MARKER, "")}</Markdown>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button href={waLink(wa)} external variant="primary" arrow>{t.ui.nav.cta}</Button>
               <Button href="/kennismaken">{t.ui.meet}</Button>

@@ -13,19 +13,9 @@ draft: false
 
 ## Wat je kunt automatiseren
 
-**1. Eerste reactie op een woningzoeker**
-> Hoi! Leuk dat je interesse hebt in de Duinstraat 12. Hij is nog beschikbaar. Wil je kijken? Kies hieronder een moment, of stel je vraag: een collega reageert vandaag nog.
+Zo loopt dat in de praktijk. Per voorbeeld zie je wat je klant op zijn telefoon ziet, en daaronder wat er ondertussen vanzelf bij jou gebeurt.
 
-**2. Bezichtiging plannen en herinneren**
-> Je bezichtiging staat: donderdag 12 december om 17:00, Duinstraat 12. Kom je toch niet? Tik op "Annuleren", dan geven we de plek aan een ander.
-
-**3. Opvolging na de bezichtiging**
-> Bedankt voor je bezoek aan de Duinstraat 12. Heb je nog vragen, of wil je een bod bespreken? Antwoord hier, dan bellen we je.
-
-**4. Documenten verzamelen**
-> Voor de verkoop hebben we nog nodig: een kopie van je ID en de laatste VvE-stukken. Je kunt ze hier als foto of pdf sturen.
-
-*(Voorbeeldberichten. Adres en situaties zijn verzonnen.)*
+<!-- voorbeelden -->
 
 ## Koppelen met je CRM of agenda
 

@@ -15,21 +15,11 @@ De RDW stuurt je klant zes weken voor de vervaldatum zelf een APK-herinnering, p
 
 ## Wat je kunt automatiseren
 
-**1. APK- of onderhoudsherinnering, met direct een tijd kiezen**
-> Hoi Peter, de APK van je Golf (XX-123-X) verloopt op 14 januari. Zullen we hem inplannen? Kies hieronder een moment.
+Zo loopt dat in de praktijk. Per voorbeeld zie je wat je klant op zijn telefoon ziet, en daaronder wat er ondertussen vanzelf bij jou gebeurt.
 
-**2. Bevestiging en herinnering**
-> Top, je staat ingepland: dinsdag 7 januari, 08:00 bij Garage De Vries. Breng je de sleutel bij de balie? Tot dan!
-
-**3. "Je auto is klaar", met betaallink**
-> Hoi Peter, je Golf is klaar en staat voor je klaar. De factuur staat in deze link: [betaallink]. Ophalen kan tot 18:00.
+<!-- voorbeelden -->
 
 Betaallinks maak je bijvoorbeeld met Mollie: die kun je via een API aanmaken en via WhatsApp delen.
-
-**4. Foto's van een probleem vooraf**
-> Stuur gerust een foto of kort filmpje van het lampje of geluid. Dan kijken we vooraf wat we nodig hebben.
-
-*(Voorbeeldberichten. Namen en kenteken zijn verzonnen.)*
 
 ## Koppelen met je planning
 

@@ -7,10 +7,12 @@ import { Button, TextLink } from "@/components/Buttons";
 import { Phone } from "@/components/Phone";
 import { CheckIcon } from "@/components/Icons";
 import { EndCta } from "@/sections/HomeSections";
+import type { Moment } from "@/lib/voorbeelden";
+import { Disclaimer, ExampleGrid } from "@/components/voorbeelden/Example";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-export const SectorPage = ({ k, subs = [] }: { k: SectorKey; subs?: { href: string; label: string }[] }) => {
+export const SectorPage = ({ k, subs = [], examples = [] }: { k: SectorKey; subs?: { href: string; label: string }[]; examples?: Moment[] }) => {
   const t = useT();
   const { lang } = useLang();
   const s = t.solutions[k];
@@ -35,13 +37,30 @@ export const SectorPage = ({ k, subs = [] }: { k: SectorKey; subs?: { href: stri
         </motion.div>
       </section>
 
-      <section className="pb-24 md:pb-32">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease }} className="container">
-          <div className="rounded-[28px] border-2 border-ink bg-lilac p-6 md:p-14">
-            <Phone chat={item.chat} name={t.sectors.phoneName} status={t.sectors.online} />
+      {examples.length > 0 && lang === "nl" ? (
+        // Voorbeeldgesprekken (content/voorbeelden.json) in plaats van de algemene demo-telefoon. Alleen in het Nederlands.
+        <section className="pb-24 md:pb-32">
+          <div className="container">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="eyebrow">Voorbeelden</p>
+              <p className="sub mx-auto mt-5 max-w-2xl">Wat je klant op zijn telefoon ziet, en wat er ondertussen vanzelf bij jou gebeurt.</p>
+            </div>
+            <div className="mt-14"><ExampleGrid moments={examples} showBranche /></div>
+            <div className="mt-12 flex flex-col items-center gap-3 text-center">
+              <TextLink href="/voorbeelden">Bekijk alle voorbeelden</TextLink>
+              <Disclaimer />
+            </div>
           </div>
-        </motion.div>
-      </section>
+        </section>
+      ) : (
+        <section className="pb-24 md:pb-32">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease }} className="container">
+            <div className="rounded-[28px] border-2 border-ink bg-lilac p-6 md:p-14">
+              <Phone chat={item.chat} name={t.sectors.phoneName} status={t.sectors.online} />
+            </div>
+          </motion.div>
+        </section>
+      )}
 
       <section className="border-y-2 border-ink bg-[#F7F7F2] py-24 md:py-32">
         <div className="container">

@@ -15,24 +15,9 @@ Appmaatje maakt van WhatsApp een vaste route voor meldingen. De klant beantwoord
 
 ## Wat je kunt automatiseren
 
-**1. Storingsmelding met vaste vragen**
-> Vervelend dat er iets stuk is! Een paar korte vragen, dan kunnen we sneller helpen.
-> 1. Wat doet het niet? (cv, warm water, elektra, lekkage)
-> 2. Stuur een foto van het display of typeplaatje.
-> 3. Wat is je adres en postcode?
+Zo loopt dat in de praktijk. Per voorbeeld zie je wat je klant op zijn telefoon ziet, en daaronder wat er ondertussen vanzelf bij jou gebeurt.
 
-**2. Doorverwijzen bij spoed**
-> Ruik je gas of is er een gevaarlijke situatie? Gebruik dan niet deze chat, maar bel direct.
-
-**3. Afspraak bevestigen en "monteur onderweg"**
-> Hoi Ingrid, Jeroen van Installatiebedrijf Van Dam komt morgen tussen 10:00 en 12:00. We sturen een appje als hij onderweg is.
->
-> Jeroen is onderweg en is er rond 10:40.
-
-**4. Na de klus: werkbon en betaallink**
-> De klus is klaar. Hier vind je de werkbon en de betaallink: [link]. Vragen? App gerust terug.
-
-*(Voorbeeldberichten. Alle namen zijn verzonnen.)*
+<!-- voorbeelden -->
 
 ## Koppelen met wat je al gebruikt
 
