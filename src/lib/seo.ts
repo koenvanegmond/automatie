@@ -14,7 +14,10 @@ export function pageMeta(opts: {
   description: string;
   type?: "website" | "article";
   publishedTime?: string;
+  /** Eigen OG-beeld (bv. /voorbeelden/<slug>/opengraph-image). Standaard het algemene beeld. */
+  image?: { url: string; alt: string };
 }): Metadata {
+  const img = opts.image ? { ...OG_IMAGE, ...opts.image } : OG_IMAGE;
   const url = opts.path === "/" ? SITE.url : `${SITE.url}${opts.path}`;
   return {
     title: opts.title,
@@ -27,14 +30,14 @@ export function pageMeta(opts: {
       siteName: SITE.name,
       locale: "nl_NL",
       type: opts.type ?? "website",
-      images: [OG_IMAGE],
+      images: [img],
       ...(opts.publishedTime ? { publishedTime: opts.publishedTime } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title: opts.title,
       description: opts.description,
-      images: [OG_IMAGE.url],
+      images: [img.url],
     },
   };
 }

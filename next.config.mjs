@@ -4,6 +4,8 @@ const nextConfig = {
   experimental: {
     outputFileTracingIncludes: {
       "/**/*": ["./content/**/*"],
+      // TTF-versies van de huisfonts voor de OG-beelden van /voorbeelden (next/og leest geen woff2).
+      "/voorbeelden/**/*": ["./src/fonts/og/**/*"],
     },
   },
 
