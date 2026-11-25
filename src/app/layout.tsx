@@ -77,6 +77,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         {/* Intro alleen bij eerste bezoek: verbergen vóór de eerste paint om flitsen te voorkomen */}
         <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('intro-seen'))document.documentElement.classList.add('intro-seen')}catch(e){}` }} />
+        {/* Voorbeeldgesprekken: berichten pas laten binnenkomen als JS draait. Komt de app niet op gang, dan na 6 s gewoon alles tonen. */}
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var d=document.documentElement;d.classList.add('chat-js');setTimeout(function(){if(!window.__cmReady)d.classList.remove('chat-js')},6000)})()` }} />
         <noscript><style>{`#intro{display:none!important}`}</style></noscript>
       </head>
       <body className={`${zt.variable} ${anton.variable} font-sans antialiased`}>

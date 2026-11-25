@@ -1,0 +1,1467 @@
+[
+  {
+    "branche": "Installateur / elektricien",
+    "slug": "installateur",
+    "momenten": [
+      {
+        "titel": "Storing melden terwijl je op een klus staat",
+        "slug": "installateur-eenmanszaak-storing",
+        "bedrijf": "Bas Installatietechniek (eenmanszaak)",
+        "kanaal": "whatsapp",
+        "tags": [
+          "eenmanszaak"
+        ],
+        "opt_in": "Klant begint zelf het gesprek.",
+        "berichten": [
+          {
+            "van": "klant",
+            "tijd": "10:47",
+            "tekst": "Hoi, bij ons springt de stroom in de keuken steeds uit. Kan er iemand naar kijken?",
+            "dag": "Woensdag 25 november"
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "10:47",
+            "tekst": "Hoi, met Bas. Ik zit op een klus, dus even via deze weg. Stuur je een foto van de meterkast en je adres?"
+          },
+          {
+            "van": "klant",
+            "tijd": "10:49",
+            "tekst": "Lindenlaan 12, Rijnsburg",
+            "element": {
+              "type": "foto",
+              "beschrijving": "Meterkast, één groep en de aardlekschakelaar staan naar beneden."
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "10:49",
+            "tekst": "Dank je. Ik kan langskomen op:",
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Morgen 08:00-10:00",
+                "Morgen 13:00-15:00",
+                "Vrijdag 08:00-10:00"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "10:50",
+            "tekst": "Morgen 08:00-10:00",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "10:50",
+            "tekst": "Staat genoteerd. Haal tot die tijd de stekkers uit de apparaten in de keuken. Ik app je morgen als ik onderweg ben."
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "07:42",
+            "tekst": "Goedemorgen, Bas hier. Ik ben onderweg, rond 08:15 bij je.",
+            "dag": "Donderdag 26 november",
+            "sjabloon": true
+          }
+        ],
+        "achter_de_schermen": "Bas kreeg één melding met foto en adres. De afspraak staat in zijn agenda op een plek die hij zelf vrij had gezet. Hij heeft niks getypt, alleen 's ochtends op 'onderweg' getikt.",
+        "zonder_appmaatje": "Telefoon gaat terwijl je met je handen in een meterkast zit. 's Avonds terugbellen, om een foto vragen, tijd prikken. Rekenvoorbeeld: stel 6 van die telefoontjes per week van 10 minuten, dan is dat een uur per week, meestal 's avonds.",
+        "link": "/voorbeelden/installateur-eenmanszaak-storing",
+        "top6": true,
+        "top6_waarom": "Het antwoord op 'we zijn te klein': juist wie alleen werkt kan niet opnemen tijdens een klus."
+      },
+      {
+        "titel": "Van appje naar werkbon in Workmate",
+        "slug": "installateur-workmate-werkbon",
+        "bedrijf": "Installatiebedrijf De Vonk",
+        "kanaal": "whatsapp",
+        "tags": [
+          "workmate"
+        ],
+        "opt_in": "Klant begint zelf het gesprek en krijgt in het tweede bericht te horen dat updates via deze chat komen.",
+        "berichten": [
+          {
+            "van": "klant",
+            "tijd": "16:12",
+            "tekst": "Goedemiddag, onze cv-ketel geeft storing en we hebben geen warm water.",
+            "dag": "Maandag 30 november"
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "16:12",
+            "tekst": "Hoi, met De Vonk. Stuur je een foto van het display van de ketel? Dan zien we wat er aan de hand is."
+          },
+          {
+            "van": "klant",
+            "tijd": "16:14",
+            "tekst": "Hier",
+            "element": {
+              "type": "foto",
+              "beschrijving": "Display van een cv-ketel met een storingscode, drukmeter staat laag."
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "16:15",
+            "tekst": "Dank je. Er komt een monteur langs. Welk moment past? We houden je hier op de hoogte.",
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Dinsdag ochtend",
+                "Dinsdag middag",
+                "Woensdag ochtend"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "16:15",
+            "tekst": "Dinsdag ochtend",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "09:41",
+            "tekst": "Goedemorgen, monteur Jan van De Vonk is onderweg en rond 10:05 bij je.",
+            "dag": "Dinsdag 1 december",
+            "sjabloon": true,
+            "element": {
+              "type": "knop_bellen",
+              "label": "Bel De Vonk"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "11:02",
+            "tekst": "Klaar. Hier is je werkbon, en hiermee kun je meteen betalen.",
+            "sjabloon": true,
+            "element": {
+              "type": "link",
+              "soort": "betaallink",
+              "label": "Werkbon betalen"
+            },
+            "element_extra": {
+              "type": "document",
+              "bestandsnaam": "Werkbon-De-Vonk.pdf"
+            }
+          }
+        ],
+        "achter_de_schermen": "De melding met foto werd automatisch een werkbon in Workmate, ingepland bij monteur Jan (koppeling via de Workmate-API). Tikt Jan op zijn iPad op 'onderweg', dan gaat het appje eruit. Sluit hij de werkbon af, dan gaan de pdf en de betaallink vanzelf naar de klant.",
+        "zonder_appmaatje": "Klant belt, kantoor typt de melding over in Workmate, belt terug om een tijd te prikken. Volgende ochtend belt de klant 'waar blijft de monteur?'. De werkbon gaat dagen later per mail mee met de factuur.",
+        "link": "/voorbeelden/installateur-workmate-werkbon",
+        "top6": true,
+        "top6_waarom": "Laat de hele keten zien, van appje tot betaalde werkbon, in het systeem dat de installateur al gebruikt."
+      },
+      {
+        "titel": "Jaarlijks cv-onderhoud plannen zonder bellen",
+        "slug": "installateur-onderhoud-plannen",
+        "bedrijf": "Installatiebedrijf De Vonk",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Klant vinkte bij het afsluiten van het onderhoudscontract aan dat hij via WhatsApp bericht mag krijgen; dat staat in het eerste bericht.",
+        "berichten": [
+          {
+            "van": "bedrijf",
+            "tijd": "09:00",
+            "tekst": "Hoi Peter, je cv-ketel is weer aan de beurt voor het jaarlijkse onderhoud. Je gaf bij je contract aan dat we je hiervoor mogen appen. Wanneer komt het uit?",
+            "dag": "Maandag 30 november",
+            "sjabloon": true,
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Volgende week",
+                "Over twee weken",
+                "In januari"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "09:31",
+            "tekst": "Volgende week",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "09:31",
+            "tekst": "Kies een moment:",
+            "element": {
+              "type": "lijst",
+              "knop": "Kies een dag",
+              "opties": [
+                "Ma 7 dec 08:00-12:00",
+                "Di 8 dec 08:00-12:00",
+                "Di 8 dec 12:00-16:00",
+                "Do 10 dec 08:00-12:00"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "09:32",
+            "tekst": "Di 8 dec 08:00-12:00",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "09:32",
+            "tekst": "Staat erin: dinsdag 8 december tussen 08:00 en 12:00. De dag ervoor krijg je nog een berichtje."
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "17:00",
+            "tekst": "Hoi Peter, morgen tussen 08:00 en 12:00 komen we voor het onderhoud. Klopt dat nog?",
+            "dag": "Maandag 7 december",
+            "sjabloon": true,
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Klopt",
+                "Ander moment"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "17:04",
+            "tekst": "Klopt",
+            "element": {
+              "type": "knopantwoord"
+            }
+          }
+        ],
+        "achter_de_schermen": "Elke contractklant krijgt dit bericht vanzelf op tijd. De gekozen tijd staat meteen in de planning. Wie niet reageert krijgt na een paar dagen nog één berichtje, daarna krijg jij een seintje om zelf te bellen.",
+        "zonder_appmaatje": "De lijst met contractklanten afbellen, voicemail inspreken, terugbelverzoeken bijhouden. Rekenvoorbeeld: stel 300 contracten en 5 minuten bellen per afspraak, dan is dat 25 uur per jaar.",
+        "link": "/voorbeelden/installateur-onderhoud-plannen",
+        "top6": false
+      },
+      {
+        "titel": "Dezelfde werkbon-flow, maar per mail",
+        "slug": "installateur-workmate-mail",
+        "bedrijf": "Installatiebedrijf De Vonk",
+        "kanaal": "email",
+        "tags": [
+          "mail-variant",
+          "workmate"
+        ],
+        "opt_in": "Klant meldt de storing via het formulier op de website; de mails gaan alleen over die melding.",
+        "berichten": [
+          {
+            "van": "klant",
+            "tijd": "16:12",
+            "tekst": "Melding via het formulier op de website: cv-ketel geeft storing, geen warm water. Foto bijgevoegd.",
+            "dag": "Maandag 30 november",
+            "element": {
+              "type": "formulier",
+              "velden": [
+                "Naam",
+                "Adres",
+                "Telefoon",
+                "Omschrijving",
+                "Foto"
+              ]
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "16:12",
+            "tekst": "Hoi Mark,\n\nJe melding is binnen. Kies hieronder wanneer de monteur kan komen.\n\nGroet,\nInstallatiebedrijf De Vonk",
+            "onderwerp": "Je melding is binnen: cv-ketel",
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Dinsdag ochtend",
+                "Dinsdag middag",
+                "Woensdag ochtend"
+              ]
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "16:20",
+            "tekst": "Hoi Mark,\n\nDe monteur komt dinsdag 1 december tussen 08:00 en 12:00. Je krijgt een mail als hij onderweg is.\n\nGroet,\nDe Vonk",
+            "onderwerp": "Afspraak staat: dinsdag 1 december, ochtend",
+            "element": {
+              "type": "document",
+              "bestandsnaam": "afspraak.ics"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "09:41",
+            "tekst": "Hoi Mark,\n\nJan is onderweg en rond 10:05 bij je.\n\nGroet,\nDe Vonk",
+            "dag": "Dinsdag 1 december",
+            "onderwerp": "Monteur Jan is onderweg"
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "11:02",
+            "tekst": "Hoi Mark,\n\nKlaar. In de bijlage zit je werkbon. Betalen kan via de knop hieronder.\n\nGroet,\nDe Vonk",
+            "onderwerp": "Je werkbon en betaallink",
+            "element": {
+              "type": "link",
+              "soort": "betaallink",
+              "label": "Werkbon betalen"
+            },
+            "element_extra": {
+              "type": "document",
+              "bestandsnaam": "Werkbon-De-Vonk.pdf"
+            }
+          }
+        ],
+        "achter_de_schermen": "Precies hetzelfde als de WhatsApp-versie: formulier wordt een werkbon in Workmate (koppeling via de Workmate-API), de klik op een tijd zet hem in de planning, 'onderweg' en 'afgerond' op de iPad sturen de mails.",
+        "zonder_appmaatje": "Formulier komt binnen in de algemene inbox, iemand typt het over in Workmate en belt de klant om een tijd te prikken.",
+        "link": "/voorbeelden/installateur-workmate-mail",
+        "top6": false
+      }
+    ]
+  },
+  {
+    "branche": "Garage / APK",
+    "slug": "garage",
+    "momenten": [
+      {
+        "titel": "Extra reparatie: foto, akkoord, betalen",
+        "slug": "garage-auto-klaar",
+        "bedrijf": "Garage Duinzicht",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Klant gaf bij het brengen zijn nummer af voor updates; dat staat in het eerste bericht.",
+        "berichten": [
+          {
+            "van": "bedrijf",
+            "tijd": "08:05",
+            "tekst": "Hoi Sanne, je auto staat binnen bij Garage Duinzicht. Zoals afgesproken bij de balie houden we je hier op de hoogte.",
+            "dag": "Vandaag",
+            "sjabloon": true
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "11:20",
+            "tekst": "Bij de beurt zagen we dat de remblokken voor bijna op zijn. Vervangen kost € 145 inclusief arbeid. Zullen we het meteen doen?",
+            "sjabloon": true,
+            "element": {
+              "type": "foto",
+              "beschrijving": "Remblok naast een nieuw exemplaar, het oude is duidelijk dunner."
+            },
+            "element_extra": {
+              "type": "knoppen",
+              "knoppen": [
+                "Ja, doe maar",
+                "Nee, volgende keer",
+                "Bel me even"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "11:24",
+            "tekst": "Ja, doe maar",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "11:24",
+            "tekst": "Prima, we gaan ermee aan de slag."
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "15:40",
+            "tekst": "Je auto is klaar. Ophalen kan tot 17:30. Betaal je nu al, dan ligt de sleutel klaar.",
+            "element": {
+              "type": "link",
+              "soort": "betaallink",
+              "label": "Factuur betalen"
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "15:52",
+            "tekst": "Betaald, ik kom om 17:00"
+          }
+        ],
+        "achter_de_schermen": "De monteur maakt de foto in de werkplaats, kantoor vult het bedrag in en het bericht gaat. Het akkoord van de klant staat met tijd en datum bij de werkorder. Zet je de auto op 'klaar', dan gaat de betaallink vanzelf.",
+        "zonder_appmaatje": "Monteur loopt naar kantoor, kantoor belt de klant, die neemt niet op. De auto staat op de brug tot er wordt teruggebeld.",
+        "link": "/voorbeelden/garage-auto-klaar",
+        "top6": true,
+        "top6_waarom": "Elke garage herkent de auto die op de brug staat te wachten op een klant die niet opneemt."
+      },
+      {
+        "titel": "APK-herinnering en meteen inplannen",
+        "slug": "garage-apk-herinnering",
+        "bedrijf": "Garage Duinzicht",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Klant gaf bij de vorige beurt aan dat hij een appje wil als de APK verloopt; dat staat in het eerste bericht.",
+        "berichten": [
+          {
+            "van": "bedrijf",
+            "tijd": "09:00",
+            "tekst": "Hoi Peter, de APK van je Golf verloopt op 14 januari. Je vroeg vorig jaar om een seintje. Zullen we hem inplannen?",
+            "dag": "Maandag 30 november",
+            "sjabloon": true,
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Ja, plan in",
+                "Bel me even",
+                "Al geregeld"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "12:16",
+            "tekst": "Ja, plan in",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "12:16",
+            "tekst": "Wanneer kun je hem brengen?",
+            "element": {
+              "type": "lijst",
+              "knop": "Kies een dag",
+              "opties": [
+                "Do 10 dec 08:00",
+                "Vr 11 dec 08:00",
+                "Ma 14 dec 08:00",
+                "Di 15 dec 13:00"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "12:17",
+            "tekst": "Do 10 dec 08:00",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "12:17",
+            "tekst": "Staat erin. Zullen we er een kleine beurt bij doen? Hij is ruim een jaar niet geweest.",
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Ja, graag",
+                "Alleen APK"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "12:18",
+            "tekst": "Ja, graag",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "12:18",
+            "tekst": "Genoteerd: donderdag 10 december om 08:00, APK plus kleine beurt. De dag ervoor krijg je nog een berichtje."
+          }
+        ],
+        "achter_de_schermen": "De vervaldatum komt uit je eigen klantenbestand (of de openbare RDW-gegevens). Het bericht gaat vanzelf een paar weken van tevoren. De afspraak staat in de werkplaatsplanning met 'APK + kleine beurt'.",
+        "zonder_appmaatje": "APK-lijst uit het systeem halen, klanten bellen of een brief sturen en wachten tot ze terugbellen. Wie het vergeet, gaat misschien ergens anders heen.",
+        "link": "/voorbeelden/garage-apk-herinnering",
+        "top6": true,
+        "top6_waarom": "Terugkerend werk dat vanzelf binnenkomt, zonder lijsten afbellen."
+      },
+      {
+        "titel": "Vraag 's avonds: wat kost een APK?",
+        "slug": "garage-vraag-na-sluiting",
+        "bedrijf": "Garage Duinzicht",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Klant begint zelf het gesprek.",
+        "berichten": [
+          {
+            "van": "klant",
+            "tijd": "21:14",
+            "tekst": "Hoi, wat kost een APK bij jullie en kan ik erop wachten?",
+            "dag": "Vrijdag 27 november"
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "21:14",
+            "tekst": "Hoi, we zijn nu dicht, dit is het automatische antwoord van Garage Duinzicht. Een APK kost € 45. Wachten kan, reken op ongeveer drie kwartier. Zal ik een tijd voor je vastzetten?",
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Tijd kiezen",
+                "Bel me maandag"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "21:15",
+            "tekst": "Tijd kiezen",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "21:15",
+            "tekst": "Deze tijden zijn nog vrij:",
+            "element": {
+              "type": "lijst",
+              "knop": "Kies een tijd",
+              "opties": [
+                "Ma 30 nov 08:30",
+                "Ma 30 nov 13:00",
+                "Di 1 dec 08:30"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "21:16",
+            "tekst": "Ma 30 nov 08:30",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "21:16",
+            "tekst": "Staat erin: maandag 30 november om 08:30, je wacht erop. Hier vind je ons:",
+            "element": {
+              "type": "locatie",
+              "naam": "Garage Duinzicht",
+              "adres": "Industrieweg 5, Katwijk"
+            }
+          }
+        ],
+        "achter_de_schermen": "De antwoorden op vaste vragen (prijs, wachten, openingstijden) geef je één keer op. De afspraak staat in de planning met 'klant wacht'. Vragen die het systeem niet kan beantwoorden komen maandagochtend bij jou terecht.",
+        "zonder_appmaatje": "Het appje blijft tot maandag liggen. Dan tussen twee klussen door terugbellen, en misschien heeft de klant al ergens anders geboekt.",
+        "link": "/voorbeelden/garage-vraag-na-sluiting",
+        "top6": false
+      }
+    ]
+  },
+  {
+    "branche": "Kapper / salon",
+    "slug": "kapper",
+    "momenten": [
+      {
+        "titel": "Afspraak maken zonder te bellen",
+        "slug": "kapper-afspraak",
+        "bedrijf": "Kapsalon De Krul",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Klant begint zelf het gesprek.",
+        "berichten": [
+          {
+            "van": "klant",
+            "tijd": "13:05",
+            "tekst": "Hoi, kan ik zaterdag knippen?",
+            "dag": "Woensdag 25 november"
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "13:05",
+            "tekst": "Hoi, dat kan. Wat wil je laten doen?",
+            "element": {
+              "type": "lijst",
+              "knop": "Kies behandeling",
+              "opties": [
+                "Knippen heren",
+                "Knippen dames",
+                "Kleuren + knippen",
+                "Föhnen"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "13:06",
+            "tekst": "Knippen heren",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "13:06",
+            "tekst": "Zaterdag 28 november is nog vrij om:",
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "09:30",
+                "11:15",
+                "14:45"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "13:06",
+            "tekst": "11:15",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "13:06",
+            "tekst": "Staat erin: zaterdag 28 november om 11:15 bij Lisa. Vrijdag krijg je een herinnering."
+          }
+        ],
+        "achter_de_schermen": "De afspraak staat direct in je salonagenda. Het systeem laat alleen tijden zien die echt vrij zijn en lang genoeg voor die behandeling.",
+        "zonder_appmaatje": "Telefoon opnemen met de schaar in je hand, agenda erbij pakken, tijden opnoemen, klant moet even overleggen en belt terug.",
+        "link": "/voorbeelden/kapper-afspraak",
+        "top6": false
+      },
+      {
+        "titel": "Herinnering met verzetten in één tik",
+        "slug": "kapper-herinnering-verzetten",
+        "bedrijf": "Kapsalon De Krul",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Klant boekte zelf via WhatsApp (zie 'Afspraak maken zonder te bellen').",
+        "berichten": [
+          {
+            "van": "bedrijf",
+            "tijd": "10:00",
+            "tekst": "Hoi Daan, morgen om 11:15 sta je bij Lisa ingepland. Kom je?",
+            "dag": "Vrijdag 27 november",
+            "sjabloon": true,
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Ik kom",
+                "Verzetten",
+                "Afzeggen"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "10:22",
+            "tekst": "Verzetten",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "10:22",
+            "tekst": "Geen probleem. Wat past beter?",
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Di 1 dec 18:00",
+                "Za 5 dec 10:00",
+                "Za 5 dec 13:30"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "10:23",
+            "tekst": "Za 5 dec 10:00",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "10:23",
+            "tekst": "Verzet naar zaterdag 5 december om 10:00. Tot dan."
+          }
+        ],
+        "achter_de_schermen": "De afspraak is in de agenda verschoven. Het plekje van morgen 11:15 is weer vrij en kan meteen naar iemand op de wachtlijst.",
+        "zonder_appmaatje": "Klant vergeet het en komt niet, of belt zaterdagochtend af als het al druk is. Dat plekje blijft leeg.",
+        "link": "/voorbeelden/kapper-herinnering-verzetten",
+        "top6": false
+      },
+      {
+        "titel": "Nazorg na kleuren, daarna een review",
+        "slug": "kapper-nazorg-review",
+        "bedrijf": "Kapsalon De Krul",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Klant boekte via WhatsApp en kreeg na de afspraak dit bericht als vervolg.",
+        "berichten": [
+          {
+            "van": "bedrijf",
+            "tijd": "10:00",
+            "tekst": "Hoi Emma, hoe bevalt je nieuwe kleur? Tip van Lisa: was je haar de eerste twee dagen nog niet, dan blijft de kleur mooier.",
+            "dag": "Donderdag 3 december",
+            "sjabloon": true,
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Helemaal goed",
+                "Ik heb een vraag"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "10:40",
+            "tekst": "Ik heb een vraag",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "10:41",
+            "tekst": "Mag ik wel droogshampoo gebruiken?"
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "11:05",
+            "tekst": "Hoi Emma, Lisa hier. Ja hoor, dat kan prima."
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "11:05",
+            "tekst": "Zou je een review willen schrijven over je bezoek? Dat helpt een kleine salon echt.",
+            "element": {
+              "type": "link",
+              "soort": "review",
+              "label": "Review schrijven"
+            }
+          }
+        ],
+        "achter_de_schermen": "De nazorgtip gaat vanzelf de dag na een kleurbehandeling. Een vraag komt als melding bij Lisa, die zelf antwoordt. Iedere klant krijgt hetzelfde reviewverzoek, niet alleen wie 'goed' tikte.",
+        "zonder_appmaatje": "Nazorg gebeurt niet, of alleen als je eraan denkt. Om een review vragen schiet er tussen twee klanten door bij in.",
+        "link": "/voorbeelden/kapper-nazorg-review",
+        "top6": false
+      }
+    ]
+  },
+  {
+    "branche": "Fysio / praktijk",
+    "slug": "fysio",
+    "momenten": [
+      {
+        "titel": "Plek vrijgekomen? Eerste die ja zegt",
+        "slug": "fysio-wachtlijst",
+        "bedrijf": "Fysiopraktijk Het Duin",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Patiënt vroeg zelf om een seintje als er eerder plek is; dat staat in het eerste bericht.",
+        "berichten": [
+          {
+            "van": "bedrijf",
+            "tijd": "16:40",
+            "tekst": "Hoi Wim, je vroeg om een seintje als er eerder plek is. Morgen om 08:30 is er een plek vrij bij Tom. Wil je die?",
+            "dag": "Donderdag 3 december",
+            "sjabloon": true,
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Ja, graag",
+                "Nee, dank je"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "16:52",
+            "tekst": "Ja, graag",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "16:52",
+            "tekst": "Hij is voor jou: vrijdag 4 december om 08:30 bij Tom. Je oude afspraak van 14 december hebben we vrijgegeven."
+          },
+          {
+            "van": "klant",
+            "tijd": "16:53",
+            "tekst": "Top, dank je"
+          }
+        ],
+        "achter_de_schermen": "Iemand zegde af, het systeem stuurde een berichtje naar de wachtlijst. De eerste 'ja' krijgt de plek, de rest krijgt netjes 'helaas, al vergeven, je blijft op de lijst'. De agenda is bijgewerkt en de oude afspraak vrijgegeven.",
+        "zonder_appmaatje": "Afzegging komt binnen, de assistente belt de wachtlijst af. Niemand neemt op, de plek blijft leeg.",
+        "link": "/voorbeelden/fysio-wachtlijst",
+        "top6": true,
+        "top6_waarom": "Laat in vier berichten zien hoe een lege plek zichzelf vult, iets wat bellen nooit zo snel doet."
+      },
+      {
+        "titel": "Voorbereiding op de eerste afspraak",
+        "slug": "fysio-intake",
+        "bedrijf": "Fysiopraktijk Het Duin",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Patiënt maakte de afspraak via het formulier op de site en vinkte WhatsApp aan; dat staat in het eerste bericht.",
+        "berichten": [
+          {
+            "van": "bedrijf",
+            "tijd": "12:00",
+            "tekst": "Hoi Karin, je eerste afspraak is donderdag 3 december om 14:00 bij Tom. Je gaf bij je aanmelding aan dat we je via WhatsApp mogen berichten. Mogen we je twee korte vragen stellen?",
+            "dag": "Maandag 30 november",
+            "sjabloon": true,
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Ja, prima",
+                "Liever niet"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "12:31",
+            "tekst": "Ja, prima",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "12:31",
+            "tekst": "Waar heb je vooral last van?",
+            "element": {
+              "type": "lijst",
+              "knop": "Kies",
+              "opties": [
+                "Rug",
+                "Nek of schouder",
+                "Knie",
+                "Enkel of voet",
+                "Iets anders"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "12:32",
+            "tekst": "Knie",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "12:32",
+            "tekst": "Dank je, Tom weet het. Een verwijzing van de huisarts is niet nodig. Neem je zorgpas en een korte broek mee. Hier zit de praktijk:",
+            "element": {
+              "type": "locatie",
+              "naam": "Fysiopraktijk Het Duin",
+              "adres": "Duinlaan 3, Noordwijk"
+            }
+          }
+        ],
+        "achter_de_schermen": "Tom ziet vóór de afspraak waar het om gaat. Medische details vraagt hij zelf in de behandelkamer; in de app blijft het bij het hoognodige.",
+        "zonder_appmaatje": "Eerste tien minuten van de behandeling gaan op aan uitleg die al eerder bekend had kunnen zijn. Patiënt vergeet de zorgpas of komt in een spijkerbroek.",
+        "link": "/voorbeelden/fysio-intake",
+        "top6": false
+      },
+      {
+        "titel": "Oefeningen mee naar huis, na een week checken",
+        "slug": "fysio-oefeningen",
+        "bedrijf": "Fysiopraktijk Het Duin",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Vervolg op het gesprek dat de patiënt al met de praktijk had (zie intake).",
+        "berichten": [
+          {
+            "van": "bedrijf",
+            "tijd": "15:10",
+            "tekst": "Hoi Karin, hier zijn de oefeningen van vandaag. Twee keer per dag, rustig opbouwen.",
+            "dag": "Donderdag 3 december",
+            "sjabloon": true,
+            "element": {
+              "type": "document",
+              "bestandsnaam": "Oefeningen-knie.pdf"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "09:00",
+            "tekst": "Hoi Karin, hoe gaan de oefeningen?",
+            "dag": "Donderdag 10 december",
+            "sjabloon": true,
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Gaat goed",
+                "Doet pijn",
+                "Ik heb een vraag"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "09:47",
+            "tekst": "Doet pijn",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "09:47",
+            "tekst": "Vervelend. Ik geef het door aan Tom, hij belt je vandaag nog even."
+          }
+        ],
+        "achter_de_schermen": "De pdf gaat mee als Tom de behandeling afsluit. 'Doet pijn' komt als melding bij Tom, met de naam en het telefoonnummer erbij.",
+        "zonder_appmaatje": "Oefeningen op een papiertje dat kwijtraakt. Of het pijn doet hoor je pas bij de volgende afspraak.",
+        "link": "/voorbeelden/fysio-oefeningen",
+        "top6": false
+      }
+    ]
+  },
+  {
+    "branche": "Makelaar",
+    "slug": "makelaar",
+    "momenten": [
+      {
+        "titel": "Reactie op een woning: meteen een bezichtiging",
+        "slug": "makelaar-bezichtiging",
+        "bedrijf": "Makelaardij Het Anker",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Geïnteresseerde begint zelf het gesprek.",
+        "berichten": [
+          {
+            "van": "klant",
+            "tijd": "20:15",
+            "tekst": "Hoi, is de woning aan de Duinlaan nog beschikbaar?",
+            "dag": "Maandag 30 november"
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "20:15",
+            "tekst": "Hoi, ja, die is nog beschikbaar. Hier vind je de brochure met foto's en plattegrond.",
+            "element": {
+              "type": "link",
+              "soort": "brochure",
+              "label": "Brochure bekijken"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "20:15",
+            "tekst": "Wil je komen kijken? Dit zijn de momenten:",
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Wo 2 dec 17:00",
+                "Do 3 dec 12:30",
+                "Za 5 dec 10:00"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "20:18",
+            "tekst": "Wo 2 dec 17:00",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "20:18",
+            "tekst": "Genoteerd. Heb je al met een hypotheekadviseur gesproken?",
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Ja",
+                "Nog niet"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "20:19",
+            "tekst": "Nog niet",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "20:19",
+            "tekst": "Geen probleem, daar kunnen we het woensdag over hebben. Tot woensdag 2 december om 17:00.",
+            "element": {
+              "type": "locatie",
+              "naam": "Duinlaan (bezichtiging)",
+              "adres": "Duinlaan, Katwijk"
+            }
+          }
+        ],
+        "achter_de_schermen": "De bezichtiging staat in je agenda met de antwoorden erbij. 's Avonds om kwart over acht hoefde niemand op te nemen.",
+        "zonder_appmaatje": "Reactie komt 's avonds binnen, de volgende ochtend bellen, voicemail, terugbellen, tijd prikken. Ondertussen heeft de geïnteresseerde al drie andere woningen bekeken.",
+        "link": "/voorbeelden/makelaar-bezichtiging",
+        "top6": false
+      },
+      {
+        "titel": "Bezichtiging opvolgen",
+        "slug": "makelaar-opvolgen",
+        "bedrijf": "Makelaardij Het Anker",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Vervolg op het gesprek waarin de bezichtiging is gepland.",
+        "berichten": [
+          {
+            "van": "bedrijf",
+            "tijd": "10:00",
+            "tekst": "Hoi Anouk, bedankt voor je bezoek aan de Duinlaan gisteren. Wat vond je ervan?",
+            "dag": "Donderdag 3 december",
+            "sjabloon": true,
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Ik wil bieden",
+                "Ik twijfel nog",
+                "Niet voor mij"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "10:35",
+            "tekst": "Ik twijfel nog",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "10:36",
+            "tekst": "Of de zolder als slaapkamer kan"
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "11:10",
+            "tekst": "Goede vraag. Hier is de bouwtekening van de zolder. Ik bel je vanmiddag even.",
+            "element": {
+              "type": "document",
+              "bestandsnaam": "Bouwtekening-zolder.pdf"
+            }
+          }
+        ],
+        "achter_de_schermen": "Elke bezichtiger krijgt de dag erna dit bericht. 'Ik wil bieden' komt meteen als melding op je telefoon, 'Niet voor mij' krijgt een nette afsluiting, twijfels zie je in je overzicht.",
+        "zonder_appmaatje": "Na een middag met vijf bezichtigingen iedereen nabellen. De helft neemt niet op.",
+        "link": "/voorbeelden/makelaar-opvolgen",
+        "top6": false
+      },
+      {
+        "titel": "Wekelijkse update voor de verkoper",
+        "slug": "makelaar-update-verkoper",
+        "bedrijf": "Makelaardij Het Anker",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Verkoper koos bij de opdracht voor updates via WhatsApp; dat staat in het eerste bericht.",
+        "berichten": [
+          {
+            "van": "bedrijf",
+            "tijd": "16:00",
+            "tekst": "Hoi Gerard, zoals afgesproken je update van deze week over de Duinlaan: 4 bezichtigingen, 2 mensen twijfelen nog, 1 tweede bezichtiging op zaterdag 5 december.",
+            "dag": "Vrijdag 4 december",
+            "sjabloon": true,
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Duidelijk",
+                "Bel me even"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "16:20",
+            "tekst": "Bel me even",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "16:20",
+            "tekst": "Komt goed. Jeroen belt je maandag in de ochtend."
+          }
+        ],
+        "achter_de_schermen": "De cijfers komen uit je agenda en de reacties van bezichtigers. Jij hoeft alleen 'versturen' te tikken. 'Bel me even' zet een belafspraak in je agenda.",
+        "zonder_appmaatje": "Verkoper belt zelf om te vragen hoe het gaat, vaak op het moment dat jij midden in een bezichtiging staat.",
+        "link": "/voorbeelden/makelaar-update-verkoper",
+        "top6": false
+      }
+    ]
+  },
+  {
+    "branche": "Restaurant (groepen en reserveringen)",
+    "slug": "restaurant",
+    "momenten": [
+      {
+        "titel": "Kerstdiner met 14 man regelen",
+        "slug": "restaurant-groep",
+        "bedrijf": "Eetcafé De Vuurtoren",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Klant begint zelf het gesprek.",
+        "berichten": [
+          {
+            "van": "klant",
+            "tijd": "14:20",
+            "tekst": "Hoi, kunnen we vrijdag 18 december met 14 personen komen eten?",
+            "dag": "Dinsdag 24 november"
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "14:20",
+            "tekst": "Hoi, dat kan. Voor groepen vanaf 10 hebben we een groepsmenu. Hoe laat willen jullie komen?",
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "18:00",
+                "19:00",
+                "19:30"
+              ]
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "14:20",
+            "tekst": "Hier is het menu:",
+            "element": {
+              "type": "document",
+              "bestandsnaam": "Groepsmenu-december.pdf"
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "14:26",
+            "tekst": "19:00. Twee mensen zijn vegetarisch en één heeft een notenallergie."
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "14:26",
+            "tekst": "Genoteerd. Om de tafel vast te zetten vragen we een aanbetaling:",
+            "element": {
+              "type": "link",
+              "soort": "betaallink",
+              "label": "Aanbetaling doen"
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "14:30",
+            "tekst": "Gedaan"
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "14:30",
+            "tekst": "Dank je, de tafel staat: vrijdag 18 december, 19:00, 14 personen. Een week van tevoren vragen we het definitieve aantal."
+          }
+        ],
+        "achter_de_schermen": "De reservering staat in je reserveringssysteem, met de dieetwensen in de notitie voor de keuken. De aanbetaling is gekoppeld aan de reservering.",
+        "zonder_appmaatje": "Mailtjes heen en weer over menu, tijd en allergieën, aanbetaling per bankoverschrijving die je zelf moet natrekken.",
+        "link": "/voorbeelden/restaurant-groep",
+        "top6": false
+      },
+      {
+        "titel": "Week ervoor: klopt het aantal nog?",
+        "slug": "restaurant-definitief-aantal",
+        "bedrijf": "Eetcafé De Vuurtoren",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Vervolg op de groepsreservering die de klant zelf via WhatsApp maakte.",
+        "berichten": [
+          {
+            "van": "bedrijf",
+            "tijd": "10:00",
+            "tekst": "Hoi Joyce, volgende week vrijdag 18 december komen jullie met 14 personen. Klopt dat aantal nog?",
+            "dag": "Vrijdag 11 december",
+            "sjabloon": true,
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Klopt",
+                "Aantal is anders"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "11:12",
+            "tekst": "Aantal is anders",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "11:12",
+            "tekst": "Met hoeveel komen jullie?"
+          },
+          {
+            "van": "klant",
+            "tijd": "11:13",
+            "tekst": "12"
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "11:13",
+            "tekst": "Aangepast naar 12 personen. Tot volgende week vrijdag."
+          }
+        ],
+        "achter_de_schermen": "Het aantal is aangepast in je reserveringssysteem en de keuken ziet het nieuwe aantal. Geen reactie na twee dagen? Dan krijg jij een seintje om te bellen.",
+        "zonder_appmaatje": "Op de avond zelf blijken er twee stoelen leeg, terwijl je die tafel ook had kunnen vullen.",
+        "link": "/voorbeelden/restaurant-definitief-aantal",
+        "top6": false
+      },
+      {
+        "titel": "Vol vanavond? Seintje als er een tafel vrijkomt",
+        "slug": "restaurant-wachtlijst",
+        "bedrijf": "Eetcafé De Vuurtoren",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Klant begint zelf het gesprek en vraagt om het seintje.",
+        "berichten": [
+          {
+            "van": "klant",
+            "tijd": "17:30",
+            "tekst": "Hebben jullie vanavond nog plek voor 2?",
+            "dag": "Zaterdag 28 november"
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "17:30",
+            "tekst": "Vanavond zitten we vol. Wil je een seintje als er een tafel vrijkomt?",
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Ja, graag",
+                "Nee, dank je"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "17:31",
+            "tekst": "Ja, graag",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "19:05",
+            "tekst": "Er is net een tafel voor 2 vrijgekomen om 19:45. Wil je hem?",
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Ja, we komen",
+                "Lukt niet meer"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "19:06",
+            "tekst": "Ja, we komen",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "19:06",
+            "tekst": "Staat op jullie naam. Tot zo 👍"
+          }
+        ],
+        "achter_de_schermen": "Bij een afzegging gaat het bericht naar de wachtlijst van die avond. Wie het eerst 'ja' zegt, krijgt de tafel, en die staat meteen in het reserveringssysteem.",
+        "zonder_appmaatje": "'Nee, sorry, vol.' En als er om zeven uur een tafel vrijkomt, blijft die leeg.",
+        "link": "/voorbeelden/restaurant-wachtlijst",
+        "top6": false
+      }
+    ]
+  },
+  {
+    "branche": "Dakdekker / aannemer",
+    "slug": "dakdekker",
+    "momenten": [
+      {
+        "titel": "Offerte-aanvraag met foto's, zonder eerst te gaan kijken",
+        "slug": "dakdekker-offerte-fotos",
+        "bedrijf": "Dakbedrijf Kustlijn",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Klant begint zelf het gesprek.",
+        "berichten": [
+          {
+            "van": "klant",
+            "tijd": "08:15",
+            "tekst": "Hoi, bij de storm is een stuk dakgoot losgekomen en er loopt water langs de muur.",
+            "dag": "Maandag 30 november"
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "08:15",
+            "tekst": "Vervelend. Om je snel een prijs te kunnen geven: stuur twee foto's, één van dichtbij en één van de hele gevel."
+          },
+          {
+            "van": "klant",
+            "tijd": "08:21",
+            "tekst": "",
+            "element": {
+              "type": "foto",
+              "beschrijving": "Close-up: zinken dakgoot hangt los van de beugel, water loopt langs de muur."
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "08:21",
+            "tekst": "",
+            "element": {
+              "type": "foto",
+              "beschrijving": "Hele voorgevel van een rijtjeshuis met pannendak, losse goot rechtsboven."
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "08:21",
+            "tekst": "Dank je. Wat voor dak is het?",
+            "element": {
+              "type": "knoppen",
+              "knoppen": [
+                "Pannendak",
+                "Plat dak",
+                "Weet ik niet"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "08:22",
+            "tekst": "Pannendak",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "08:22",
+            "tekst": "Duidelijk. Rick bekijkt de foto's en je krijgt morgen vóór 12:00 een prijs hier in de app."
+          }
+        ],
+        "achter_de_schermen": "Foto's, daktype, adres en telefoonnummer komen als één overzicht bij Rick binnen, in plaats van losse appjes tussen zijn privéberichten.",
+        "zonder_appmaatje": "Klant belt, je rijdt langs om te zien wat ook op een foto te zien was. Rekenvoorbeeld: stel 3 keer per week 40 minuten rijden en kijken, dan is dat 2 uur per week.",
+        "link": "/voorbeelden/dakdekker-offerte-fotos",
+        "top6": true,
+        "top6_waarom": "Rijden om te kijken wat ook op een foto te zien is, voelt elke vakman meteen als verspilde tijd."
+      },
+      {
+        "titel": "Offerte sturen en akkoord in één tik",
+        "slug": "dakdekker-offerte-akkoord",
+        "bedrijf": "Dakbedrijf Kustlijn",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Vervolg op de aanvraag die de klant zelf via WhatsApp deed.",
+        "berichten": [
+          {
+            "van": "bedrijf",
+            "tijd": "10:30",
+            "tekst": "Hoi Sandra, hier is de offerte voor het herstel van de dakgoot. We kunnen woensdag 9 december komen.",
+            "dag": "Dinsdag 1 december",
+            "sjabloon": true,
+            "element": {
+              "type": "document",
+              "bestandsnaam": "Offerte-dakgoot-Kustlijn.pdf"
+            },
+            "element_extra": {
+              "type": "knoppen",
+              "knoppen": [
+                "Akkoord",
+                "Vraag over offerte",
+                "Ander moment"
+              ]
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "12:48",
+            "tekst": "Akkoord",
+            "element": {
+              "type": "knopantwoord"
+            }
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "12:48",
+            "tekst": "Top. Staat ingepland op woensdag 9 december, rond 08:00. Bij harde wind of regen verzetten we en hoor je dat hier."
+          }
+        ],
+        "achter_de_schermen": "Het akkoord staat met datum en tijd bij de offerte, de klus staat in de planning. Wie de offerte na drie dagen niet heeft geopend krijgt één herinnering.",
+        "zonder_appmaatje": "Offerte per mail sturen, een week later bellen 'heeft u er al naar gekeken?', akkoord komt via een ander kanaal en moet je zelf overzetten.",
+        "link": "/voorbeelden/dakdekker-offerte-akkoord",
+        "top6": false
+      },
+      {
+        "titel": "Klaar: foto van het werk en de factuur",
+        "slug": "dakdekker-oplevering",
+        "bedrijf": "Dakbedrijf Kustlijn",
+        "kanaal": "whatsapp",
+        "tags": [],
+        "opt_in": "Vervolg op de klus die de klant zelf via WhatsApp aanvroeg.",
+        "berichten": [
+          {
+            "van": "bedrijf",
+            "tijd": "14:30",
+            "tekst": "Hoi Sandra, de dakgoot is klaar. Zo ziet hij er nu uit. De factuur kun je via de knop betalen.",
+            "dag": "Woensdag 9 december",
+            "sjabloon": true,
+            "element": {
+              "type": "foto",
+              "beschrijving": "Nieuwe zinken dakgoot, strak aan de beugels, gezien vanaf de ladder."
+            },
+            "element_extra": {
+              "type": "link",
+              "soort": "betaallink",
+              "label": "Factuur betalen"
+            }
+          },
+          {
+            "van": "klant",
+            "tijd": "15:02",
+            "tekst": "Ziet er goed uit, dank je"
+          },
+          {
+            "van": "bedrijf",
+            "tijd": "10:00",
+            "tekst": "Hoi Sandra, zou je een review willen schrijven over de klus? Dat helpt ons echt.",
+            "dag": "Woensdag 16 december",
+            "sjabloon": true,
+            "element": {
+              "type": "link",
+              "soort": "review",
+              "label": "Review schrijven"
+            }
+          }
+        ],
+        "achter_de_schermen": "De foto die Rick op het dak maakt gaat naar de klant en in het dossier. De factuur komt uit je boekhoudpakket. Het reviewverzoek gaat een week later vanzelf, naar iedere klant.",
+        "zonder_appmaatje": "Factuur maken als je 's avonds thuis bent, en om een review vragen vergeet je meestal.",
+        "link": "/voorbeelden/dakdekker-oplevering",
+        "top6": false
+      }
+    ]
+  }
+]

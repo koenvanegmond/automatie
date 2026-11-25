@@ -84,3 +84,20 @@ a:hover .ticker { animation-play-state: paused; }
   .prose-am td { @apply border-t border-ink/15 px-4 py-3 align-top; }
   .prose-am tr:first-child td { @apply border-t-0; }
 }
+
+/* Voorbeeldgesprekken (components/voorbeelden/ChatMockup.tsx).
+   Berichten worden alleen verborgen als JS draait (html.chat-js, gezet in layout.tsx); zonder JS staat alles er. */
+.cm-bg { background-color: #EFEAE2; background-image: radial-gradient(rgba(14,17,16,.07) 1px, transparent 1px); background-size: 18px 18px; }
+.cm-msg > :not(.cm-typing) { transition: opacity .35s ease, transform .4s cubic-bezier(.22,1,.36,1); }
+html.chat-js .cm[data-anim="pending"] .cm-msg > :not(.cm-typing),
+html.chat-js .cm[data-anim="run"] .cm-msg:not([data-on]) > :not(.cm-typing) { opacity: 0; transform: translateY(10px); }
+.cm-typing { opacity: 0; pointer-events: none; transition: opacity .15s ease; }
+.cm[data-anim="run"] .cm-msg[data-typing] .cm-typing { opacity: 1; }
+.cm-typing i { display: block; width: 7px; height: 7px; border-radius: 999px; background: rgba(14,17,16,.45); animation: cm-dot 1s ease-in-out infinite; }
+.cm-typing i:nth-child(2) { animation-delay: .15s; }
+.cm-typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes cm-dot { 0%, 60%, 100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-3px); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  html.chat-js .cm .cm-msg > :not(.cm-typing) { opacity: 1 !important; transform: none !important; transition: none; }
+  .cm-typing { display: none; }
+}
