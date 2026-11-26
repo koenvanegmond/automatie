@@ -88,7 +88,7 @@ const nl = {
       },
       techniek: {
         label: "Techniek & transport",
-        result: ["Foto of video direct bij de klus", "Klant weet wanneer je komt", "Betaallink erbij"],
+        result: ["Foto of video direct bij de klus", "Klant weet wanneer je komt", "Betaallink erbij (met koppeling)"],
         chat: [
           { from: "them", text: "Mijn cv-ketel doet het niet meer." },
           { from: "bot", text: "Vervelend! Kun je een foto van de storing sturen?" },

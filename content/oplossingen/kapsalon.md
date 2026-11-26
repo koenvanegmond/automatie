@@ -45,7 +45,7 @@ Vaak wel. Of dat voor jouw nummer kan en wat je dan inlevert (bijvoorbeeld uitze
 De berichten staan in jouw toon en met jouw salonnaam. Wil een klant iets anders dan bevestigen of verzetten, dan kom jij in beeld.
 
 **Kan ik ook een aanbetaling vragen?**
-Ja, een betaallink kan in de bevestiging. Of en wanneer je een no-show rekent, staat in je eigen voorwaarden. Daar beslis jij over, niet wij.
+Ja, met een koppeling (bijvoorbeeld Mollie) kan een betaallink in de bevestiging. Of en wanneer je een no-show rekent, staat in je eigen voorwaarden. Daar beslis jij over, niet wij.
 
 **Werkt dit ook voor een nagel- of schoonheidssalon?**
 Ja. Het draait om afspraken, en die werken in elke salon hetzelfde.

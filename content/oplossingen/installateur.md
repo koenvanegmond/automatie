@@ -34,7 +34,7 @@ Stuurt een klant zelf een melding, dan mag je binnen 24 uur gewoon antwoorden. W
 ## Wat kost het?
 
 - Eén flow (bijvoorbeeld storingsmelding met foto naar je mail of planning): **vanaf €300 eenmalig**.
-- Meer flows en koppelingen ("onderweg"-bericht, werkbon + betaallink): **rond €700**.
+- Meer flows en koppelingen ("onderweg"-bericht, werkbon, betaallink via een Mollie-koppeling): **rond €700**.
 - Onderhoud en hosting **vanaf €29 per maand**, plus Meta-berichtkosten tegen kostprijs.
 - Excl. btw, indicatief, eerst een offerte. [Bekijk prijzen →](/prijzen)
 

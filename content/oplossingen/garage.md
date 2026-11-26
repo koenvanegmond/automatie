@@ -1,6 +1,6 @@
 ---
 title: "APK- en onderhoudsherinnering via WhatsApp | Appmaatje"
-description: "Laat klanten via WhatsApp een APK- of onderhoudsafspraak kiezen en stuur \"je auto is klaar\" met betaallink. Gekoppeld aan je planning. Eerst een offerte."
+description: "Laat klanten via WhatsApp een APK- of onderhoudsafspraak kiezen en stuur \"je auto is klaar\". Gekoppeld aan je planning. Eerst een offerte."
 slug: garage
 h1: "De APK-herinnering die jij stuurt, vóór de RDW."
 name: "Garage"
@@ -32,7 +32,7 @@ Je mag alleen appen naar klanten die je hun nummer gaven en toestemming gaven vo
 ## Wat kost het?
 
 - Eén flow (bijvoorbeeld APK-herinnering + afspraak kiezen): **vanaf €300 eenmalig**.
-- Meer flows en koppelingen (planning, "auto klaar" + betaallink): **rond €700**.
+- Meer flows en koppelingen (planning, "auto klaar", betaallink via een Mollie-koppeling): **rond €700**.
 - Onderhoud en hosting **vanaf €29 per maand**, plus Meta-berichtkosten tegen kostprijs.
 - Excl. btw, indicatief, altijd eerst een offerte. [Bekijk prijzen →](/prijzen)
 

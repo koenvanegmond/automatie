@@ -345,7 +345,7 @@
           {
             "van": "bedrijf",
             "tijd": "11:20",
-            "sjabloon": true,
+            "sjabloon": false,
             "tekst": "Hoi Sanne, Mehmet hier uit de werkplaats. Je remblokken voor zijn bijna op. Vervangen kost € 145 inclusief arbeid. Zullen we het meteen doen?",
             "element": {
               "type": "foto",
