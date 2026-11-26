@@ -1,7 +1,18 @@
-import type { Moment } from "@/lib/voorbeelden";
-import { BRANCHE_LABEL, brancheOf, sceneIcon } from "@/lib/voorbeelden";
+import type { Moment, Niveau } from "@/lib/voorbeelden";
+import { BRANCHE_LABEL, NIVEAU_LABEL, brancheOf, sceneIcon } from "@/lib/voorbeelden";
 import { ChatMockup } from "./ChatMockup";
 import { SceneArt } from "./Art";
+
+/** Klein label: "Basis" (WhatsApp + agenda/lijst) of "Met koppeling" (eigen systeem moet het toelaten). */
+export const NiveauBadge = ({ niveau, className = "" }: { niveau: Niveau; className?: string }) => (
+  <span
+    className={`inline-flex h-7 items-center gap-1.5 whitespace-nowrap rounded-full border-2 border-ink px-2.5 font-ui text-[12px] font-bold uppercase tracking-[0.02em] text-ink ${niveau === "basis" ? "bg-white" : "bg-lilac"} ${className}`}
+    title={niveau === "basis" ? "WhatsApp plus je agenda, een formulier of een lijst" : "Alleen als jouw eigen systeem een koppeling heeft"}
+  >
+    <span aria-hidden className={`h-2 w-2 rounded-full ${niveau === "basis" ? "bg-brand" : "border-2 border-ink bg-transparent"}`} />
+    {NIVEAU_LABEL[niveau]}
+  </span>
+);
 
 /** Het aha-moment: wat er in het systeem gebeurde zonder dat iemand iets typte. */
 export const BehindScenes = ({ moment, large = false }: { moment: Moment; large?: boolean }) => (
@@ -13,6 +24,9 @@ export const BehindScenes = ({ moment, large = false }: { moment: Moment; large?
       <p className={`font-display uppercase leading-[0.95] text-ink ${large ? "text-[30px] md:text-[36px]" : "text-[26px]"}`}>Achter de schermen</p>
     </div>
     <p className={`mt-3 text-ink ${large ? "text-[18px] leading-[1.5] md:text-[19px]" : "text-[16px] leading-[1.5]"}`}>{moment.achter_de_schermen}</p>
+    <p className={`mt-4 border-t-2 border-ink/15 pt-3 text-ink/80 ${large ? "text-[16px] leading-[1.45] md:text-[17px]" : "text-[14px] leading-[1.45]"}`}>
+      <span className="font-bold text-ink">Nodig: </span>{moment.nodig}
+    </p>
   </div>
 );
 
@@ -33,8 +47,11 @@ export const ExampleCard = ({ moment, showBranche = false, as: H = "h3" }: { mom
   return (
     <article className="flex flex-col gap-4">
       <div>
-        {showBranche && b && <p className="font-ui text-[12px] font-bold uppercase tracking-[0.02em] text-ink/60">{BRANCHE_LABEL[b.slug] ?? b.branche}{moment.kanaal === "email" ? " · per mail" : ""}</p>}
-        <H className="mt-1 text-[22px] font-bold leading-[1.15] tracking-[-0.015em] text-ink">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <NiveauBadge niveau={moment.niveau} />
+          {showBranche && b && <p className="font-ui text-[12px] font-bold uppercase tracking-[0.02em] text-ink/60">{BRANCHE_LABEL[b.slug] ?? b.branche}{moment.kanaal === "email" ? " · per mail" : ""}</p>}
+        </div>
+        <H className="mt-2 text-[22px] font-bold leading-[1.15] tracking-[-0.015em] text-ink">
           <a href={moment.link} className="underline decoration-transparent decoration-2 underline-offset-4 hover:decoration-brand">{moment.titel}</a>
         </H>
       </div>
@@ -61,7 +78,7 @@ export const ExamplesSection = ({ moments, title = "Zo ziet dat eruit", bg = "bg
       <div className="mx-auto max-w-3xl text-center">
         <p className="eyebrow">Voorbeelden</p>
         <h2 className="h2 mt-5 !text-[48px] md:!text-[80px]">{title}</h2>
-        <p className="sub mx-auto mt-4 max-w-2xl">Links de klant, rechts jouw zaak. Daaronder wat er vanzelf gebeurt.</p>
+        <p className="sub mx-auto mt-4 max-w-2xl">Links de klant, rechts jouw zaak. Daaronder wat er vanzelf gebeurt, en wat ervoor nodig is.</p>
       </div>
       <div className="mt-14"><ExampleGrid moments={moments} /></div>
       <div className="mt-14 flex flex-col items-center gap-3 text-center">

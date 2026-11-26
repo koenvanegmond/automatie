@@ -6,7 +6,7 @@ import { Button } from "@/components/Buttons";
 import { pageMeta } from "@/lib/seo";
 import { BRANCHE_LABEL, allMomenten, brancheOf, displayName, getMoment } from "@/lib/voorbeelden";
 import { ChatMockup } from "@/components/voorbeelden/ChatMockup";
-import { BehindScenes, Without } from "@/components/voorbeelden/Example";
+import { BehindScenes, NiveauBadge, Without } from "@/components/voorbeelden/Example";
 
 export const dynamicParams = false;
 
@@ -25,7 +25,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return pageMeta({
     path: `/voorbeelden/${m.slug}`,
     title: `${m.titel} | Voorbeeld ${label.toLowerCase()} | Appmaatje`,
-    description: clip(`Voorbeeldgesprek ${kanaal} voor een ${label.toLowerCase()}, met wat er achter de schermen gebeurt. ${m.achter_de_schermen}`),
+    description: clip(`Voorbeeldgesprek ${kanaal} voor een ${label.toLowerCase()}, met wat er achter de schermen gebeurt en wat ervoor nodig is. ${m.achter_de_schermen}`),
     image: { url: `/voorbeelden/${m.slug}/opengraph-image`, alt: `Voorbeeldgesprek: ${m.titel}` },
   });
 }
@@ -48,7 +48,10 @@ export default function VoorbeeldPage({ params }: { params: { slug: string } }) 
               <a href="/voorbeelden" className="hover:text-ink">Voorbeelden</a> <span aria-hidden>/</span>{" "}
               <a href={`/voorbeelden#${b?.slug ?? ""}`} className="hover:text-ink">{label}</a>
             </nav>
-            <p className="eyebrow mt-5">{label}{isMail ? " · per mail" : " · WhatsApp"}</p>
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+              <p className="eyebrow">{label}{isMail ? " · per mail" : " · WhatsApp"}</p>
+              <NiveauBadge niveau={m.niveau} className="!h-9 px-4 !text-[13px]" />
+            </div>
             <h1 className="h2 mx-auto mt-5 max-w-4xl !text-[44px] md:!text-[80px]">{m.titel}</h1>
             <p className="mt-4 text-[17px] text-body/80">{displayName(m.bedrijf)} <span aria-hidden>·</span> <span>Voorbeelden met verzonnen namen.</span></p>
           </div>
@@ -77,7 +80,10 @@ export default function VoorbeeldPage({ params }: { params: { slug: string } }) 
               <div className="mx-auto mt-10 grid max-w-4xl gap-4 md:grid-cols-2">
                 {others.map((o) => (
                   <a key={o.slug} href={o.link} className="group flex items-center justify-between gap-4 rounded-[24px] border-2 border-ink bg-white px-6 py-5 transition-[transform,box-shadow] duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_#0E1110]">
-                    <span className="text-[19px] font-bold leading-tight text-ink">{o.titel}</span>
+                    <span className="flex flex-col items-start gap-2">
+                      <NiveauBadge niveau={o.niveau} />
+                      <span className="text-[19px] font-bold leading-tight text-ink">{o.titel}</span>
+                    </span>
                     <span aria-hidden className="grid h-10 w-10 shrink-0 place-items-center rounded-full border-2 border-ink bg-mint text-ink transition-transform group-hover:translate-x-1">→</span>
                   </a>
                 ))}

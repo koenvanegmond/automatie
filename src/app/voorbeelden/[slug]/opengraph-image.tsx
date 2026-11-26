@@ -79,6 +79,11 @@ export default async function Image({ params }: { params: { slug: string } }) {
             <div style={{ display: "flex", border: `3px solid ${INK}`, borderRadius: 999, background: "#FFFFFF", padding: "9px 22px", fontSize: 22, fontWeight: 700, letterSpacing: 0.5 }}>
               {`VOORBEELD · ${label.toUpperCase()}${isMail ? " · PER MAIL" : ""}`}
             </div>
+            {m ? (
+              <div style={{ display: "flex", marginLeft: 12, border: `3px solid ${INK}`, borderRadius: 999, background: m.niveau === "basis" ? "#FFFFFF" : "#DCCBF7", padding: "9px 20px", fontSize: 22, fontWeight: 700, letterSpacing: 0.5 }}>
+                {m.niveau === "basis" ? "BASIS" : "MET KOPPELING"}
+              </div>
+            ) : null}
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", fontFamily: "Anton", fontSize: title.length > 34 ? 72 : 84, lineHeight: 0.98, textTransform: "uppercase", letterSpacing: -0.5 }}>{title}</div>

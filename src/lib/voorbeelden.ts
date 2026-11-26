@@ -27,6 +27,10 @@ export type Bericht = {
   element_extra?: Element;
 };
 
+export type Niveau = "basis" | "koppeling";
+
+export const NIVEAU_LABEL: Record<Niveau, string> = { basis: "Basis", koppeling: "Met koppeling" };
+
 export type Moment = {
   titel: string;
   slug: string;
@@ -36,6 +40,10 @@ export type Moment = {
   opt_in: string;
   berichten: Bericht[];
   achter_de_schermen: string;
+  /** "basis": WhatsApp + agenda/formulier/lijst. "koppeling": het eigen systeem van de klant moet een koppeling hebben. */
+  niveau: Niveau;
+  /** Eén korte regel: wat er nodig is. */
+  nodig: string;
   zonder_appmaatje: string;
   link: string;
   top6: boolean;
@@ -52,14 +60,14 @@ export const getMoment = (slug: string) => allMomenten().find((m) => m.slug === 
 
 export const brancheOf = (slug: string) => branches.find((b) => b.momenten.some((m) => m.slug === slug));
 
-/** Volgorde zoals in onderzoek.md (top 6 voor in een mail). */
+/** Volgorde van de top 6. Minstens 4 van de 6 zijn "basis": dat is wat nu verkocht wordt. */
 const TOP6_ORDER = [
-  "installateur-workmate-werkbon",
   "installateur-eenmanszaak-storing",
   "garage-auto-klaar",
   "dakdekker-offerte-fotos",
   "garage-apk-herinnering",
   "fysio-wachtlijst",
+  "installateur-workmate-werkbon",
 ];
 export const top6 = (): Moment[] => {
   const all = allMomenten().filter((m) => m.top6);

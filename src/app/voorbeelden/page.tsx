@@ -3,14 +3,14 @@ import { Footer } from "@/sections/Footer";
 import { EndCta } from "@/sections/HomeSections";
 import { pageMeta } from "@/lib/seo";
 import { BRANCHE_LABEL, branches, top6 } from "@/lib/voorbeelden";
-import { Disclaimer, ExampleGrid } from "@/components/voorbeelden/Example";
+import { Disclaimer, ExampleGrid, NiveauBadge } from "@/components/voorbeelden/Example";
 import { BrancheChips } from "@/components/voorbeelden/BrancheChips";
 
 export const metadata = pageMeta({
   path: "/voorbeelden",
   title: "Voorbeelden: zo ziet WhatsApp-automatisering eruit | Appmaatje",
   description:
-    "Echte gesprekken, verzonnen namen. Zie per branche wat de klant op WhatsApp ziet en wat er achter de schermen vanzelf gebeurt: agenda, werkbon, betaallink.",
+    "Voorbeeldgesprekken met verzonnen namen. Zie per branche wat de klant op WhatsApp ziet, wat er achter de schermen gebeurt en wat ervoor nodig is.",
 });
 
 export default function VoorbeeldenPage() {
@@ -23,8 +23,18 @@ export default function VoorbeeldenPage() {
           <div className="container">
             <p className="eyebrow">Voorbeelden</p>
             <h1 className="h2 mx-auto mt-5 max-w-5xl !text-[56px] md:!text-[96px]">Zo ziet het eruit.</h1>
-            <p className="lead mx-auto mt-5 max-w-2xl">Wat je klant op zijn telefoon ziet, en wat er ondertussen in jouw agenda of werkbon gebeurt. Zonder dat jij iets typt.</p>
-            <Disclaimer className="mt-5" />
+            <p className="lead mx-auto mt-5 max-w-2xl">Wat je klant op zijn telefoon ziet, en wat er ondertussen achter de schermen gebeurt. Eerlijk erbij: wat nog handwerk is en wat ervoor nodig is.</p>
+            <ul className="mx-auto mt-8 grid max-w-3xl gap-3 text-left md:grid-cols-2">
+              <li className="flex flex-col items-start gap-2 rounded-[20px] border-2 border-ink bg-white p-4">
+                <NiveauBadge niveau="basis" className="shrink-0" />
+                <span className="text-[15px] leading-[1.45] text-body">WhatsApp plus je agenda, een formulier of een lijst. Meestal binnen een week live.</span>
+              </li>
+              <li className="flex flex-col items-start gap-2 rounded-[20px] border-2 border-ink bg-white p-4">
+                <NiveauBadge niveau="koppeling" className="shrink-0" />
+                <span className="text-[15px] leading-[1.45] text-body">Alleen als jouw eigen systeem (werkbon, kassa, boekhouding) een koppeling toelaat. Maatwerk.</span>
+              </li>
+            </ul>
+            <Disclaimer className="mt-6" />
           </div>
         </section>
 
