@@ -37,6 +37,11 @@ const nextConfig = {
     return config;
   },
 
+  async rewrites() {
+    // Klikdemo is een losse statische pagina in public/demo.
+    return [{ source: "/demo", destination: "/demo/index.html" }];
+  },
+
   async redirects() {
     return [
       // Productie-host op vercel.app naar het eigen domein. Alleen exact deze host: preview-URL's blijven werken.

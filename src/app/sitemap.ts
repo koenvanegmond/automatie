@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...sectorKeys.map((k) => ({ url: `${SITE.url}/oplossingen/${content.nl.solutions[k].slug}`, lastModified: PAGE_EXAMPLES[k] ? VOORBEELDEN_UPDATED : UPDATED, priority: 0.7 })),
     ...subPages().map((s) => ({ url: `${SITE.url}/oplossingen/${s.slug}`, lastModified: PAGE_EXAMPLES[s.slug] ? VOORBEELDEN_UPDATED : UPDATED, priority: 0.7 })),
     { url: `${SITE.url}/voorbeelden`, lastModified: VOORBEELDEN_UPDATED, priority: 0.7 },
+    { url: `${SITE.url}/demo`, lastModified: new Date("2026-11-27"), priority: 0.8 },
     ...allMomenten().map((m) => ({ url: `${SITE.url}/voorbeelden/${m.slug}`, lastModified: VOORBEELDEN_UPDATED, priority: 0.5 })),
     { url: `${SITE.url}/blog`, lastModified: latestPost > UPDATED ? latestPost : UPDATED, priority: 0.6 },
     ...posts.map((p) => ({ url: `${SITE.url}/blog/${p.slug}`, lastModified: new Date(p.date), priority: 0.6 })),

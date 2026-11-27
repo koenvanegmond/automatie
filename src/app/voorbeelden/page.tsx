@@ -35,6 +35,10 @@ export default function VoorbeeldenPage() {
               </li>
             </ul>
             <Disclaimer className="mt-6" />
+            <a href="/demo" className="mx-auto mt-8 flex max-w-3xl items-center justify-between gap-4 rounded-[20px] border-2 border-ink bg-brand-light p-5 text-left hover:bg-mint">
+              <span><span className="block text-[18px] font-bold text-ink">Liever alles samen zien?</span><span className="text-[15px] text-body">Klik zelf door een dag bij een servicebedrijf: WhatsApp én het beheerscherm.</span></span>
+              <span className="shrink-0 font-semibold text-ink">Bekijk de demo →</span>
+            </a>
           </div>
         </section>
 

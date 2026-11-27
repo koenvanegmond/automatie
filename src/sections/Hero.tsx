@@ -93,6 +93,8 @@ export const Hero = () => {
           <Button href={waLink(t.hero.waText)} external size="lg" icon={<Chat />}>{t.ui.nav.cta}</Button>
           <Button href="/kennismaken" size="lg" variant="primary">{t.ui.meet}</Button>
         </motion.div>
+        <motion.a href="/demo" initial={{ opacity: 0 }} animate={go ? { opacity: 1 } : {}} transition={{ delay: 0.75, duration: 0.7, ease }}
+          className="relative z-10 mt-5 inline-block text-[16px] font-semibold text-ink underline decoration-2 underline-offset-4 hover:text-brand">Of klik zelf door de demo →</motion.a>
       </div>
       <Ticker />
     </section>

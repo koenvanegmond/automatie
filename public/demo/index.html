@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Demo: zo werkt Appmaatje bij een servicebedrijf</title>
+<meta name="description" content="Klik zelf door een dag bij een servicebedrijf: WhatsApp-berichten aan klanten en medewerkers, en het beheerscherm waarin je alles ziet en aanpast.">
+<meta property="og:title" content="Demo: zo werkt Appmaatje bij een servicebedrijf">
+<meta property="og:description" content="Klik zelf door een dag: WhatsApp aan klanten en medewerkers, plus het beheerscherm.">
+<meta property="og:image" content="https://appmaatje.com/opengraph-image">
+<meta name="theme-color" content="#F3F4F3">
+<link rel="icon" href="/icon.svg">
+<style>
+:root{
+  --bg:#f2f2f7; --kaart:#fff; --tekst:#000; --grijs:#8e8e93; --lijn:#c6c6c8; --lijn2:#e5e5ea;
+  --blauw:#007aff; --groen:#34c759; --rood:#ff3b30; --oranje:#ff9500; --wa:#25d366; --mail:#0a84ff;
+  --merk:#25855A; --merkdonker:#1D6B48; --merklicht:#DCEFE5; --ink:#0E1110; --zand:#F3F4F3;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--zand);color:var(--ink);font:16px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+input,textarea,select{font:inherit;color:inherit}
+.verborgen{display:none!important}
+
+/* ---------- pagina ---------- */
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;max-width:1240px;margin:0 auto}
+.topbar img{height:34px;display:block}
+.topbar .label{font-size:13px;color:#3A3F3D;background:#fff;border:1px solid #dfe3e0;border-radius:20px;padding:4px 10px}
+.cta{display:inline-block;background:var(--merk);color:#fff;border-radius:999px;padding:10px 18px;font-weight:600;text-decoration:none;font-size:15px;white-space:nowrap}
+.cta:hover{background:var(--merkdonker)}
+.intro{max-width:1240px;margin:6px auto 0;padding:0 20px}
+.intro h1{font-size:clamp(26px,4vw,40px);line-height:1.1;margin:0;letter-spacing:-.5px}
+.intro p{margin:8px 0 0;color:#3A3F3D;max-width:720px}
+.podium{max-width:1240px;margin:22px auto 0;padding:0 20px 40px;display:grid;grid-template-columns:300px 375px 375px;gap:28px;justify-content:center;align-items:start}
+
+/* verhaal */
+.verhaal{position:sticky;top:16px;background:#fff;border-radius:20px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.verhaal .klok{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--merkdonker);background:var(--merklicht);border-radius:20px;padding:3px 10px}
+.verhaal h2{font-size:21px;margin:10px 0 6px;line-height:1.2}
+.verhaal .uitleg{color:#3A3F3D;font-size:15px}
+.verhaal .hint{margin-top:12px;font-size:14px;background:#fff8dc;border-radius:12px;padding:10px 12px;color:#6b4e00}
+.verhaal .hint.klaar{background:#e3f8e8;color:#1d6b32}
+.verhaal .knoppen{display:flex;gap:8px;margin-top:14px}
+.verhaal .volgende{flex:1;background:var(--ink);color:#fff;border-radius:12px;padding:12px;font-weight:600}
+.verhaal .opnieuw{color:#3A3F3D;font-size:14px;padding:12px 6px}
+.stappenlijst{list-style:none;margin:16px 0 0;padding:14px 0 0;border-top:1px solid #eee;counter-reset:s}
+.stappenlijst li{display:flex;gap:10px;align-items:center;font-size:14px;color:#9a9f9c;padding:4px 0}
+.stappenlijst li::before{counter-increment:s;content:counter(s);width:22px;height:22px;border-radius:50%;background:#eee;color:#777;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.stappenlijst li.gedaan{color:#3A3F3D}
+.stappenlijst li.gedaan::before{content:"✓";background:var(--merklicht);color:var(--merkdonker)}
+.stappenlijst li.nu{color:var(--ink);font-weight:600}
+.stappenlijst li.nu::before{background:var(--ink);color:#fff}
+.eerlijk{font-size:12px;color:#7a7f7c;margin-top:14px;line-height:1.45}
+
+/* telefoon */
+.telkolom .tellabel{font-size:13px;font-weight:600;color:#3A3F3D;margin:0 0 8px 6px;display:flex;justify-content:space-between;align-items:center}
+.tel{position:relative;width:375px;height:760px;border-radius:46px;background:#111;padding:11px;box-shadow:0 20px 50px rgba(0,0,0,.18)}
+.scherm{position:relative;width:100%;height:100%;border-radius:36px;overflow:hidden;background:var(--bg)}
+.tel.flits{animation:flits .9s}
+@keyframes flits{0%{box-shadow:0 0 0 0 rgba(37,133,90,.7),0 20px 50px rgba(0,0,0,.18)}100%{box-shadow:0 0 0 18px rgba(37,133,90,0),0 20px 50px rgba(0,0,0,.18)}}
+.wissel{display:none}
+
+/* ---------- WhatsApp ---------- */
+.wa{display:flex;flex-direction:column;height:100%;background:#efe7dd}
+.wa .contacten{display:flex;gap:6px;padding:40px 10px 8px;background:#f6f6f6;overflow-x:auto;scrollbar-width:none;border-bottom:.5px solid #ddd}
+.wa .contacten::-webkit-scrollbar{display:none}
+.wa .contact{font-size:12px;padding:5px 10px;border-radius:14px;background:#fff;border:1px solid #e3e3e3;white-space:nowrap;color:#333}
+.wa .contact.actief{background:var(--ink);color:#fff;border-color:var(--ink)}
+.wa .contact .stip{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--wa);margin-left:5px;vertical-align:1px}
+.wa .wakop{display:flex;align-items:center;gap:10px;padding:8px 12px;background:#f6f6f6;border-bottom:.5px solid #ddd}
+.wa .avatar{width:36px;height:36px;border-radius:50%;background:var(--merk);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.wa .wakop b{display:block;font-size:16px}
+.wa .wakop span{font-size:12px;color:#777}
+.wa .berichten{flex:1;overflow-y:auto;padding:12px 10px 18px;display:flex;flex-direction:column;gap:6px}
+.wa .datum{align-self:center;font-size:12px;background:#e1f2fb;color:#4a5a63;border-radius:8px;padding:3px 9px;margin:4px 0}
+.bel{max-width:82%;padding:7px 9px 5px;border-radius:10px;font-size:15px;line-height:1.35;white-space:pre-wrap;box-shadow:0 1px .5px rgba(0,0,0,.13);position:relative;animation:in .25s ease-out}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.bel.in{align-self:flex-start;background:#fff;border-top-left-radius:3px}
+.bel.uit{align-self:flex-end;background:#dcf8c6;border-top-right-radius:3px}
+.bel .t{display:block;text-align:right;font-size:11px;color:#8a8a8a;margin-top:2px}
+.bel.uit .t::after{content:" ✓✓";color:#53bdeb}
+.waknoppen{align-self:flex-start;max-width:82%;width:82%;display:flex;flex-direction:column;gap:4px;margin-top:-2px}
+.waknop{background:#fff;color:#0a7cff;border-radius:10px;padding:9px;font-size:15px;font-weight:500;text-align:center;box-shadow:0 1px .5px rgba(0,0,0,.13)}
+.waknop:disabled{color:#a9b4bf;cursor:default}
+.waknop.wijs:not(:disabled){animation:wijs 1.6s infinite}
+@keyframes wijs{0%,100%{box-shadow:0 1px .5px rgba(0,0,0,.13),0 0 0 0 rgba(0,122,255,.5)}50%{box-shadow:0 1px .5px rgba(0,0,0,.13),0 0 0 6px rgba(0,122,255,0)}}
+.typen{align-self:flex-start;background:#fff;border-radius:10px;padding:8px 12px;font-size:20px;letter-spacing:2px;color:#999}
+.wa .invoer{display:flex;gap:8px;align-items:center;padding:8px 10px 26px;background:#f6f6f6;border-top:.5px solid #ddd}
+.wa .invoer div{flex:1;background:#fff;border-radius:18px;padding:7px 12px;color:#aaa;font-size:15px}
+.wa .leegchat{margin:auto;color:#7a7f7c;font-size:14px;text-align:center;padding:20px}
+
+/* ---------- beheerscherm (iOS) ---------- */
+.app{position:absolute;inset:0;overflow-y:auto;padding:0 0 96px;color:var(--tekst);font-size:17px;line-height:1.35}
+.kop{padding:44px 20px 6px}
+.kop .boven{display:flex;justify-content:space-between;align-items:center;min-height:24px;font-size:13px;color:var(--grijs)}
+.kop .merkje{font-size:12px;color:var(--grijs)}
+.kop .merkje b{color:var(--tekst);font-weight:600}
+.kop h1{font-size:32px;font-weight:700;letter-spacing:.2px;margin:2px 0 0}
+.kop .sub{color:var(--grijs);font-size:15px;margin-top:2px}
+.terug{color:var(--blauw);font-size:17px;display:inline-flex;align-items:center;gap:2px}
+.terug svg{width:12px;height:20px}
+.sectie{margin:20px 16px 0}
+.sectie > .titel{font-size:13px;text-transform:uppercase;color:var(--grijs);letter-spacing:.3px;margin:0 16px 7px}
+.sectie > .voet{font-size:13px;color:var(--grijs);margin:7px 16px 0;line-height:1.4}
+.groep{background:var(--kaart);border-radius:12px;overflow:hidden}
+.rij{display:flex;align-items:center;gap:12px;padding:11px 16px;min-height:44px;position:relative;width:100%;text-align:left}
+.rij + .rij::before{content:"";position:absolute;top:0;right:0;left:58px;border-top:.5px solid var(--lijn)}
+.rij.zonder-icoon + .rij::before,.rij.zonder-icoon + .rij.zonder-icoon::before{left:16px}
+.rij .midden{flex:1;min-width:0}
+.rij .naam{font-size:17px}
+.rij .klein{font-size:13px;color:var(--grijs);margin-top:1px}
+.rij .waarde{color:var(--grijs);font-size:15px;white-space:nowrap}
+.meer{flex-shrink:0;font-size:13px;font-weight:600;color:var(--blauw);background:#e8f1ff;border-radius:12px;padding:4px 10px;white-space:nowrap}
+button.rij:active{background:#e5e5ea}
+.ico{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff}
+.ico svg{width:18px;height:18px}
+.ico.wa{background:var(--wa)} .ico.mail{background:var(--mail)} .ico.grijs{background:#8e8e93} .ico.paars{background:#5856d6} .ico.oranje{background:var(--oranje)} .ico.rood{background:var(--rood)} .ico.blauw{background:var(--blauw)} .ico.groen{background:var(--groen)}
+.schakel{position:relative;width:51px;height:31px;flex-shrink:0}
+.schakel input{opacity:0;width:0;height:0;position:absolute}
+.schakel span{position:absolute;inset:0;background:#e9e9eb;border-radius:31px;transition:.2s}
+.schakel span::after{content:"";position:absolute;width:27px;height:27px;left:2px;top:2px;background:#fff;border-radius:50%;box-shadow:0 3px 8px rgba(0,0,0,.15),0 1px 1px rgba(0,0,0,.16);transition:.2s}
+.schakel input:checked + span{background:var(--groen)}
+.schakel input:checked + span::after{transform:translateX(20px)}
+input[type=time]{border:0;background:#e9e9eb;border-radius:8px;padding:6px 10px;font-size:17px;min-width:96px;text-align:center}
+.veld{border:0;outline:0;width:100%;background:transparent;font-size:17px;padding:0}
+select.veld{-webkit-appearance:none;appearance:none;text-align:right;color:var(--grijs);direction:rtl}
+.knop{display:block;width:100%;background:var(--blauw);color:#fff;border-radius:12px;padding:14px;font-weight:600;text-align:center;font-size:17px}
+.knop.wijs{animation:wijs 1.6s infinite}
+.knop.licht{background:var(--kaart);color:var(--blauw)}
+.link{color:var(--blauw)}
+.rood-tekst{color:var(--rood)} .groen-tekst{color:#248a3d} .oranje-tekst{color:#c93400}
+.melding{margin:12px 16px 0;padding:12px 14px;border-radius:12px;font-size:15px}
+.melding.goed{background:#e3f8e8;color:#1d6b32}
+.melding.info{background:#fff4d6;color:#7a5300}
+.melding.fout{background:#ffe5e3;color:#a1150b}
+.pil{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.pil.groen{background:#e3f8e8;color:#1d6b32} .pil.oranje{background:#fff0dc;color:#a34a00} .pil.rood{background:#ffe5e3;color:#a1150b} .pil.grijs{background:#eeeef0;color:#555} .pil.blauw{background:#e8f1ff;color:#0057c2}
+.belknop{flex-shrink:0;background:var(--groen);color:#fff;border-radius:16px;padding:6px 14px;font-size:14px;font-weight:600}
+.segment{display:flex;background:#e3e3e8;border-radius:9px;padding:2px;margin:12px 16px 0}
+.segment button{flex:1;padding:6px;border-radius:7px;font-size:14px;font-weight:500}
+.segment button.actief{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+
+.tabbalk{position:absolute;left:0;right:0;bottom:0;background:rgba(249,249,249,.94);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-top:.5px solid var(--lijn);display:flex;padding-bottom:16px;z-index:10}
+.tabbalk button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 0 4px;color:#999;font-size:10px;font-weight:500;position:relative}
+.tabbalk button svg{width:25px;height:25px}
+.tabbalk button.actief{color:var(--blauw)}
+.tabbalk .teller{position:absolute;top:3px;left:calc(50% + 6px);background:var(--rood);color:#fff;font-size:11px;font-weight:700;min-width:18px;height:18px;border-radius:9px;padding:0 5px;line-height:18px}
+
+.dagbalk{background:var(--kaart);border-radius:12px;padding:14px 0 12px}
+.scroller{overflow-x:auto;scrollbar-width:none}
+.scroller::-webkit-scrollbar{display:none}
+.stappen{position:relative;height:96px}
+.stappenlijn{position:absolute;left:30px;right:30px;top:31px;height:3px;background:#e5e5ea;border-radius:2px}
+.stap{position:absolute;top:14px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.dagbalk .stip{width:36px;height:36px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;color:#fff}
+.dagbalk .stip.mail{border-radius:10px}
+.dagbalk .stip.straks{background:#fff;color:#aeaeb2;border:2px dashed #aeaeb2;box-shadow:none}
+.dagbalk .stip svg{width:16px;height:16px}
+.staptijd{font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;margin-top:4px}
+.stapnaam{font-size:11px;color:var(--grijs);line-height:1.15;padding:0 2px}
+.dagbalk .nu{position:absolute;top:10px;height:46px;width:2px;margin-left:-1px;background:var(--blauw);border-radius:1px;z-index:2}
+.dagbalk .nu b{position:absolute;top:-12px;left:50%;transform:translateX(-50%);font-size:11px;color:#fff;background:var(--blauw);border-radius:8px;padding:1px 6px}
+.legenda{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--grijs);margin:8px 14px 0;padding-top:8px;border-top:.5px solid var(--lijn2)}
+.legenda i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:0}
+.tl .rij{align-items:flex-start;padding-top:12px;padding-bottom:12px}
+.tl .tijd{width:46px;font-variant-numeric:tabular-nums;font-weight:600;font-size:16px;padding-top:4px;flex-shrink:0}
+.tl .tijd.weg{color:var(--grijs);font-weight:500}
+.tl .rij + .rij::before{left:16px}
+.tl .status{font-size:14px;margin-top:2px}
+.tl .rij.nu-rij{background:#eef5ff}
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:10px;background:#e5e5ea;color:#3a3a3c;margin-left:6px;vertical-align:1px}
+.badge.blauw{background:var(--blauw);color:#fff}
+.morgen{background:var(--kaart);border-radius:12px;padding:16px;width:100%;text-align:left;display:block}
+.morgen .getallen{display:flex;gap:8px;margin-top:10px}
+.morgen .getal{flex:1;background:var(--bg);border-radius:10px;padding:9px 4px;text-align:center}
+.morgen .getal b{display:block;font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+.morgen .getal span{font-size:11px;color:var(--grijs)}
+.balk{height:8px;border-radius:4px;background:#e5e5ea;overflow:hidden;display:flex;margin-top:12px}
+.balk i{display:block;height:100%;transition:width .4s}
+.waas{position:absolute;inset:0;background:rgba(0,0,0,.35);z-index:20;opacity:0;transition:opacity .2s}
+.waas.open{opacity:1}
+.blad{position:absolute;left:0;right:0;bottom:0;max-height:86%;background:var(--bg);border-radius:14px 14px 0 0;z-index:21;transform:translateY(100%);transition:transform .28s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+.blad.open{transform:none}
+.blad .greep{width:36px;height:5px;border-radius:3px;background:#c7c7cc;margin:7px auto 0}
+.blad .bladkop{display:flex;justify-content:space-between;align-items:center;padding:8px 16px 4px}
+.blad .bladkop h2{font-size:19px;margin:0}
+.blad .inhoud{overflow:auto;padding:0 0 28px}
+.leeg{padding:16px;color:var(--grijs);font-size:15px;text-align:center}
+.chatbg{background:#efe7dd;border-radius:12px;padding:10px 10px 14px;display:flex;flex-direction:column;gap:5px}
+.chatbg .bel{max-width:90%;font-size:14px}
+.chatbg .waknoppen{width:90%;max-width:90%}
+.chatbg .waknop{font-size:14px;padding:7px}
+
+/* ---------- smal scherm ---------- */
+@media (max-width:1120px){
+  .podium{grid-template-columns:375px 375px;gap:22px}
+  .verhaal{grid-column:1 / -1;position:static}
+  .stappenlijst{display:flex;flex-wrap:wrap;gap:4px 14px}
+}
+@media (max-width:820px){
+  .topbar .label{display:none}
+  .podium{grid-template-columns:1fr;padding:0 12px 120px;gap:14px}
+  .verhaal{order:0}
+  .stappenlijst,.verhaal .eerlijk{display:none}
+  .intro p{font-size:15px}
+  .intro h1{font-size:26px}
+  .verhaal{padding:14px}
+  .verhaal h2{font-size:18px;margin:8px 0 4px}
+  .verhaal .uitleg{font-size:14px}
+  .verhaal .hint{margin-top:8px;font-size:13px;padding:8px 10px}
+  .eerlijk-mobiel{display:block!important;max-width:375px;margin:0 auto;font-size:12px;color:#7a7f7c}
+  .wissel{display:flex;position:sticky;top:8px;z-index:30;background:#e3e3e8;border-radius:12px;padding:3px;max-width:375px;width:100%;margin:0 auto}
+  .wissel button{flex:1;padding:9px;border-radius:9px;font-size:15px;font-weight:600;position:relative}
+  .wissel button.actief{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+  .wissel button .nieuw{position:absolute;top:6px;right:12px;width:9px;height:9px;border-radius:50%;background:var(--rood)}
+  .telkolom{justify-self:center;width:100%;max-width:375px}
+  .telkolom.weg{display:none}
+  .tel{width:100%;height:min(760px,calc(100svh - 150px));min-height:560px;border-radius:40px;padding:9px}
+  .scherm{border-radius:32px}
+  .verhaal .knoppen{position:fixed;left:12px;right:12px;bottom:12px;z-index:40;margin:0;background:#fff;border-radius:16px;padding:8px;box-shadow:0 6px 24px rgba(0,0,0,.18)}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="/"><img src="/logo.svg" alt="Appmaatje"></a>
+  <span class="label">Demo met verzonnen gegevens</span>
+  <a class="cta" href="/kennismaken">Plan een kennismaking</a>
+</header>
+
+<section class="intro">
+  <h1>Een dag bij Vakwerk Service</h1>
+  <p>Een verzonnen servicebedrijf met 5 medewerkers die bij klanten langsgaan. Je ziet wat klanten en medewerkers op WhatsApp krijgen, en het scherm waarin het bedrijf alles ziet en zelf aanpast. Klik je er in een paar minuten doorheen.</p>
+</section>
+
+<div class="podium">
+  <aside class="verhaal" id="verhaal"></aside>
+
+  <div class="wissel" id="wissel">
+    <button data-kant="chat" class="actief">WhatsApp<span class="nieuw verborgen"></span></button>
+    <button data-kant="beheer">Beheerscherm<span class="nieuw verborgen"></span></button>
+  </div>
+
+  <div class="telkolom" id="kolomChat">
+    <div class="tellabel"><span id="chatLabel">Telefoon van een klant</span></div>
+    <div class="tel" id="telChat"><div class="scherm" id="wa"></div></div>
+  </div>
+
+  <div class="eerlijk-mobiel verborgen-groot" style="display:none">Voorbeeld met verzonnen namen en gegevens. Er wordt niets echt verstuurd.</div>
+
+  <div class="telkolom" id="kolomBeheer">
+    <div class="tellabel"><span>Beheerscherm van het bedrijf</span></div>
+    <div class="tel" id="telBeheer"><div class="scherm">
+      <div class="app" id="app"></div>
+      <nav class="tabbalk" id="tabbalk"></nav>
+      <div id="waas" class="waas verborgen"></div>
+      <div id="blad" class="blad verborgen"><div class="greep"></div><div class="bladkop"><h2 id="bladTitel"></h2><button id="bladDicht" class="link">Klaar</button></div><div id="bladInhoud" class="inhoud"></div></div>
+    </div></div>
+  </div>
+</div>
+
+<script>
+// =====================================================================
+// Appmaatje demo: alles verzonnen, alles in het geheugen. Er wordt niets echt verstuurd.
+// =====================================================================
+
+// ---------- hulpjes ----------
+const $ = (id) => document.getElementById(id);
+const el = (tag, attrs = {}, ...kids) => {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs ?? {})) {
+    if (v === null || v === undefined || v === false) continue;
+    if (k === "class") e.className = v; else if (k === "html") e.innerHTML = v;
+    else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v === true ? "" : v);
+  }
+  for (const c of kids.flat(9)) if (c !== null && c !== undefined && c !== false && c !== "") e.append(c.nodeType ? c : document.createTextNode(String(c)));
+  return e;
+};
+const svg = (pad, opts = "") => { const s = document.createElement("span"); s.innerHTML = `<svg viewBox="0 0 24 24" ${opts || 'fill="currentColor"'}>${pad}</svg>`; return s.firstChild; };
+const ICOON = {
+  wa: '<path d="M12 2C6.5 2 2 6.1 2 11.2c0 2.9 1.5 5.5 3.8 7.2L5 22l4-2.1c.9.2 1.9.4 3 .4 5.5 0 10-4.1 10-9.2S17.5 2 12 2z"/>',
+  mail: '<path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1.4 2L12 12.3 19.6 7H4.4zM20 8.6l-7.4 5.2a1 1 0 0 1-1.2 0L4 8.6V17h16V8.6z"/>',
+  terug: '<path d="M14 4L6 12l8 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>',
+  mensen: '<path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm7 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 20c0-3.3 3.1-6 7-6s7 2.7 7 6v1H2v-1zm15 1v-1c0-1.6-.6-3.1-1.6-4.3.5-.1 1-.2 1.6-.2 2.8 0 5 1.9 5 4.5v1h-5z"/>',
+  boek: '<path d="M5 3h11a3 3 0 0 1 3 3v15H7a2 2 0 0 1-2-2V3zm2 14v2h10v-2H7z"/>',
+  antwoord: '<path d="M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z"/>',
+  ster: '<path d="M12 2l3 6.5 7 .8-5.2 4.8 1.4 7L12 17.6 5.8 21.1l1.4-7L2 9.3l7-.8z"/>',
+  auto: '<path d="M5 11l1.6-4.2A2 2 0 0 1 8.5 5.5h7a2 2 0 0 1 1.9 1.3L19 11a2 2 0 0 1 2 2v4h-2a2 2 0 1 1-4 0H9a2 2 0 1 1-4 0H3v-4a2 2 0 0 1 2-2zm2.2 0h9.6l-1.1-3.1a.6.6 0 0 0-.6-.4H8.9a.6.6 0 0 0-.6.4z"/>',
+  kalender: '<path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2zM5 9h14v10H5z"/>',
+  klok: '<path d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20zm-1 5v6l5 3 1-1.7-4-2.3V7z"/>',
+  sleutel: '<path d="M14 3a7 7 0 0 1 0 14c-.8 0-1.6-.1-2.3-.4L10 18.3V21H7v-3H4v-3l5.4-5.4A7 7 0 0 1 14 3zm2 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>',
+  telefoon: '<path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/>',
+};
+const ico = (soort, kleur) => el("div", { class: "ico " + (kleur ?? soort) }, svg(ICOON[soort]));
+const meer = (woord = "Wijzig") => el("span", { class: "meer" }, woord);
+const min = (t) => { const [u, m] = String(t).split(":").map(Number); return u * 60 + m; };
+const toon = (id, ja) => $(id).classList.toggle("verborgen", !ja);
+const melding = (tekst, soort = "goed") => tekst ? el("div", { class: "melding " + soort }, tekst) : "";
+const schakel = (aan, opWissel) => { const i = el("input", { type: "checkbox" }); i.checked = !!aan; i.onchange = () => opWissel(i.checked, i); return el("label", { class: "schakel" }, i, el("span")); };
+const sectie = (titel, inhoud, voet) => el("div", { class: "sectie" }, titel ? el("div", { class: "titel" }, titel) : null, inhoud, voet ? el("div", { class: "voet" }, voet) : null);
+const groep = (...rijen) => el("div", { class: "groep" }, ...rijen.flat().filter(Boolean));
+const pil = (tekst, kleur) => el("span", { class: "pil " + kleur }, tekst);
+const wacht = (ms) => new Promise((r) => setTimeout(r, ms));
+const smal = () => matchMedia("(max-width:820px)").matches;
+
+// ---------- vaste gegevens ----------
+const BEDRIJF = "Vakwerk Service";
+const MEDEWERKERS = ["Mo", "Rick", "Sem", "Lisa", "Daan"];
+const CONTACTEN = {
+  sanne: { naam: "Sanne", rol: "klant" },
+  erik: { naam: "Erik", rol: "klant" },
+  peter: { naam: "Peter", rol: "klant" },
+  mo: { naam: "Mo", rol: "medewerker" },
+  rick: { naam: "Rick", rol: "medewerker" },
+};
+
+// Berichten die het bedrijf automatisch stuurt. 'wanneer' = vast tijdstip of een gebeurtenis.
+const BERICHTEN = {
+  bevestiging: { groep: "klant", kanaal: "wa", naam: "Afspraakbevestiging", gebeurtenis: "Direct na inplannen", wie: "Klant", wat: "Zodra je een afspraak inplant, krijgt de klant de dag, het tijdvak en wat er gaat gebeuren. Hij bevestigt met één tik of vraagt een andere tijd.",
+    voorbeeld: "Hoi {naam}, je afspraak bij Vakwerk Service staat gepland:\n\n📅 Woensdag, 13:00–15:00\n🔧 Storing verwarming\n\nKlopt dit?", knoppen: ["Bevestig", "Andere tijd"] },
+  onderweg: { groep: "klant", kanaal: "wa", naam: "Onderweg-bericht", gebeurtenis: "Als de medewerker op 'Ik ga rijden' drukt", wie: "Klant", wat: "De medewerker drukt in zijn eigen WhatsApp op 'Ik ga rijden'. De klant krijgt dan direct wie er komt en hoe laat ongeveer.",
+    voorbeeld: "Hoi {naam}, Mo van Vakwerk Service is onderweg naar je. Hij is er rond 10:50.", knoppen: [] },
+  review: { groep: "klant", kanaal: "wa", naam: "Reviewvraag", gebeurtenis: "Als de medewerker op 'Klus klaar' drukt", wie: "Klant", wat: "Na de klus vragen we hoe het ging. Tevreden klanten krijgen je Google-reviewlink, ontevreden klanten komen bij Bellen terecht. Zo hoor jij het eerst.",
+    voorbeeld: "Bedankt {naam}! Mo is klaar. Hoe was het?", knoppen: ["👍 Top", "Kan beter"] },
+  herinnering: { groep: "klant", kanaal: "wa", naam: "Herinnering klant", tijden: ["16:00"], wie: "Klanten met een afspraak morgen", wat: "De dag van tevoren krijgen klanten een herinnering. Wie een andere tijd wil, komt bij Bellen.",
+    voorbeeld: "Hoi {naam}, morgen komen we langs tussen 08:00 en 10:00. Lukt dat nog?", knoppen: ["Ja, klopt", "Andere tijd"] },
+  onderhoud: { groep: "klant", kanaal: "wa", naam: "Onderhoudsherinnering", gebeurtenis: "1× per jaar", wie: "Klanten die dit willen", wat: "Een jaar na het laatste onderhoud vragen we of de klant weer een afspraak wil. Alleen voor klanten die daar ja op zeiden.",
+    voorbeeld: "Hoi {naam}, het is bijna een jaar geleden dat we bij je langs waren voor onderhoud. Zullen we weer een afspraak plannen?", knoppen: ["Ja, plan in", "Nu niet"] },
+  dagplanning: { groep: "medewerker", kanaal: "wa", naam: "Dagplanning", tijden: ["18:00"], wie: "Medewerkers die morgen werken", wat: "De avond ervoor krijgt elke medewerker zijn klussen van morgen, met adressen. Hij bevestigt met één tik.",
+    voorbeeld: "Hoi {naam}, je planning voor morgen:\n\n08:00 Peter · Onderhoud · Zeeweg 4\n10:30 Fatima · Lekkage · Kerkstraat 18\n13:00 Sanne · Storing verwarming · Duinlaan 7", knoppen: ["Bevestig"] },
+  herinnering_mw: { groep: "medewerker", kanaal: "wa", naam: "Herinnering medewerker", tijden: ["19:30"], wie: "Medewerkers die nog niet bevestigden", wat: "Wie zijn planning nog niet bevestigde, krijgt een herinnering. Daarna komt hij bij Bellen.",
+    voorbeeld: "Hoi {naam}, wil je je planning voor morgen nog even bevestigen?", knoppen: ["Bevestig"] },
+  ochtend: { groep: "kantoor", kanaal: "mail", naam: "Ochtendoverzicht", tijden: ["08:00"], wie: "Kantoor", wat: "Elke ochtend een mail met de afspraken van vandaag en wat er sinds gisteren veranderd is.", mail: true },
+  bellijst: { groep: "kantoor", kanaal: "app", naam: "Bellijst", tijden: ["20:00"], wie: "Kantoor", wat: "Om dit tijdstip staat in de app (tab Bellen) en in je mail wie je nog moet bellen: klanten zonder reactie en medewerkers die niet bevestigden. Wie een andere tijd wil, staat er meteen al.", mail: true },
+};
+const GEPLAND = ["ochtend", "herinnering", "dagplanning", "herinnering_mw", "bellijst"];
+
+// ---------- toestand ----------
+let S;
+function beginToestand() {
+  S = {
+    nu: "10:15",
+    tab: "vandaag", stapel: [], afspraakDag: "morgen",
+    chat: "sanne", chats: { sanne: [], erik: [], peter: [], mo: [], rick: [] }, ongelezen: {},
+    schema: Object.fromEntries(Object.entries(BERICHTEN).map(([k, b]) => [k, { aan: true, tijden: b.tijden ? [...b.tijden] : null }])),
+    mails: { ochtend: ["planning@vakwerk-voorbeeld.nl"], bellijst: ["planning@vakwerk-voorbeeld.nl", "eigenaar@vakwerk-voorbeeld.nl"] },
+    toegang: [{ naam: "Eigenaar", email: "eigenaar@vakwerk-voorbeeld.nl" }, { naam: "Planner", email: "planning@vakwerk-voorbeeld.nl" }],
+    auto: { aan: true, tekst: "Hoi {naam}, dit nummer stuurt automatische berichten. Vragen? Bel ons op 012 345 67 89, we helpen je graag." },
+    verstuurd: { ochtend: { ok: 1 } },
+    teller: { bevestiging: 3, onderweg: 2, review: 1, reviewsTop: 1 },
+    vandaag: [
+      { klant: "Joyce", tijd: "08:00–10:00", klus: "Onderhoud", mw: "Mo", status: "klaar" },
+      { klant: "Erik", tijd: "10:30–12:30", klus: "Lekkage keuken", mw: "Mo", status: "gepland" },
+      { klant: "Bram", tijd: "08:00–10:00", klus: "Storing", mw: "Rick", status: "klaar" },
+      { klant: "Noor", tijd: "11:00–13:00", klus: "Installatie", mw: "Rick", status: "onderweg" },
+      { klant: "Hans", tijd: "09:00–11:00", klus: "Reparatie", mw: "Sem", status: "bezig" },
+      { klant: "Ilse", tijd: "13:00–15:00", klus: "Onderhoud", mw: "Lisa", status: "gepland" },
+      { klant: "Kees", tijd: "14:00–16:00", klus: "Offerte opnemen", mw: "Daan", status: "gepland" },
+    ],
+    morgen: [
+      { klant: "Peter", tijd: "08:00–10:00", klus: "Onderhoud", mw: "Mo", status: "wacht" },
+      { klant: "Fatima", tijd: "10:30–12:30", klus: "Lekkage", mw: "Mo", status: "bevestigd" },
+      { klant: "Tom", tijd: "08:00–10:00", klus: "Storing", mw: "Rick", status: "bevestigd" },
+      { klant: "Anouk", tijd: "11:00–13:00", klus: "Reparatie", mw: "Rick", status: "wacht" },
+      { klant: "Ruud", tijd: "08:30–10:30", klus: "Installatie", mw: "Sem", status: "bevestigd" },
+      { klant: "Mila", tijd: "13:00–15:00", klus: "Onderhoud", mw: "Sem", status: "wacht" },
+      { klant: "Gerard", tijd: "09:00–11:00", klus: "Onderhoud", mw: "Lisa", status: "bevestigd" },
+      { klant: "Yara", tijd: "13:30–15:30", klus: "Storing", mw: "Lisa", status: "wacht" },
+      { klant: "Wim", tijd: "08:00–10:00", klus: "Reparatie", mw: "Daan", status: "bevestigd" },
+      { klant: "Lotte", tijd: "12:00–14:00", klus: "Offerte opnemen", mw: "Daan", status: "bevestigd" },
+    ],
+    mwBevestigd: {}, // medewerker -> true na dagplanning
+    bellen: [],      // { id, naam, rol, reden, info, gebeld }
+    log: [
+      { tijd: "gisteren 17:12", wie: "Planner", wat: "Herinnering klant verzet van 17:00 naar 16:00" },
+      { tijd: "maandag 09:40", wie: "Eigenaar", wat: "Planner toegang gegeven" },
+    ],
+  };
+}
+
+// =====================================================================
+// HET VERHAAL (stappen)
+// =====================================================================
+let stap = 0, stapKlaar = false;
+const STAPPEN = [
+  {
+    titel: "Je plant een afspraak in", tijd: "10:15", focus: "beheer",
+    uitleg: "Sanne belt voor een storing. De planner zet de afspraak in het beheerscherm. Sanne krijgt direct een bevestiging op WhatsApp.",
+    hint: "Tik rechts op ‘Afspraak inplannen’ en daarna op ‘Inplannen’.",
+    start() { S.tab = "afspraken"; S.afspraakDag = "morgen"; S.stapel = []; S.wijsInplannen = true; },
+    async auto() { await inplannen(); },
+  },
+  {
+    titel: "Sanne bevestigt met één tik", tijd: "10:16", focus: "chat",
+    uitleg: "Geen bellen of terugmailen. Sanne tikt op Bevestig en in het beheerscherm staat haar afspraak meteen op groen.",
+    hint: "Tik in de chat op ‘Bevestig’.",
+    start() { S.chat = "sanne"; },
+    async auto() { await kies("sanne", "Bevestig"); },
+  },
+  {
+    titel: "De medewerker vertrekt", tijd: "10:20", focus: "chat",
+    uitleg: "Mo krijgt zijn volgende klus op WhatsApp. Als hij op ‘Ik ga rijden’ drukt, krijgt de klant automatisch een bericht dat hij onderweg is. Geen app nodig voor Mo.",
+    hint: "Tik in de chat van Mo op ‘Ik ga rijden’.",
+    async start() { S.nu = "10:20"; S.chat = "mo"; S.tab = "vandaag"; S.stapel = []; await bedrijfZegt("mo", "Je volgende klus:\n\n10:30–12:30 · Erik\n🔧 Lekkage keuken\n📍 Dorpsstraat 12", ["Ik ga rijden"]); },
+    async auto() { await kies("mo", "Ik ga rijden"); },
+  },
+  {
+    titel: "Klus klaar, review binnen", tijd: "11:40", focus: "chat",
+    uitleg: "Mo drukt op ‘Klus klaar’. Erik krijgt een korte vraag hoe het ging. Tevreden? Dan krijgt hij je reviewlink. Niet tevreden? Dan zie jij het als eerste, bij Bellen.",
+    hint: "Tik bij Erik op ‘👍 Top’ (of probeer ‘Kan beter’).",
+    async start() {
+      S.nu = "11:40"; S.chat = "mo"; S.tab = "vandaag"; S.stapel = [];
+      await kies("mo", "Klus klaar", true);
+      S.vandaag.find((a) => a.klant === "Erik").status = "klaar";
+      S.teller.review++;
+      await bedrijfZegt("erik", "Bedankt Erik! Mo is klaar. Hoe was het?", ["👍 Top", "Kan beter"]);
+      await wacht(500); S.chat = "erik"; teken();
+    },
+    async auto() { await kies("erik", "👍 Top"); },
+  },
+  {
+    titel: "Herinnering voor morgen", tijd: "16:00", focus: "chat",
+    uitleg: "Om 16:00 krijgen alle klanten van morgen een herinnering. Peter kan niet meer. Hij vraagt een andere tijd en staat meteen bij Bellen.",
+    hint: "Tik bij Peter op ‘Andere tijd’.",
+    async start() {
+      S.nu = "16:05"; S.tab = "vandaag"; S.stapel = [];
+      herinneringKlanten();
+      S.chat = "peter"; teken();
+    },
+    async auto() { await kies("peter", "Andere tijd"); },
+  },
+  {
+    titel: "Planning naar de medewerkers", tijd: "18:00", focus: "chat",
+    uitleg: "Om 18:00 krijgt elke medewerker zijn planning van morgen. Mo bevestigt. Rick niet: die krijgt om 19:30 een herinnering.",
+    hint: "Tik bij Mo op ‘Bevestig’.",
+    async start() {
+      S.nu = "18:05"; S.tab = "vandaag"; S.stapel = [];
+      dagplanning();
+      S.chat = "mo"; teken();
+    },
+    async auto() { await kies("mo", "Bevestig"); },
+  },
+  {
+    titel: "Om 20:00: wie moet je bellen?", tijd: "20:00", focus: "beheer",
+    uitleg: "Na de herinneringen staat in één lijst wie nog actie nodig heeft. De planner belt vanuit de app en vinkt af. Niemand valt tussen wal en schip.",
+    hint: "Tik rechts bij Bellen op een ‘Bel’-knop.",
+    async start() {
+      S.nu = "20:00";
+      herinneringMedewerkers();
+      bellijst();
+      S.tab = "bellen"; S.stapel = [];
+    },
+    async auto() { const p = S.bellen.find((b) => !b.gebeld); if (p) bel(p.id); },
+  },
+  {
+    titel: "Zelf aanpassen, zonder ons", tijd: "20:05", focus: "beheer",
+    uitleg: "Wil je de herinnering liever om 17:00? Of de reviewvraag uitzetten? Dat doe je zelf in Instellingen. Elke wijziging komt in het logboek.",
+    hint: "Open Instellingen en tik op een bericht, bijvoorbeeld ‘Herinnering klant’.",
+    start() { S.nu = "20:05"; S.tab = "instellingen"; S.stapel = []; },
+    async auto() { S.tab = "instellingen"; duw(() => tekenBericht("herinnering")); },
+  },
+];
+
+function tekenVerhaal() {
+  const s = STAPPEN[stap];
+  const laatste = stap === STAPPEN.length - 1;
+  const v = $("verhaal");
+  v.replaceChildren(
+    el("span", { class: "klok" }, svg(ICOON.klok, 'fill="currentColor" width="14" height="14"'), `Stap ${stap + 1} van ${STAPPEN.length} · ${s.tijd}`),
+    el("h2", {}, s.titel),
+    el("div", { class: "uitleg" }, s.uitleg),
+    el("div", { class: "hint" + (stapKlaar ? " klaar" : "") }, stapKlaar ? "✓ Gelukt. Kijk rond of ga verder." : "👉 " + s.hint),
+    el("div", { class: "knoppen" },
+      el("button", { class: "volgende", onclick: volgende }, laatste ? (stapKlaar ? "Klaar! Wat nu?" : "Laat zien en rond af") : (stapKlaar ? "Volgende stap →" : "Sla over, laat zien →")),
+      stap > 0 ? el("button", { class: "opnieuw", onclick: opnieuw }, "Opnieuw") : null),
+    el("ol", { class: "stappenlijst" }, ...STAPPEN.map((x, i) => el("li", { class: i < stap ? "gedaan" : i === stap ? "nu" : "" }, x.titel))),
+    el("div", { class: "eerlijk" }, "Voorbeeld met verzonnen namen en gegevens. Er wordt niets echt verstuurd. Plannen kan in dit scherm of, met een koppeling, vanuit je eigen planningssysteem."),
+  );
+}
+
+async function naarStap(i) {
+  stap = i; stapKlaar = false; S.wijsInplannen = false;
+  await STAPPEN[i].start?.();
+  focus(STAPPEN[i].focus);
+  teken();
+}
+function stapGelukt() { if (!stapKlaar) { stapKlaar = true; tekenVerhaal(); } }
+async function volgende() {
+  if (!stapKlaar) { await STAPPEN[stap].auto?.(); stapKlaar = true; teken(); await wacht(900); }
+  if (stap < STAPPEN.length - 1) return naarStap(stap + 1);
+  einde();
+}
+function opnieuw() { sluitBlad(); beginToestand(); naarStap(0); }
+function einde() {
+  $("verhaal").replaceChildren(
+    el("span", { class: "klok" }, "Einde van de demo"),
+    el("h2", {}, "Dit, maar dan voor jouw bedrijf"),
+    el("div", { class: "uitleg" }, "We kijken samen welke berichten bij jou tijd besparen en wat er met je huidige planning kan. Geen verplichtingen, 20 minuten."),
+    el("div", { class: "knoppen" }, el("a", { class: "volgende cta", style: "text-align:center", href: "/kennismaken" }, "Plan een kennismaking"), el("button", { class: "opnieuw", onclick: opnieuw }, "Opnieuw")),
+    el("div", { class: "eerlijk" }, "Je kunt rechts nog vrij rondklikken: tijden aanpassen, berichten bekijken, afspraken bekijken."),
+  );
+}
+
+// =====================================================================
+// GEBEURTENISSEN (veranderen de toestand, sturen berichten)
+// =====================================================================
+const vul = (t, naam) => t.split("{naam}").join(naam);
+async function bedrijfZegt(wie, tekst, knoppen = []) {
+  const lijst = S.chats[wie];
+  if (S.chat === wie && zichtbaar("chat")) { S.typt = wie; tekenChat(); await wacht(700); S.typt = null; }
+  lijst.push({ van: "bedrijf", tekst, tijd: S.nu, knoppen: knoppen.length ? knoppen : null, gekozen: null });
+  if (S.chat !== wie) S.ongelezen[wie] = true;
+  seinOp("chat");
+  tekenChat();
+}
+async function kies(wie, label, stil = false) {
+  const m = [...S.chats[wie]].reverse().find((x) => x.knoppen && !x.gekozen && x.knoppen.includes(label));
+  if (!m) return;
+  m.gekozen = label;
+  S.chats[wie].push({ van: "ik", tekst: label, tijd: S.nu });
+  tekenChat();
+  await wacht(stil ? 150 : 450);
+  await reactie(wie, label);
+  teken();
+}
+async function reactie(wie, label) {
+  const k = (w, l) => wie === w && label === l;
+  if (k("sanne", "Bevestig")) {
+    S.morgen.find((a) => a.klant === "Sanne").status = "bevestigd";
+    await bedrijfZegt("sanne", "Top, tot woensdag! Je krijgt een berichtje zodra onze medewerker onderweg is.");
+    if (stap === 1) stapGelukt();
+  } else if (k("sanne", "Andere tijd")) {
+    S.morgen.find((a) => a.klant === "Sanne").status = "andere tijd";
+    voegBellen("Sanne", "klant", "Wil een andere tijd", "Woensdag 13:00–15:00");
+    await bedrijfZegt("sanne", "Geen probleem. We bellen je vandaag om een nieuwe tijd af te spreken.");
+    if (stap === 1) stapGelukt();
+  } else if (k("mo", "Ik ga rijden")) {
+    S.vandaag.find((a) => a.klant === "Erik").status = "onderweg";
+    S.teller.onderweg++;
+    await bedrijfZegt("mo", "Goede rit! Erik krijgt nu een bericht dat je onderweg bent. Druk op ‘Klus klaar’ als je klaar bent.", ["Klus klaar"]);
+    await bedrijfZegt("erik", "Hoi Erik, Mo van Vakwerk Service is onderweg naar je. Hij is er rond 10:50.");
+    if (stap === 2) { await wacht(700); S.chat = "erik"; tekenChat(); stapGelukt(); }
+  } else if (k("mo", "Klus klaar")) {
+    await bedrijfZegt("mo", "Dank je! Erik krijgt nu de vraag hoe het ging.");
+  } else if (k("erik", "👍 Top")) {
+    S.teller.reviewsTop++;
+    await bedrijfZegt("erik", "Fijn om te horen! Wil je dat in 1 minuut delen met anderen? Dat helpt ons enorm.\n\n⭐ g.page/vakwerk-voorbeeld/review");
+    if (stap === 3) stapGelukt();
+  } else if (k("erik", "Kan beter")) {
+    voegBellen("Erik", "klant", "Was niet tevreden over de klus", "Vandaag · Mo · Lekkage keuken");
+    await bedrijfZegt("erik", "Sorry dat het niet goed ging. Onze planner belt je vandaag nog om het op te lossen.");
+    if (stap === 3) stapGelukt();
+  } else if (k("peter", "Andere tijd")) {
+    S.morgen.find((a) => a.klant === "Peter").status = "andere tijd";
+    await bedrijfZegt("peter", "Geen probleem. Wanneer past het beter?", ["Donderdag ochtend", "Vrijdag middag", "Bel mij"]);
+  } else if (wie === "peter" && ["Donderdag ochtend", "Vrijdag middag", "Bel mij"].includes(label)) {
+    voegBellen("Peter", "klant", label === "Bel mij" ? "Wil een andere tijd, wil gebeld worden" : `Wil een andere tijd: ${label.toLowerCase()}`, "Morgen 08:00–10:00 · Mo");
+    await bedrijfZegt("peter", label === "Bel mij" ? "Helder, we bellen je vandaag nog." : `Dank je! We kijken of ${label.toLowerCase()} lukt en sturen je een nieuwe bevestiging.`);
+    if (stap === 4) stapGelukt();
+  } else if (k("peter", "Ja, klopt")) {
+    S.morgen.find((a) => a.klant === "Peter").status = "bevestigd";
+    await bedrijfZegt("peter", "Top, tot morgen!");
+    if (stap === 4) stapGelukt();
+  } else if (wie === "mo" && label === "Bevestig") {
+    S.mwBevestigd.Mo = true;
+    await bedrijfZegt("mo", "Dank je, fijne avond!");
+    if (stap === 5) stapGelukt();
+  } else if (wie === "rick" && label === "Bevestig") {
+    S.mwBevestigd.Rick = true;
+    S.bellen = S.bellen.filter((b) => b.naam !== "Rick");
+    await bedrijfZegt("rick", "Dank je, fijne avond!");
+  }
+}
+
+async function inplannen(gegevens) {
+  const g = gegevens ?? { klant: "Sanne", tijd: "13:00–15:00", klus: "Storing verwarming", mw: "Mo" };
+  if (S.morgen.some((a) => a.klant === g.klant)) return;
+  S.morgen.push({ ...g, status: "wacht", nieuw: true });
+  S.teller.bevestiging++;
+  S.wijsInplannen = false;
+  sluitBlad();
+  teken();
+  if (stap === 0) stapGelukt();
+  await bedrijfZegt("sanne", vul(BERICHTEN.bevestiging.voorbeeld, g.klant), BERICHTEN.bevestiging.knoppen);
+  S.chat = "sanne";
+  seinOp("chat");
+  teken();
+}
+
+function herinneringKlanten() {
+  if (S.verstuurd.herinnering) return;
+  const open = S.morgen.filter((a) => a.status === "wacht" && !["Sanne", "Yara"].includes(a.klant));
+  S.verstuurd.herinnering = { ok: open.length, fout: 1, overgeslagen: 0, lijst: open.map((a) => a.klant) };
+  S.foutHerinnering = { naam: "Yara", reden: "Nummer niet bereikbaar op WhatsApp" };
+  // Twee klanten reageren vanzelf tijdens de demo.
+  for (const naam of ["Anouk", "Mila"]) S.morgen.find((a) => a.klant === naam).status = "bevestigd";
+  S.chats.peter.push({ van: "bedrijf", tekst: vul(BERICHTEN.herinnering.voorbeeld, "Peter"), tijd: "16:00", knoppen: BERICHTEN.herinnering.knoppen, gekozen: null });
+}
+function dagplanning() {
+  if (S.verstuurd.dagplanning) return;
+  S.verstuurd.dagplanning = { ok: MEDEWERKERS.length, fout: 0, overgeslagen: 0 };
+  Object.assign(S.mwBevestigd, { Sem: true, Lisa: true, Daan: true });
+  S.chats.mo.push({ van: "bedrijf", tekst: vul(BERICHTEN.dagplanning.voorbeeld, "Mo"), tijd: "18:00", knoppen: ["Bevestig"], gekozen: null });
+  S.chats.rick.push({ van: "bedrijf", tekst: "Hoi Rick, je planning voor morgen:\n\n08:00 Tom · Storing · Strandweg 2\n11:00 Anouk · Reparatie · Molenlaan 30", tijd: "18:00", knoppen: ["Bevestig"], gekozen: null });
+}
+function herinneringMedewerkers() {
+  if (S.verstuurd.herinnering_mw) return;
+  if (!S.mwBevestigd.Mo) { S.mwBevestigd.Mo = true; const m = S.chats.mo.findLast((x) => x.knoppen && !x.gekozen); if (m) { m.gekozen = "Bevestig"; S.chats.mo.push({ van: "ik", tekst: "Bevestig", tijd: "18:12" }); } }
+  const open = MEDEWERKERS.filter((n) => !S.mwBevestigd[n]);
+  S.verstuurd.herinnering_mw = { ok: open.length, fout: 0, overgeslagen: 0, lijst: open };
+  S.chats.rick.push({ van: "bedrijf", tekst: vul(BERICHTEN.herinnering_mw.voorbeeld, "Rick"), tijd: "19:30", knoppen: ["Bevestig"], gekozen: null });
+}
+function bellijst() {
+  if (S.verstuurd.bellijst) return;
+  for (const a of S.morgen.filter((x) => x.status === "wacht" && !["Sanne", "Yara"].includes(x.klant))) voegBellen(a.klant, "klant", "Geen reactie op herinnering", `Morgen ${a.tijd} · ${a.mw}`);
+  if (S.foutHerinnering) voegBellen(S.foutHerinnering.naam, "klant", "Herinnering niet aangekomen: " + S.foutHerinnering.reden.toLowerCase(), "Morgen 13:30–15:30 · Lisa");
+  for (const n of MEDEWERKERS.filter((n) => !S.mwBevestigd[n])) voegBellen(n, "medewerker", "Planning van morgen niet bevestigd", "2 klussen morgen");
+  S.verstuurd.bellijst = { ok: 1 };
+}
+let belId = 0;
+function voegBellen(naam, rol, reden, info) {
+  if (S.bellen.some((b) => b.naam === naam && !b.gebeld)) return;
+  S.bellen.push({ id: ++belId, naam, rol, reden, info, gebeld: false });
+}
+function bel(id) {
+  const b = S.bellen.find((x) => x.id === id); if (!b) return;
+  b.gebeld = true;
+  S.log.unshift({ tijd: "vandaag " + S.nu, wie: "Planner", wat: `${b.naam} gebeld (${b.reden.toLowerCase()})` });
+  if (stap === 6) stapGelukt();
+  teken();
+}
+
+// =====================================================================
+// WHATSAPP-KANT
+// =====================================================================
+function tekenChat() {
+  const c = CONTACTEN[S.chat];
+  $("chatLabel").textContent = `Telefoon van ${c.naam} · ${c.rol}`;
+  const lijst = S.chats[S.chat];
+  const laatsteMetKnoppen = [...lijst].reverse().find((m) => m.van === "bedrijf");
+  const berichten = el("div", { class: "berichten", id: "waBerichten" },
+    lijst.length ? el("div", { class: "datum" }, "Vandaag") : el("div", { class: "leegchat" }, `Nog geen berichten voor ${c.naam}.`),
+    ...lijst.flatMap((m) => {
+      const bel = el("div", { class: "bel " + (m.van === "bedrijf" ? "in" : "uit") }, m.tekst, el("span", { class: "t" }, m.tijd));
+      if (!m.knoppen) return [bel];
+      const actief = !m.gekozen && m === laatsteMetKnoppen;
+      return [bel, el("div", { class: "waknoppen" }, ...m.knoppen.map((k) =>
+        el("button", { class: "waknop wijs", disabled: !actief, onclick: () => kies(S.chat, k) }, k)))];
+    }),
+    S.typt === S.chat ? el("div", { class: "typen" }, "•••") : null);
+  $("wa").replaceChildren(el("div", { class: "wa" },
+    el("div", { class: "contacten" }, ...Object.entries(CONTACTEN).map(([id, x]) =>
+      el("button", { class: "contact" + (id === S.chat ? " actief" : ""), onclick: () => { S.chat = id; S.ongelezen[id] = false; tekenChat(); } },
+        x.naam, S.ongelezen[id] && id !== S.chat ? el("span", { class: "stip" }) : null))),
+    el("div", { class: "wakop" }, el("div", { class: "avatar" }, "VS"), el("div", {}, el("b", {}, BEDRIJF), el("span", {}, "Zakelijk account"))),
+    berichten,
+    el("div", { class: "invoer" }, el("div", {}, "Bericht"))));
+  S.ongelezen[S.chat] = false;
+  berichten.scrollTop = berichten.scrollHeight;
+}
+
+// =====================================================================
+// BEHEERSCHERM
+// =====================================================================
+function kop(titel, sub, metTerug) {
+  return el("div", { class: "kop" },
+    el("div", { class: "boven" },
+      metTerug ? el("button", { class: "terug", onclick: terug }, svg(ICOON.terug), metTerug) : el("span", { class: "merkje" }, el("b", {}, BEDRIJF), " · door Appmaatje"),
+      el("span", {}, S.nu)),
+    el("h1", {}, titel), sub ? el("div", { class: "sub" }, sub) : null);
+}
+const scherm = (...k) => { const a = $("app"); const y = a.scrollTop; a.replaceChildren(...k.flat(9).filter((x) => x !== null && x !== undefined && x !== false && x !== "")); a.scrollTop = y; };
+function duw(maak) { S.stapel.push(maak); maak(); $("app").scrollTop = 0; }
+function terug() { S.stapel.pop(); tekenBeheer(); $("app").scrollTop = 0; }
+function naarTab(t) { S.tab = t; S.stapel = []; sluitBlad(); tekenBeheer(); $("app").scrollTop = 0; }
+
+function tekenTabbalk() {
+  const open = S.bellen.filter((b) => !b.gebeld).length;
+  const knop = (id, label, pad, teller) => el("button", { class: S.tab === id ? "actief" : "", onclick: () => naarTab(id) }, svg(pad), label, teller ? el("span", { class: "teller" }, teller) : null);
+  $("tabbalk").replaceChildren(
+    knop("vandaag", "Vandaag", ICOON.klok),
+    knop("afspraken", "Afspraken", ICOON.kalender),
+    knop("bellen", "Bellen", ICOON.telefoon, open),
+    knop("instellingen", "Instellingen", '<path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm8.4 5.1l1.6 1.3-2 3.4-2-.7a8 8 0 0 1-1.9 1.1L15.8 21h-3.9l-.3-2.3a8 8 0 0 1-1.9-1.1l-2 .7-2-3.4 1.6-1.3a8 8 0 0 1 0-2.2L5.7 10.1l2-3.4 2 .7a8 8 0 0 1 1.9-1.1L11.9 4h3.9l.3 2.3a8 8 0 0 1 1.9 1.1l2-.7 2 3.4-1.6 1.3a8 8 0 0 1 0 2.2z"/>'),
+  );
+}
+
+function tekenBeheer() {
+  tekenTabbalk();
+  if (S.stapel.length) return S.stapel.at(-1)();
+  ({ vandaag: tekenVandaag, afspraken: tekenAfspraken, bellen: tekenBellen, instellingen: tekenInstellingen })[S.tab]();
+}
+
+// ---------- Vandaag ----------
+function momenten() {
+  return GEPLAND.filter((k) => S.schema[k].aan).flatMap((k) => S.schema[k].tijden.map((t) => ({ sleutel: k, tijd: t, ...BERICHTEN[k], v: S.verstuurd[k] })))
+    .sort((a, b) => min(a.tijd) - min(b.tijd));
+}
+function stand(m) {
+  if (!m.v) return "straks";
+  if (m.v.fout && !m.v.ok) return "fout";
+  if (m.v.fout) return "half";
+  return "ok";
+}
+const kortNaam = (m) => ({ ochtend: "Ochtend-overzicht", herinnering: "Herinnering klant", dagplanning: "Dag-planning", herinnering_mw: "Herinnering medewerker", bellijst: "Bellijst" })[m.sleutel];
+
+function dagbalk(lijst) {
+  const STAP = 72, nuMin = min(S.nu);
+  const kleur = { ok: "var(--groen)", fout: "var(--rood)", half: "var(--oranje)" };
+  const nuIndex = lijst.filter((m) => min(m.tijd) <= nuMin).length;
+  const binnen = el("div", { class: "stappen", style: `width:${lijst.length * STAP + 30}px` },
+    el("div", { class: "stappenlijn" }),
+    ...lijst.map((m, i) => el("div", { class: "stap", style: `left:${12 + i * STAP}px;width:${STAP}px` },
+      el("div", { class: "stip" + (m.kanaal !== "wa" ? " mail" : "") + (stand(m) === "straks" ? " straks" : ""), style: stand(m) === "straks" ? "" : `background:${kleur[stand(m)]}` }, svg(ICOON[m.kanaal === "wa" ? "wa" : m.kanaal === "app" ? "telefoon" : "mail"])),
+      el("div", { class: "staptijd" }, m.tijd),
+      el("div", { class: "stapnaam" }, kortNaam(m)))),
+    el("div", { class: "nu", style: `left:${12 + nuIndex * STAP}px` }, el("b", {}, "nu")));
+  return el("div", { class: "dagbalk" }, el("div", { class: "scroller" }, binnen),
+    el("div", { class: "legenda" },
+      el("span", {}, el("i", { style: "background:var(--groen)" }), "gelukt"),
+      el("span", {}, el("i", { style: "background:var(--oranje)" }), "deels mislukt"),
+      el("span", {}, el("i", { style: "background:#fff;border:1.5px dashed #aeaeb2" }), "moet nog"),
+      el("span", {}, "rond = WhatsApp, vierkant = mail/app")));
+}
+
+function morgenKaart() {
+  const d = S.morgen.length, b = S.morgen.filter((a) => a.status === "bevestigd").length;
+  const mw = MEDEWERKERS.filter((n) => S.mwBevestigd[n]).length;
+  const anders = S.morgen.filter((a) => a.status === "andere tijd").length;
+  return el("button", { class: "morgen", onclick: () => { S.afspraakDag = "morgen"; naarTab("afspraken"); } },
+    el("div", { style: "display:flex;justify-content:space-between;align-items:center;gap:8px" },
+      el("div", {}, el("div", { style: "font-weight:600" }, "Hoe staat morgen ervoor?"),
+        el("div", { style: "font-size:13px;color:var(--grijs)" }, d - b ? `${d - b} klant${d - b === 1 ? "" : "en"} nog niet bevestigd${anders ? `, ${anders} wil${anders === 1 ? "" : "len"} andere tijd` : ""}` : "Alle klanten hebben bevestigd")),
+      meer("Bekijk")),
+    el("div", { class: "getallen" },
+      el("div", { class: "getal" }, el("b", {}, d), el("span", {}, "afspraken")),
+      el("div", { class: "getal" }, el("b", { class: b < d ? "oranje-tekst" : "groen-tekst" }, b), el("span", {}, "klant bevestigd")),
+      el("div", { class: "getal" }, el("b", { class: mw < MEDEWERKERS.length ? (S.verstuurd.dagplanning ? "oranje-tekst" : "") : "groen-tekst" }, S.verstuurd.dagplanning ? `${mw}/${MEDEWERKERS.length}` : "–"), el("span", {}, "medewerkers"))),
+    el("div", { class: "balk" }, el("i", { style: `width:${(b / d) * 100}%;background:var(--groen)` }), el("i", { style: `width:${(anders / d) * 100}%;background:var(--oranje)` })));
+}
+
+function statusTekst(m) {
+  if (!m.v) return el("span", { style: "color:var(--grijs)" }, "Moet nog komen");
+  if (m.kanaal !== "wa") return el("span", { class: "groen-tekst" }, m.kanaal === "app" ? "✓ Klaargezet in Bellen en gemaild" : "✓ Mail verstuurd");
+  const d = [];
+  if (m.v.ok) d.push(el("span", { class: "groen-tekst" }, `✓ ${m.v.ok} verstuurd`));
+  if (m.v.fout) d.push(el("span", { class: "rood-tekst" }, `✕ ${m.v.fout} mislukt`));
+  return el("span", {}, ...d.flatMap((x, i) => i ? [" · ", x] : [x]));
+}
+
+function tekenVandaag() {
+  const lijst = momenten();
+  const volgende = lijst.find((m) => !m.v);
+  const t = S.teller;
+  const doorlopend = (soort, kleur, naam, sub, aantal, extra) => el("div", { class: "rij" }, ico(soort, kleur),
+    el("div", { class: "midden" }, el("div", { class: "naam" }, naam), el("div", { class: "klein" }, sub),
+      el("div", { class: "status", style: "font-size:14px;margin-top:2px" }, el("span", { class: "groen-tekst" }, `✓ ${aantal} verstuurd`), extra ? [" · ", extra] : null)));
+  scherm(
+    kop("Vandaag", "Wat er automatisch verstuurd is en nog komt"),
+    sectie(null, dagbalk(lijst)),
+    sectie("Morgen", morgenKaart()),
+    sectie("Doorlopend vandaag", groep(
+      doorlopend("wa", null, "Afspraakbevestiging", "Direct na inplannen", t.bevestiging),
+      doorlopend("auto", "blauw", "Onderweg-bericht", "Als de medewerker gaat rijden", t.onderweg),
+      doorlopend("ster", "oranje", "Reviewvraag", "Als de klus klaar is", t.review, el("span", {}, `${t.reviewsTop}× 👍`)))),
+    sectie("Op vaste tijden", el("div", { class: "groep tl" }, ...lijst.map((m) => {
+      const klikbaar = !!m.v && m.kanaal === "wa";
+      return el(klikbaar ? "button" : "div", { class: "rij" + (m === volgende ? " nu-rij" : ""), onclick: klikbaar ? () => toonDetails(m) : null },
+        el("div", { class: "tijd" + (m.v ? " weg" : "") }, m.tijd),
+        ico(m.kanaal === "wa" ? "wa" : m.kanaal === "app" ? "telefoon" : "mail", m.kanaal === "app" ? "groen" : null),
+        el("div", { class: "midden" },
+          el("div", { class: "naam" }, m.naam, m === volgende ? el("span", { class: "badge blauw" }, "straks") : null),
+          el("div", { class: "klein" }, m.kanaal === "wa" ? "WhatsApp naar " + m.wie.toLowerCase() : m.kanaal === "app" ? "In de app en per mail naar kantoor" : "Mail naar kantoor"),
+          el("div", { class: "status" }, statusTekst(m))),
+        klikbaar ? meer("Namen") : null);
+    })), "Tik op een regel voor de namen. Fouten staan er in gewone taal bij."),
+  );
+}
+
+function toonDetails(m) {
+  let rijen = [];
+  if (m.sleutel === "herinnering") {
+    rijen = m.v.lijst.map((n) => { const a = S.morgen.find((x) => x.klant === n); return { naam: n, sub: `${a.tijd} · ${a.klus}`, status: a.status }; });
+    if (S.foutHerinnering) rijen.push({ naam: S.foutHerinnering.naam, sub: "13:30–15:30 · Storing", status: "fout", reden: S.foutHerinnering.reden });
+  } else if (m.sleutel === "dagplanning") {
+    rijen = MEDEWERKERS.map((n) => ({ naam: n, sub: `${S.morgen.filter((a) => a.mw === n).length} klussen morgen`, status: S.mwBevestigd[n] ? "bevestigd" : "wacht" }));
+  } else if (m.sleutel === "herinnering_mw") {
+    rijen = m.v.lijst.map((n) => ({ naam: n, sub: "Planning van morgen", status: S.mwBevestigd[n] ? "bevestigd" : "wacht" }));
+  }
+  openBlad(`${m.naam} · ${m.tijd}`, sectie(`${rijen.length} ${rijen.length === 1 ? "persoon" : "personen"}`, groep(rijen.map((r) =>
+    el("div", { class: "rij zonder-icoon" }, el("div", { class: "midden" }, el("div", { class: "naam" }, r.naam), el("div", { class: "klein" }, r.sub),
+      el("div", { style: "font-size:14px;margin-top:2px" }, r.status === "fout" ? el("span", { class: "rood-tekst" }, "Mislukt · " + r.reden) : r.status === "bevestigd" ? el("span", { class: "groen-tekst" }, "Verstuurd · bevestigd") : r.status === "andere tijd" ? el("span", { class: "oranje-tekst" }, "Verstuurd · wil andere tijd") : el("span", {}, "Verstuurd · nog geen reactie"))))))));
+}
+
+// ---------- Afspraken ----------
+const statusPil = (s) => ({ bevestigd: pil("Bevestigd", "groen"), wacht: pil("Nog geen reactie", "grijs"), "andere tijd": pil("Wil andere tijd", "oranje"), klaar: pil("Klaar", "groen"), onderweg: pil("Onderweg", "blauw"), bezig: pil("Bezig", "blauw"), gepland: pil("Gepland", "grijs") })[s] ?? pil(s, "grijs");
+function tekenAfspraken() {
+  const dag = S.afspraakDag;
+  const lijst = [...(dag === "morgen" ? S.morgen : S.vandaag)].sort((a, b) => MEDEWERKERS.indexOf(a.mw) - MEDEWERKERS.indexOf(b.mw) || min(a.tijd) - min(b.tijd));
+  const perMw = MEDEWERKERS.map((n) => [n, lijst.filter((a) => a.mw === n)]).filter(([, l]) => l.length);
+  scherm(
+    kop("Afspraken", dag === "morgen" ? "Morgen · " + lijst.length + " afspraken" : "Vandaag · " + lijst.length + " afspraken"),
+    el("div", { class: "segment" },
+      el("button", { class: dag === "vandaag" ? "actief" : "", onclick: () => { S.afspraakDag = "vandaag"; tekenAfspraken(); } }, "Vandaag"),
+      el("button", { class: dag === "morgen" ? "actief" : "", onclick: () => { S.afspraakDag = "morgen"; tekenAfspraken(); } }, "Morgen")),
+    sectie(null, el("button", { class: "knop" + (S.wijsInplannen ? " wijs" : ""), onclick: formulierInplannen }, "+ Afspraak inplannen"),
+      "De klant krijgt direct een bevestiging op WhatsApp. Plan je liever in je eigen systeem? Met een koppeling komen afspraken hier vanzelf binnen."),
+    ...perMw.map(([n, l]) => sectie(n + (dag === "morgen" && S.verstuurd.dagplanning ? (S.mwBevestigd[n] ? " · planning bevestigd ✓" : " · planning nog niet bevestigd") : ""), groep(l.map((a) =>
+      el("div", { class: "rij zonder-icoon", style: a.nieuw ? "background:#f3fbf5" : "" },
+        el("div", { class: "midden" }, el("div", { class: "naam" }, a.klant, a.nieuw ? el("span", { class: "badge blauw" }, "nieuw") : null), el("div", { class: "klein" }, `${a.tijd} · ${a.klus}`)),
+        statusPil(a.status)))))),
+  );
+}
+function formulierInplannen() {
+  const naam = el("input", { class: "veld", value: "Sanne" });
+  const tel = el("input", { class: "veld", value: "06 12 34 56 78", inputmode: "tel" });
+  const dag = el("select", { class: "veld" }, el("option", {}, "Woensdag"));
+  const tijd = el("select", { class: "veld" }, ...["08:00–10:00", "10:30–12:30", "13:00–15:00", "15:30–17:30"].map((t) => { const o = el("option", {}, t); if (t === "13:00–15:00") o.selected = true; return o; }));
+  const klus = el("input", { class: "veld", value: "Storing verwarming" });
+  const mw = el("select", { class: "veld" }, ...MEDEWERKERS.map((n) => el("option", {}, n)));
+  const veld = (label, input) => el("div", { class: "rij zonder-icoon" }, el("div", { class: "naam", style: "width:110px;flex-shrink:0" }, label), input);
+  const uit = el("div");
+  openBlad("Afspraak inplannen", [
+    sectie(null, groep(veld("Klant", naam), veld("Telefoon", tel))),
+    sectie(null, groep(veld("Dag", dag), veld("Tijdvak", tijd), veld("Klus", klus), veld("Medewerker", mw))),
+    sectie("Bericht dat de klant krijgt", el("div", { class: "chatbg" }, el("div", { class: "bel in" }, vul(BERICHTEN.bevestiging.voorbeeld, naam.value || "…")))),
+    sectie(null, el("div", {}, el("button", { class: "knop" + (stap === 0 && !stapKlaar ? " wijs" : ""), onclick: () => {
+      if (S.morgen.some((a) => a.klant === "Sanne")) return uit.replaceChildren(melding("In deze demo kun je één afspraak inplannen. Die staat er al.", "info"));
+      inplannen({ klant: "Sanne", tijd: tijd.value, klus: klus.value || "Storing verwarming", mw: mw.value });
+    } }, "Inplannen en bevestiging sturen"), uit), "In de demo gaat de afspraak altijd naar Sanne, zodat je haar chat links ziet."),
+  ]);
+}
+
+// ---------- Bellen ----------
+function tekenBellen() {
+  const open = S.bellen.filter((b) => !b.gebeld), klaar = S.bellen.filter((b) => b.gebeld);
+  const rij = (b) => el("div", { class: "rij zonder-icoon" },
+    el("div", { class: "midden" },
+      el("div", { class: "naam" }, b.naam, " ", pil(b.rol, b.rol === "klant" ? "blauw" : "grijs")),
+      el("div", { style: "font-size:14px;margin-top:2px", class: b.gebeld ? "" : "oranje-tekst" }, b.reden),
+      el("div", { class: "klein" }, b.info)),
+    b.gebeld ? el("span", { class: "groen-tekst", style: "font-size:14px;font-weight:600" }, "Gebeld ✓") : el("button", { class: "belknop", onclick: () => bel(b.id) }, "Bel"));
+  scherm(
+    kop("Bellen", open.length ? `${open.length} ${open.length === 1 ? "persoon heeft" : "mensen hebben"} een belletje nodig` : "Niemand om te bellen"),
+    open.length ? sectie("Nog bellen", groep(open.map(rij))) : sectie(null, groep(el("div", { class: "leeg" }, S.verstuurd.bellijst ? "Iedereen is gebeld. 👍" : "Nog niemand. Wie een andere tijd wil of niet tevreden is, komt hier meteen. Om " + S.schema.bellijst.tijden[0] + " komen er mensen bij die niet reageerden."))),
+    klaar.length ? sectie("Afgehandeld", groep(klaar.map(rij))) : null,
+    sectie(null, null, "Tikken op Bel opent op je telefoon het nummer. In de demo wordt alleen afgevinkt."),
+  );
+}
+
+// ---------- Instellingen ----------
+function wanneerTekst(k) {
+  const b = BERICHTEN[k], s = S.schema[k];
+  if (!s.aan) return "Uit";
+  return s.tijden ? s.tijden.join(" · ") : "Automatisch";
+}
+function tekenInstellingen() {
+  const rij = (k) => {
+    const b = BERICHTEN[k];
+    return el("button", { class: "rij", onclick: () => duw(() => tekenBericht(k)) },
+      ico(b.kanaal === "wa" ? "wa" : b.kanaal === "app" ? "telefoon" : "mail", b.kanaal === "app" ? "groen" : null),
+      el("div", { class: "midden" }, el("div", { class: "naam" }, b.naam), el("div", { class: "klein" }, b.gebeurtenis ?? b.wie)),
+      S.schema[k].aan && !S.schema[k].tijden ? null : el("span", { class: "waarde" + (S.schema[k].aan ? "" : " rood-tekst") }, wanneerTekst(k)), meer());
+  };
+  scherm(
+    kop("Instellingen", "Wat er automatisch gaat, en wanneer"),
+    sectie("WhatsApp aan klanten", groep(["bevestiging", "onderweg", "review", "herinnering", "onderhoud"].map(rij)), "Tik op een bericht om te zien hoe het eruitziet, de tijd te wijzigen of het uit te zetten."),
+    sectie("WhatsApp aan medewerkers", groep(["dagplanning", "herinnering_mw"].map(rij))),
+    sectie("Voor kantoor", groep(["ochtend", "bellijst"].map(rij))),
+    sectie("Als iemand terugappt", groep(el("button", { class: "rij", onclick: () => duw(tekenAuto) }, ico("antwoord", "oranje"),
+      el("div", { class: "midden" }, el("div", { class: "naam" }, "Automatisch antwoord"), el("div", { class: "klein" }, "Op berichten die geen knop zijn")),
+      el("span", { class: "waarde" }, S.auto.aan ? "Aan" : "Uit"), meer()))),
+    sectie("Beheer", groep(
+      el("button", { class: "rij", onclick: () => duw(tekenToegang) }, ico("mensen", "paars"), el("div", { class: "midden" }, el("div", { class: "naam" }, "Wie mag erin")), el("span", { class: "waarde" }, S.toegang.length), meer()),
+      el("button", { class: "rij", onclick: () => duw(tekenLogboek) }, ico("boek", "grijs"), el("div", { class: "midden" }, el("div", { class: "naam" }, "Logboek"), el("div", { class: "klein" }, "Wie heeft wat veranderd")), meer("Bekijk")))),
+  );
+}
+
+function tekenBericht(k) {
+  const b = BERICHTEN[k], s = S.schema[k];
+  let tijden = s.tijden ? [...s.tijden] : null;
+  const uit = el("div");
+  const tijdRijen = el("div", { class: "groep" });
+  const tekenTijden = () => tijdRijen.replaceChildren(...tijden.map((t, i) => {
+    const inp = el("input", { type: "time", value: t, step: "60" });
+    inp.oninput = () => { tijden[i] = inp.value; };
+    return el("div", { class: "rij zonder-icoon" }, el("div", { class: "midden naam" }, "Tijd"), inp);
+  }));
+  if (tijden) tekenTijden();
+  const opslaan = el("button", { class: "knop", onclick: () => {
+    if (tijden.some((t) => !t || min(t) < 6 * 60 || min(t) > 22 * 60)) return uit.replaceChildren(melding("Kies een tijd tussen 06:00 en 22:00.", "fout"));
+    const oud = s.tijden.join(", ");
+    s.tijden = [...tijden];
+    S.log.unshift({ tijd: "vandaag " + S.nu, wie: "Jij", wat: `${b.naam}: tijd van ${oud} naar ${tijden.join(", ")}` });
+    if (stap === 7) stapGelukt();
+    uit.replaceChildren(melding("Opgeslagen. Vanaf nu gaat dit bericht op de nieuwe tijd. Kijk maar bij Vandaag.", "goed"));
+  } }, "Tijd opslaan");
+  const ontv = b.mail ? ontvangers(k) : null;
+  scherm(
+    kop(b.naam, null, "Instellingen"),
+    sectie(null, groep(el("div", { class: "rij" }, ico(b.kanaal === "wa" ? "wa" : b.kanaal === "app" ? "telefoon" : "mail", b.kanaal === "app" ? "groen" : null),
+      el("div", { class: "midden" }, el("div", { class: "naam" }, b.kanaal === "wa" ? "WhatsApp" : b.kanaal === "app" ? "In de app + mail" : "Mail"), el("div", { class: "klein" }, "Naar: " + b.wie)))), b.wat),
+    sectie(null, groep(el("div", { class: "rij zonder-icoon" }, el("div", { class: "midden naam" }, "Automatisch versturen"),
+      schakel(s.aan, (aan) => { s.aan = aan; S.log.unshift({ tijd: "vandaag " + S.nu, wie: "Jij", wat: `${b.naam} ${aan ? "aangezet" : "uitgezet"}` }); if (stap === 7) stapGelukt(); tekenBericht(k); }))),
+      s.aan ? null : "Staat uit: dit bericht wordt nu niet verstuurd."),
+    tijden && s.aan ? [sectie("Wanneer", tijdRijen), sectie(null, el("div", {}, opslaan, uit))] : b.gebeurtenis ? sectie("Wanneer", groep(el("div", { class: "rij zonder-icoon" }, el("div", { class: "midden naam" }, b.gebeurtenis)))) : null,
+    b.voorbeeld ? sectie("Zo ziet het eruit", el("div", { class: "chatbg" }, el("div", { class: "bel in" }, vul(b.voorbeeld, "Sanne")),
+      b.knoppen.length ? el("div", { class: "waknoppen" }, b.knoppen.map((x) => el("button", { class: "waknop", disabled: true, style: "color:#0a7cff" }, x))) : null),
+      "Teksten met knoppen moeten eenmalig door WhatsApp (Meta) worden goedgekeurd. Dat regelen wij.") : null,
+    ontv,
+  );
+}
+function ontvangers(k) {
+  const lijst = S.mails[k] ?? [];
+  const inp = el("input", { class: "veld", type: "email", placeholder: "naam@bedrijf.nl" });
+  const voeg = () => { const v = inp.value.trim().toLowerCase(); if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) return; (S.mails[k] ??= []).push(v); S.log.unshift({ tijd: "vandaag " + S.nu, wie: "Jij", wat: `${BERICHTEN[k].naam}: ${v} toegevoegd` }); tekenBericht(k); };
+  inp.onkeydown = (e) => { if (e.key === "Enter") voeg(); };
+  return sectie("Wie krijgt de mail", groep(
+    lijst.map((x) => el("div", { class: "rij zonder-icoon" }, el("div", { class: "midden naam", style: "font-size:15px" }, x),
+      el("button", { class: "rood-tekst", style: "font-size:15px", onclick: () => { S.mails[k] = lijst.filter((y) => y !== x); S.log.unshift({ tijd: "vandaag " + S.nu, wie: "Jij", wat: `${BERICHTEN[k].naam}: ${x} verwijderd` }); tekenBericht(k); } }, "Verwijder"))),
+    el("div", { class: "rij zonder-icoon" }, inp, el("button", { class: "link", style: "font-weight:600", onclick: voeg }, "Voeg toe"))));
+}
+function tekenAuto() {
+  const ta = el("textarea", { class: "veld", style: "min-height:110px;resize:vertical;line-height:1.4" }); ta.value = S.auto.tekst;
+  const bel = el("div", { class: "bel in" });
+  const ververs = () => { bel.textContent = vul(ta.value || "…", "Sanne"); }; ta.oninput = ververs; ververs();
+  const uit = el("div");
+  scherm(
+    kop("Automatisch antwoord", null, "Instellingen"),
+    sectie(null, groep(el("div", { class: "rij zonder-icoon" }, el("div", { class: "midden naam" }, "Antwoord sturen"), schakel(S.auto.aan, (a) => { S.auto.aan = a; }))),
+      "Appt een klant of medewerker iets terug dat geen knop is, dan stuurt het dit antwoord. Heeft iemand van kantoor net zelf met die persoon geappt, dan blijft het stil."),
+    sectie("Tekst", groep(el("div", { class: "rij zonder-icoon" }, ta)), "{naam} wordt automatisch de voornaam."),
+    sectie("Zo ziet het eruit", el("div", { class: "chatbg" }, bel)),
+    sectie(null, el("div", {}, el("button", { class: "knop", onclick: () => { S.auto.tekst = ta.value; S.log.unshift({ tijd: "vandaag " + S.nu, wie: "Jij", wat: "Automatisch antwoord gewijzigd" }); uit.replaceChildren(melding("Opgeslagen.")); } }, "Opslaan"), uit)),
+  );
+}
+function tekenToegang() {
+  const naam = el("input", { class: "veld", placeholder: "Naam" }), mail = el("input", { class: "veld", type: "email", placeholder: "E-mailadres" });
+  scherm(
+    kop("Wie mag erin", null, "Instellingen"),
+    sectie(`${S.toegang.length} personen`, groep(S.toegang.map((x) => el("div", { class: "rij zonder-icoon" }, el("div", { class: "midden" }, el("div", { class: "naam" }, x.naam), el("div", { class: "klein" }, x.email))))),
+      "Alleen mensen op deze lijst kunnen inloggen. Alles wat iemand verandert, komt in het logboek."),
+    sectie("Iemand toevoegen", groep(el("div", { class: "rij zonder-icoon" }, naam), el("div", { class: "rij zonder-icoon" }, mail))),
+    sectie(null, el("button", { class: "knop", onclick: () => { if (!mail.value.includes("@")) return; S.toegang.push({ naam: naam.value || "Collega", email: mail.value }); S.log.unshift({ tijd: "vandaag " + S.nu, wie: "Jij", wat: `${naam.value || mail.value} toegang gegeven` }); tekenToegang(); } }, "Toegang geven")),
+  );
+}
+function tekenLogboek() {
+  scherm(kop("Logboek", "Wie heeft wat veranderd", "Instellingen"),
+    sectie(null, groep(S.log.map((x) => el("div", { class: "rij zonder-icoon" }, el("div", { class: "midden" }, el("div", { class: "naam", style: "font-size:16px" }, x.wat), el("div", { class: "klein" }, `${x.wie} · ${x.tijd}`)))))));
+}
+
+// ---------- blad ----------
+function openBlad(titel, inhoud) {
+  $("bladTitel").textContent = titel; $("bladInhoud").replaceChildren(...[inhoud].flat());
+  toon("waas", true); toon("blad", true);
+  requestAnimationFrame(() => { $("waas").classList.add("open"); $("blad").classList.add("open"); });
+}
+function sluitBlad() {
+  $("waas").classList.remove("open"); $("blad").classList.remove("open");
+  setTimeout(() => { if (!$("blad").classList.contains("open")) { toon("waas", false); toon("blad", false); } }, 280);
+}
+$("waas").onclick = sluitBlad; $("bladDicht").onclick = sluitBlad;
+
+// =====================================================================
+// SMAL SCHERM: wisselen tussen WhatsApp en beheerscherm
+// =====================================================================
+let kant = "chat";
+function zichtbaar(k) { return !smal() || kant === k; }
+function focus(k) {
+  if (smal()) { kant = k; tekenWissel(); }
+  else { const t = $(k === "chat" ? "telChat" : "telBeheer"); t.classList.remove("flits"); void t.offsetWidth; t.classList.add("flits"); }
+}
+function seinOp(k) { if (smal() && kant !== k) { $("wissel").querySelector(`[data-kant=${k}] .nieuw`).classList.remove("verborgen"); } }
+function tekenWissel() {
+  document.querySelectorAll("#wissel button").forEach((b) => { b.classList.toggle("actief", b.dataset.kant === kant); if (b.dataset.kant === kant) b.querySelector(".nieuw").classList.add("verborgen"); });
+  $("kolomChat").classList.toggle("weg", smal() && kant !== "chat");
+  $("kolomBeheer").classList.toggle("weg", smal() && kant !== "beheer");
+}
+document.querySelectorAll("#wissel button").forEach((b) => b.onclick = () => { kant = b.dataset.kant; tekenWissel(); tekenChat(); });
+addEventListener("resize", tekenWissel);
+
+// Na elke wijziging die de andere kant raakt, op mobiel een rood stipje tonen.
+let vorigeSnap = "";
+function teken() {
+  const snap = JSON.stringify([S.morgen, S.bellen, S.verstuurd, S.teller, S.mwBevestigd]);
+  if (vorigeSnap && snap !== vorigeSnap) seinOp("beheer");
+  vorigeSnap = snap;
+  tekenChat(); tekenBeheer(); tekenVerhaal(); tekenWissel();
+}
+
+beginToestand();
+naarStap(0);
+</script>
+</body>
+</html>
